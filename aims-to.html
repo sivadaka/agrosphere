@@ -3,44 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aims To - AgroSphere</title>
+    <title>AgroSphere - Aims To</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            text-align: center;
-            background-color: #f4f4f4;
+            background: linear-gradient(135deg, #b2ff66, #66ffcc);
+            color: #333;
         }
         header {
-            background-color: #66ff7f;
+            background-color: #4CAF50;
             padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
         }
-        header a {
+        header img {
+            height: 75%;
+            margin-right: 10px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .back-link {
+            position: absolute;
+            left: 20px;
+            top: 20px;
             color: white;
             text-decoration: none;
-            font-size: 20px;
+            font-size: 16px;
         }
-        h2 {
-            color: #333;
-            margin-top: 20px;
+        section {
+            padding: 40px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        section h2 {
+            font-size: 32px;
+            margin: 0;
+        }
+        section p, section li {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 40px;
+            text-align: left;
         }
         p {
-            margin: 20px auto;
-            width: 60%;
+            margin: 15px 0;
             line-height: 1.6;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
     <header>
-        <a href="index.html">&#8592; Go Back</a>
+        <a href="index.html" class="back-link">&larr; Go Back</a>
+        <h1>AgroSphere - Aims To</h1>
     </header>
-    <h2>Our Aims</h2>
-    <p>
-        AgroSphere aims to revolutionize the agriculture sector by promoting sustainable farming practices, improving farmer livelihoods,
-        and creating a direct trade platform that eliminates middlemen. Our focus is on community empowerment, knowledge sharing, and
-        innovation in agricultural technology to enhance productivity and profitability for farmers.
-    </p>
+    <section>
+        <h2>Our Aims</h2>
+        <p>AgroSphere is dedicated to transforming the agricultural sector by empowering farmers and fostering sustainable growth. We strive to enhance the livelihood of farmers and bridge the gap between them and consumers through the following aims:</p>
+        <ul>
+            <li>Empower farmers by providing a platform for direct sales and purchases, eliminating middlemen.
+                <p>Our platform allows farmers to sell their produce directly to consumers, cutting out intermediaries and ensuring fair prices. This results in better profit margins and more transparent transactions.</p>
+            </li>
+            <li>Support sustainable agriculture through the promotion of organic and regular products.
+                <p>We encourage farmers to adopt sustainable practices by promoting organic farming and offering a marketplace for both organic and conventional products. This helps improve soil health and biodiversity while meeting consumer demand.</p>
+            </li>
+            <li>Facilitate online shopping for consumers to purchase directly from farmers.
+                <p>Our website allows customers to conveniently browse and purchase fresh, locally sourced produce from farmers. This reduces logistical challenges and promotes community-supported agriculture.</p>
+            </li>
+            <li>Provide employment opportunities and training through workshops and consulting services.
+                <p>We offer training programs and consulting services to help farmers enhance their skills and knowledge. This includes workshops on modern farming techniques, sustainable practices, and business management.</p>
+            </li>
+            <li>Connect farmers with machinery rentals and door-to-door services to ease agricultural operations.
+                <p>Our platform also supports access to agricultural machinery and door-to-door services, making it easier for farmers to manage operations efficiently and cost-effectively.</p>
+            </li>
+            <li>Enhance farmers' income and growth by improving market accessibility and reducing exploitation.
+                <p>By offering direct connections to consumers and promoting fair trade practices, AgroSphere helps farmers achieve financial stability and growth.</p>
+            </li>
+        </ul>
+    </section>
+    <footer>
+        Contact us: <a href="mailto:agrosphere1234@gmail.com">agrosphere1234@gmail.com</a>
+    </footer>
 </body>
 </html>
