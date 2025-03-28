@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroSphere</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #66ff7f;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            padding-right: 20px;
+            flex-shrink: 0;
+        }
+        nav {
+            flex-grow: 1;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start;
+        }
+        nav ul li {
+            position: relative;
+        }
+        nav ul li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        nav ul li:hover > a {
+            background-color: #555;
+            color: white;
+        }
+        nav ul li ul {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 160px;
+            z-index: 1;
+        }
+        nav ul li:hover ul {
+            display: block;
+        }
+        nav ul li ul li a {
+            color: white;
+        }
+        nav ul li ul li a:hover {
+            background-color: #555;
+        }
+        section {
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AgroSphere</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a>
+                    <ul>
+                        <li><a href="#">Consulting</a></li>
+                        <li><a href="#">Learning Workshops</a></li>
+                        <li><a href="#">Door to Door Services</a></li>
+                        <li><a href="#">Machinery Rentals</a></li>
+                        <li><a href="#">Employment</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Shopping</a>
+                    <ul>
+                        <li><a href="#">Organic</a>
+                            <ul>
+                                <li><a href="#">Food</a></li>
+                                <li><a href="#">Beauty</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Regular</a>
+                            <ul>
+                                <li><a href="#">Food</a></li>
+                                <li><a href="#">Beauty</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#">About Us</a>
+                    <ul>
+                        <li><a href="#">Aims To</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <h2>Mission</h2>
+        <p>To provide a platform for employment, education, sales, and purchase of inputs to farmers, as well as direct trade from farmers to consumers by eliminating middlemen.</p>
+        <h2>Vision</h2>
+        <p>To improve the livelihood of farmers by ridding them of exploitation and ensuring their sales and growth.</p>
+    </section>
+    <footer>
+        Contact us: <a href="mailto:agrosphere1234@gmail.com">agrosphere1234@gmail.com</a>
+    </footer>
+</body>
+</html>
