@@ -68,6 +68,28 @@
         nav ul li ul li a:hover {
             background-color: #555;
         }
+        nav ul li ul li {
+            position: relative;
+        }
+        nav ul li ul li:hover ul {
+            display: block;
+            left: 100%;
+            top: 0;
+        }
+        nav ul li ul li ul {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            left: 100%;
+            top: 0;
+            min-width: 160px;
+            z-index: 1;
+        }
+        nav ul li ul li span {
+            display: block;
+            padding: 14px 16px;
+            color: white;
+        }
         .image-section {
             display: flex;
             justify-content: center;
@@ -107,32 +129,32 @@
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Services</a>
                     <ul>
-                        <li><a href="#">Consulting</a></li>
-                        <li><a href="#">Learning Workshops</a></li>
-                        <li><a href="#">Door to Door Services</a></li>
-                        <li><a href="#">Machinery Rentals</a></li>
-                        <li><a href="#">Employment</a></li>
+                        <li><a href="consulting.html">Consulting</a></li>
+                        <li><a href="learning-workshops.html">Learning Workshops</a></li>
+                        <li><a href="door-to-door-services.html">Door to Door Services</a></li>
+                        <li><a href="machinery-rentals.html">Machinery Rentals</a></li>
+                        <li><a href="employment.html">Employment</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Shopping</a>
                     <ul>
-                        <li><a href="#">Organic</a>
+                        <li><span>Organic</span>
                             <ul>
-                                <li><a href="#">Food</a></li>
-                                <li><a href="#">Beauty</a></li>
+                                <li><a href="organic-food.html">Food</a></li>
+                                <li><a href="organic-beauty.html">Beauty</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Regular</a>
+                        <li><span>Regular</span>
                             <ul>
-                                <li><a href="#">Food</a></li>
-                                <li><a href="#">Beauty</a></li>
+                                <li><a href="regular-food.html">Food</a></li>
+                                <li><a href="regular-beauty.html">Beauty</a></li>
                             </ul>
                         </li>
                     </ul>
                 </li>
                 <li><a href="#">About Us</a>
                     <ul>
-                        <li><a href="#">Aims To</a></li>
+                        <li><a href="aims-to.html">Aims To</a></li>
                     </ul>
                 </li>
             </ul>
