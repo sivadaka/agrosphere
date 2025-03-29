@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - AgroSphere</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #66ff7f;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2, h3 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .submit-btn {
+            background-color: #66ff7f;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+        }
+        .submit-btn:hover {
+            background-color: #55cc6e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Checkout - AgroSphere</h2>
+    </header>
+    <div class="container">
+        <h3>Shipping Details</h3>
+        <label for="address">Address:</label>
+        <input type="text" id="address" placeholder="Enter your address" required>
+
+        <label for="state">State:</label>
+        <input type="text" id="state" placeholder="Enter your state" required>
+
+        <label for="district">District:</label>
+        <input type="text" id="district" placeholder="Enter your district" required>
+
+        <label for="pincode">Pincode:</label>
+        <input type="text" id="pincode" placeholder="Enter your pincode" required>
+
+        <h3>Payment Method</h3>
+        <select id="paymentMethod" onchange="togglePaymentFields()">
+            <option value="">Select Payment Method</option>
+            <option value="upi">UPI</option>
+            <option value="debit">Debit Card</option>
+            <option value="credit">Credit Card</option>
+            <option value="netbanking">Net Banking</option>
+            <option value="cod">Pay on Delivery</option>
+        </select>
+
+        <div id="paymentDetails"></div>
+
+        <button class="submit-btn" onclick="proceedToBuy()">Proceed to Buy</button>
+
+        <p id="confirmationMessage" style="color: green; margin-top: 15px; display: none;"></p>
+    </div>
+
+    <script>
+        function togglePaymentFields() {
+            const paymentMethod = document.getElementById("paymentMethod").value;
+            const paymentDetails = document.getElementById("paymentDetails");
+            let fields = "";
+
+            if (paymentMethod === "debit" || paymentMethod === "credit") {
+                fields = `<label>Card Number:</label><input type='text' placeholder='Enter card number' required>
+                         <label>Expiry Date:</label><input type='text' placeholder='MM/YY' required>
+                         <label>CVV:</label><input type='password' placeholder='CVV' required>`;
+            } else if (paymentMethod === "upi") {
+                fields = `<label>UPI ID:</label><input type='text' placeholder='Enter UPI ID' required>`;
+            } else if (paymentMethod === "netbanking") {
+                fields = `<label>Bank Name:</label><input type='text' placeholder='Enter bank name' required>
+                         <label>Account Number:</label><input type='text' placeholder='Enter account number' required>`;
+            }
+
+            paymentDetails.innerHTML = fields;
+        }
+
+        function proceedToBuy() {
+            const itemCount = 3; // Placeholder for actual item count
+            const deliveryDate = new Date();
+            deliveryDate.setDate(deliveryDate.getDate() + 3);
+            const formattedDate = deliveryDate.toDateString();
+
+            const message = `You have successfully purchased ${itemCount} items. Delivery expected by ${formattedDate}.`;
+            const confirmationMessage = document.getElementById("confirmationMessage");
+            confirmationMessage.textContent = message;
+            confirmationMessage.style.display = "block";
+        }
+    </script>
+</body>
+</html>
