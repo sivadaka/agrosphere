@@ -23,6 +23,16 @@
             margin: 0;
             flex: 1;
         }
+        .home-link, .cart-link {
+            text-decoration: none;
+            color: white;
+            background-color: #333;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .home-link:hover, .cart-link:hover {
+            background-color: #555;
+        }
         .cart-link {
             margin-right: 20px;
             text-decoration: none;
@@ -100,6 +110,7 @@
 </head>
 <body>
     <header>
+        <a href="index.html" class="home-link">🏠 Go Back to Home</a>
         <h2>Organic Beauty</h2>
         <a href="cart.html" class="cart-link">🛒 Cart</a>
     </header>
