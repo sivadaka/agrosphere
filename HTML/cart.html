@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - AgroSphere</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background-color: #66ff7f;
+            padding: 20px;
+        }
+        header h2 {
+            margin: 0;
+        }
+        .content {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            max-width: 800px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #66ff7f;
+        }
+        .checkout-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #66ff7f;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .checkout-button:hover {
+            background-color: #55cc6e;
+        }
+        .empty-message {
+            margin: 20px;
+            color: #888;
+        }
+    </style>
+    <script>
+        function loadCartItems() {
+            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartTable = document.getElementById("cart-table");
+            const cartBody = document.getElementById("cart-body");
+            const emptyMessage = document.getElementById("empty-message");
+
+            if (cartItems.length === 0) {
+                emptyMessage.style.display = "block";
+                cartTable.style.display = "none";
+                return;
+            }
+
+            emptyMessage.style.display = "none";
+            cartTable.style.display = "table";
+
+            cartBody.innerHTML = "";
+            cartItems.forEach(item => {
+                const row = `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.quantity}</td>
+                    </tr>
+                `;
+                cartBody.innerHTML += row;
+            });
+        }
+
+        function proceedToCheckout() {
+            alert("Proceeding to Checkout!");
+            localStorage.removeItem("cart");
+            location.reload();
+        }
+
+        window.onload = loadCartItems;
+    </script>
+</head>
+<body>
+    <header>
+        <h2>Your Cart</h2>
+    </header>
+    <div class="content">
+        <p class="empty-message" id="empty-message">Your cart is empty.</p>
+        <table id="cart-table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody id="cart-body"></tbody>
+        </table>
+        <button class="checkout-button" onclick="proceedToCheckout()">Proceed to Checkout</button>
+    </div>
+</body>
+</html>
