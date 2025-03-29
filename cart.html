@@ -88,9 +88,9 @@
         }
 
         function proceedToCheckout() {
-            alert("Proceeding to Checkout!");
-            localStorage.removeItem("cart");
-            location.reload();
+            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            localStorage.setItem("checkoutCart", JSON.stringify(cartItems));
+            window.location.href = "checkout.html";
         }
 
         window.onload = loadCartItems;
