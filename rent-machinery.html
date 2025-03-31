@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Machinery - AgroSphere</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #66ff7f;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        .content {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #66ff7f;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #55e36b;
+        }
+        .success-message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7ffe7;
+            color: #2a7d2a;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="rentHeader">Rent Machinery</h1>
+    </header>
+    <script>
+        window.onload = function() {
+            const modelName = localStorage.getItem("selectedModel");
+            if (modelName) {
+                document.getElementById("rentHeader").textContent = `Rent Machinery - ${modelName}`;
+            }
+        };
+    </script>
+    <div class="content">
+        <h2>Rental Details</h2>
+        <form id="rentForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="rentDays">Number of Days:</label>
+            <input type="number" id="rentDays" name="rentDays" min="1" required>
+
+            <label for="startDate">Rent Start Date:</label>
+            <input type="date" id="startDate" name="startDate" required>
+
+            <label for="address">Delivery Address:</label>
+            <textarea id="address" name="address" rows="4" required></textarea>
+
+            <h3>Total Rental Amount: ₹<span id="totalAmount">0</span></h3>
+
+            <button type="submit">Submit</button>
+        </form>
+        <div class="success-message" id="successMessage"></div>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const modelName = urlParams.get("model") || "Unknown Model";
+        const modelPrice = parseInt(urlParams.get("price")) || 0;
+        document.title = `Rent ${modelName}`;
+
+        const rentForm = document.getElementById("rentForm");
+        const totalAmount = document.getElementById("totalAmount");
+        const successMessage = document.getElementById("successMessage");
+
+        function updateTotalAmount(days) {
+            totalAmount.textContent = days * modelPrice;
+        }
+
+        rentForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value;
+            const rentDays = document.getElementById("rentDays").value;
+            successMessage.innerHTML = `Thank you! Your ${modelName} will be delivered to your location for rental for ${rentDays} days. If you would like to avoid charges for transportation, you may visit any of our nearest branches and pick up the machine if available.`;
+            successMessage.style.display = "block";
+            rentForm.reset();
+        });
+
+        document.getElementById("rentDays").addEventListener("input", function() {
+            const days = parseInt(this.value) || 0;
+            updateTotalAmount(days);
+        });
+    </script>
+</body>
+</html>

@@ -3,33 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Machinery Rentals</title>
+    <title>Machinery Rentals - AgroSphere</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             background-color: #f4f4f4;
         }
         header {
             background-color: #66ff7f;
             padding: 20px;
             text-align: center;
-        }
-        header h1 {
-            margin: 0;
+            color: white;
         }
         .content {
-            margin: 20px auto;
             padding: 20px;
+            max-width: 800px;
+            margin: auto;
             background-color: white;
             border-radius: 8px;
-            max-width: 800px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .back-button {
             margin-bottom: 20px;
-            text-align: left;
         }
         .back-button a {
             text-decoration: none;
@@ -40,6 +37,30 @@
         }
         .back-button a:hover {
             background-color: #bbb;
+        }
+        .machine {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #eef;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .machine img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .rent-button {
+            background-color: #66ff7f;
+            color: white;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .rent-button:hover {
+            background-color: #55e36b;
         }
     </style>
 </head>
@@ -53,13 +74,27 @@
         </div>
         <h2>Machinery Rentals for Modern Agriculture</h2>
         <p>Our machinery rental service provides farmers with access to modern and efficient agricultural equipment. Whether you need tractors, harvesters, or specialized machinery, we have the right solution for your needs.</p>
-        <p>We ensure well-maintained and serviced equipment to minimize downtime and maximize productivity. Explore our range of machinery and get in touch to discuss your requirements.</p>
-        <h3>Benefits:</h3>
-        <ul>
-            <li>Affordable rental plans</li>
-            <li>Reliable and modern machinery</li>
-            <li>Expert support and maintenance</li>
-        </ul>
+        <div class="machine">
+            <h3>Tractor - Heavy Duty TMP3908</h3>
+            <img src="assets/images/machinery_rentals/tractor.png" alt="Tractor">
+            <p>Powerful and efficient tractor suitable for large-scale farming. Fuel-efficient and easy to maintain.</p>
+            <p>Rental Price: ₹5,000/day</p>
+            <a href="rent-machinery.html?model=Tractor%20TMP3908&price=5000" class="rent-button">Rent Now</a>
+        </div>
+        <div class="machine">
+            <h3>Harvester - Model ABC</h3>
+            <img src="assets/images/machinery_rentals/harvestor.jpg" alt="Harvester">
+            <p>Advanced harvester designed for maximum yield and minimal crop loss. Ideal for grain and cereal harvesting.</p>
+            <p>Rental Price: ₹8,000/day</p>
+            <a href="rent-machinery.html?model=Harvester%20ABC&price=8000" class="rent-button">Rent Now</a>
+        </div>
+        <div class="machine">
+            <h3>Ploughing Machine - Model PQR</h3>
+            <img src="assets/images/machinery_rentals/ploughing_machine.jpg" alt="Ploughing Machine">
+            <p>Efficient ploughing for soil preparation with robust build and minimal maintenance.</p>
+            <p>Rental Price: ₹3,000/day</p>
+            <a href="rent-machinery.html?model=Ploughing%20Machine%20PQR&price=3000" class="rent-button">Rent Now</a>
+        </div>
     </div>
 </body>
 </html>
