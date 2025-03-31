@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Position - AgroSphere</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #66ff7f;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        .content {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #66ff7f;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #55e36b;
+        }
+        .success-message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7ffe7;
+            color: #2a7d2a;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Apply for a Position</h1>
+    </header>
+    <div class="content">
+        <h2>Application Form</h2>
+        <form id="applicationForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="18" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="experience">Experience (in years):</label>
+            <input type="number" id="experience" name="experience" min="0" required>
+
+            <div id="previous-employer-field" style="display: none;">
+                <label for="prevEmployer">Previous Employer:</label>
+                <input type="text" id="prevEmployer" name="prevEmployer">
+            </div>
+
+            <label for="education">Highest Qualification:</label>
+            <input type="text" id="education" name="education" required>
+
+            <label for="skills">Skills (comma-separated):</label>
+            <textarea id="skills" name="skills" rows="4" required></textarea>
+
+            <label for="resume">Upload Resume:</label>
+            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+
+            <button type="submit">Submit Application</button>
+        </form>
+        <div class="success-message" id="successMessage">
+            Thank you for your interest in AgroSphere! We will get in touch if your skills match our requirements. Wishing you all the best!
+        </div>
+    </div>
+    <script>
+        const applicationForm = document.getElementById("applicationForm");
+        const successMessage = document.getElementById("successMessage");
+        const experienceInput = document.getElementById("experience");
+        const employerField = document.getElementById("previous-employer-field");
+
+        applicationForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            successMessage.style.display = "block";
+            applicationForm.reset();
+        });
+
+        experienceInput.addEventListener("input", function() {
+            if (parseInt(experienceInput.value) > 0) {
+                employerField.style.display = "block";
+            } else {
+                employerField.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

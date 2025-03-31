@@ -15,13 +15,12 @@
             background-color: #66ff7f;
             padding: 20px;
             text-align: center;
-        }
-        header h1 {
-            margin: 0;
             color: white;
         }
         .content {
             padding: 20px;
+            max-width: 800px;
+            margin: auto;
             text-align: center;
         }
         .back-link {
@@ -36,6 +35,31 @@
         .back-link:hover {
             background-color: #bbb;
         }
+        .job-card {
+            background-color: white;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .job-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .job-details {
+            text-align: left;
+        }
+        .apply-btn {
+            margin-top: 10px;
+            background-color: #66ff7f;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .apply-btn:hover {
+            background-color: #55e36b;
+        }
     </style>
 </head>
 <body>
@@ -45,15 +69,42 @@
     <div class="content">
         <a href="index.html" class="back-link">&#8592; Go Back</a>
         <h2>Join the AgroSphere Team!</h2>
-        <p>At AgroSphere, we are committed to empowering communities through sustainable agriculture and employment opportunities. We are constantly looking for passionate individuals to join our team and make a positive impact.</p>
+        <p>We are committed to empowering communities through sustainable agriculture and employment opportunities. Join our passionate team and make a positive impact.</p>
         <h3>Current Openings</h3>
-        <ul>
-            <li>Field Officer</li>
-            <li>Agro Consultant</li>
-            <li>Marketing Coordinator</li>
-            <li>Customer Support Representative</li>
-        </ul>
-        <p>For job applications and inquiries, please email us at <a href="mailto:jobs@agrosphere.com">jobs@agrosphere.com</a>.</p>
+        <div class="job-card">
+            <img src="assets/images/employment/field_officer.jpg" alt="Field Officer">
+            <div class="job-details">
+                <h4>Field Officer</h4>
+                <p>Location: Various locations across India</p>
+                <p>Responsibilities: Supervise agricultural practices, ensure quality standards, and support farmers on-site.</p>
+                <p>Requirements: Bachelor’s degree in Agriculture or related field, 2+ years of field experience, strong communication skills.</p>
+                <p>Skills: Field Management, Communication, Quality Assurance</p>
+                <a href="apply-position.html" class="apply-btn">Apply Now</a>
+            </div>
+        </div>
+        <div class="job-card">
+            <img src="assets/images/employment/agro_consultant.jpg" alt="Agro Consultant">
+            <div class="job-details">
+                <h4>Agro Consultant</h4>
+                <p>Location: Remote</p>
+                <p>Responsibilities: Provide agricultural consultancy to farmers, guide on best practices and sustainability.</p>
+                <p>Requirements: Master’s degree in Agriculture, 5+ years of consultancy experience, analytical skills.</p>
+                <p>Skills: Consultancy, Problem Solving, Sustainable Practices</p>
+                <a href="apply-position.html" class="apply-btn">Apply Now</a>
+            </div>
+        </div>
+        <div class="job-card">
+            <img src="assets/images/employment/marketing_coordinator.jpg" alt="Marketing Coordinator">
+            <div class="job-details">
+                <h4>Marketing Coordinator</h4>
+                <p>Location: Head Office, Mumbai</p>
+                <p>Responsibilities: Plan and execute marketing strategies, build brand awareness, coordinate campaigns.</p>
+                <p>Requirements: Bachelor’s degree in Marketing or Business, 3+ years of experience in marketing.</p>
+                <p>Skills: Marketing Strategy, Communication, Campaign Management</p>
+                <a href="apply-position.html" class="apply-btn">Apply Now</a>
+            </div>
+        </div>
+        <p>For job applications and inquiries, email us at <a href="mailto:jobs@agrosphere.com">jobs@agrosphere.com</a>.</p>
     </div>
 </body>
 </html>
