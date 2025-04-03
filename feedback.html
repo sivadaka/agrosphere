@@ -1,92 +1,305 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Give Feedback - AgroSphere</title>
     <style>
+        /* --- Base Styles (Light Mode) --- */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
+            color: #333;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+
         header {
-    background-color: #66ff7f;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #333;
-}
+            background-color: #66ff7f; /* Bright Green */
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #333; /* Dark text on light green */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        header h2 {
+            margin: 0;
+            flex-grow: 1;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Space between home link and toggle */
+        }
+
         .home-link {
             text-decoration: none;
-            color: #333;
+            color: #333 !important; /* Important to override potential dark mode link styles */
             font-weight: bold;
             background-color: white;
             padding: 8px 16px;
             border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+
         .home-link:hover {
             background-color: #ddd;
         }
+
+        #darkModeToggle {
+            background: none;
+            border: none;
+            color: #333; /* Dark icon on light green */
+            cursor: pointer;
+            padding: 5px;
+            font-size: 1.5em;
+            line-height: 1;
+            outline: none;
+            transition: color 0.3s ease;
+        }
+        #darkModeToggle svg {
+            display: block;
+            width: 24px;
+            height: 24px;
+        }
+
         .container {
             max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
+            margin: 30px auto; /* Increased margin */
+            padding: 30px; /* Increased padding */
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
-        h2 {
-            margin: 0 0 20px;
-            color: #333;
-        }
+
         label {
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
+            color: #333; /* Explicit color */
+            transition: color 0.3s ease;
         }
-        input, textarea, select {
+        label span { /* Style for the asterisk */
+            color: red;
+        }
+        .checkbox-label {
+            display: flex; /* Align checkbox and text */
+            align-items: center;
+            margin-top: 15px;
+            font-weight: normal; /* Normal weight for checkbox labels */
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="tel"],
+        input[type="email"],
+        textarea,
+        select {
             width: 100%;
-            padding: 10px;
-            margin: 8px 0;
+            padding: 12px; /* Increased padding */
+            margin-bottom: 15px; /* Increased margin */
             border-radius: 5px;
             border: 1px solid #ddd;
+            box-sizing: border-box; /* Include padding in width */
+            background-color: #fff; /* Explicit background */
+            color: #333; /* Explicit text color */
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
+         input::placeholder, textarea::placeholder {
+             color: #999;
+             transition: color 0.3s ease;
+         }
+
+
         input[type="checkbox"] {
             width: auto;
-            margin-right: 8px;
+            margin-right: 10px;
+            margin-top: 0; /* Reset margin */
+            margin-bottom: 0; /* Reset margin */
+            accent-color: #66ff7f; /* Style checkbox color */
         }
+
         .submit-btn {
             background-color: #66ff7f;
             color: white;
-            padding: 12px;
+            padding: 15px; /* Increased padding */
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 20px; /* Increased margin */
             width: 100%;
             font-weight: bold;
+            font-size: 1.1em; /* Slightly larger font */
+            transition: background-color 0.3s ease;
         }
+
         .submit-btn:hover {
             background-color: #55cc6e;
         }
-        .message {
-            margin-top: 15px;
-            color: green;
-            text-align: center;
-            font-weight: bold;
+
+        /* --- Popup Styles --- */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
+        .popup-overlay.visible {
+            display: flex;
+            opacity: 1;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            color: #333;
+            transform: scale(0.9);
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+        }
+         .popup-overlay.visible .popup-content {
+             transform: scale(1);
+         }
+
+
+        .popup-content h3 {
+            color: #4CAF50; /* Green accent */
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .popup-content p {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .popup-content #countdownTimer {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #66ff7f; /* Bright Green */
+            display: block;
+            margin-top: 15px;
+        }
+
+        /* --- Dark Mode Styles --- */
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+
+        body.dark-mode header {
+            background-color: #333;
+            color: #eee; /* Light text on dark header */
+        }
+        body.dark-mode .home-link {
+            background-color: #555;
+            color: #eee !important;
+        }
+         body.dark-mode .home-link:hover {
+             background-color: #777;
+         }
+
+        body.dark-mode #darkModeToggle {
+            color: #eee; /* Light icon on dark header */
+        }
+
+        body.dark-mode .container {
+            background-color: #2c2c2c;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-mode label {
+            color: #eee;
+        }
+
+        body.dark-mode input[type="text"],
+        body.dark-mode input[type="number"],
+        body.dark-mode input[type="tel"],
+        body.dark-mode input[type="email"],
+        body.dark-mode textarea,
+        body.dark-mode select {
+            background-color: #444;
+            color: #eee;
+            border-color: #555;
+        }
+        body.dark-mode input::placeholder,
+        body.dark-mode textarea::placeholder {
+            color: #aaa;
+        }
+
+
+        body.dark-mode input[type="checkbox"] {
+            accent-color: #66bb6a; /* Darker green accent */
+        }
+
+        body.dark-mode .submit-btn {
+            background-color: #66bb6a; /* Darker green */
+            color: #1a1a1a; /* Dark text on green */
+        }
+
+        body.dark-mode .submit-btn:hover {
+            background-color: #5aa05f;
+        }
+
+        /* Dark Mode Popup */
+        body.dark-mode .popup-overlay {
+             background-color: rgba(0, 0, 0, 0.8); /* Darker overlay */
+        }
+        body.dark-mode .popup-content {
+            background-color: #3a3a3a;
+            color: #f0f0f0;
+        }
+        body.dark-mode .popup-content h3 {
+            color: #66bb6a; /* Lighter green */
+        }
+        body.dark-mode .popup-content p {
+            color: #ccc;
+        }
+        body.dark-mode .popup-content #countdownTimer {
+            color: #66bb6a; /* Lighter green */
+        }
+
     </style>
 </head>
+
 <body>
     <header>
-        <a href="index.html" class="home-link">Go to Home</a>
-        <div style="flex-grow: 1; text-align: center;"><h2>Give Us Your Feedback</h2></div>
+        <div class="header-controls"> <!-- Group controls -->
+            <a href="index.html" class="home-link">Go to Home</a>
+        </div>
+        <h2>Give Us Your Feedback</h2>
+        <div class="header-controls"> <!-- Another controls group for balance/toggle -->
+             <button id="darkModeToggle" aria-label="Toggle Dark Mode">
+                <!-- Sun icon (default) -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+             </button>
+        </div>
     </header>
+
     <div class="container">
-        <form id="feedbackForm" onsubmit="return submitFeedback()">
+        <form id="feedbackForm">
             <label for="name">Name <span style="color: red;">*</span></label>
             <input type="text" id="name" placeholder="Enter your name" required>
 
@@ -95,7 +308,7 @@
 
             <label for="gender">Gender <span style="color: red;">*</span></label>
             <select id="gender" required>
-                <option value="">Select your gender</option>
+                <option value="" disabled selected>Select your gender</option> <!-- Improved placeholder -->
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Other">Other</option>
@@ -105,49 +318,119 @@
             <input type="text" id="address" placeholder="Enter your address">
 
             <label for="phone">Phone Number <span style="color: red;">*</span></label>
-            <input type="tel" id="phone" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+            <input type="tel" id="phone" placeholder="Enter your 10-digit phone number" pattern="[0-9]{10}" title="Please enter a 10-digit phone number" required> <!-- Added title for pattern -->
 
             <label for="email">Email ID</label>
-            <input type="email" id="email" placeholder="Enter your email">
+            <input type="email" id="email" placeholder="Enter your email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address" required>
 
             <label for="details">Feedback</label>
             <textarea id="details" placeholder="Share your feedback" rows="4"></textarea>
 
-            <label>
+            <label class="checkbox-label">
                 <input type="checkbox" id="contact" checked>
                 Would you like to be contacted by our team?
             </label>
-            <label>
+            <label class="checkbox-label">
                 <input type="checkbox" id="receive-updates">
                 Would you like to receive emails/messages from us?
             </label>
 
             <button type="submit" class="submit-btn">Submit Feedback</button>
         </form>
-        <p id="thankYouMessage" class="message" style="display: none;">Thank you for your feedback!</p>
+        <!-- Removed the old thankYouMessage paragraph -->
+    </div>
+
+    <!-- Popup Structure -->
+    <div id="feedbackPopupOverlay" class="popup-overlay">
+        <div class="popup-content">
+            <h3>Thank You!</h3>
+            <p>Your feedback has been submitted successfully.</p>
+            <p>Redirecting to Homepage in...</p>
+            <span id="countdownTimer">3</span>
+        </div>
     </div>
 
     <script>
-        function submitFeedback() {
+        // --- Dark Mode Script ---
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+        const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+
+        function updateToggleButtonIcon() {
+            if (body.classList.contains('dark-mode')) {
+                darkModeToggle.innerHTML = moonIcon;
+                darkModeToggle.setAttribute('aria-label', 'Switch to Light Mode');
+            } else {
+                darkModeToggle.innerHTML = sunIcon;
+                darkModeToggle.setAttribute('aria-label', 'Switch to Dark Mode');
+            }
+        }
+
+        function toggleDarkMode() {
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+            updateToggleButtonIcon();
+        }
+
+        const savedDarkMode = localStorage.getItem('darkMode');
+        if (savedDarkMode === 'true') {
+            body.classList.add('dark-mode');
+        }
+        updateToggleButtonIcon(); // Initial icon state
+
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+
+        // --- Feedback Form Script ---
+        const feedbackForm = document.getElementById('feedbackForm');
+        const popupOverlay = document.getElementById('feedbackPopupOverlay');
+        const countdownTimerElement = document.getElementById('countdownTimer');
+        let countdownInterval; // To store the interval ID
+
+        feedbackForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Keep your validation (or add more robust validation if needed)
             const name = document.getElementById("name").value;
             const gender = document.getElementById("gender").value;
             const phone = document.getElementById("phone").value;
 
             if (!name || !gender || !phone) {
-                alert("Please fill out all mandatory fields.");
-                return false;
+                alert("Please fill out all mandatory fields (*).");
+                return; // Stop execution if validation fails
             }
 
-            // Show thank-you message
-            const message = document.getElementById("thankYouMessage");
-            message.style.display = "block";
+            // --- If validation passes ---
 
-            // Clear form fields
-            document.getElementById("feedbackForm").reset();
+            // Show the popup
+            popupOverlay.classList.add('visible');
 
-            // Prevent page reload
-            return false;
-        }
+            // Start countdown
+            let countdown = 5;
+            countdownTimerElement.textContent = countdown; // Initial display
+
+            // Clear any existing interval before starting a new one
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+            }
+
+            countdownInterval = setInterval(() => {
+                countdown--;
+                countdownTimerElement.textContent = countdown;
+
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval); // Stop the timer
+                    window.location.href = 'index.html'; // Redirect to homepage
+                }
+            }, 1000); // Run every 1 second
+
+            // Optional: Clear form fields after showing popup
+            feedbackForm.reset();
+
+        });
+
     </script>
+
 </body>
 </html>
