@@ -6,88 +6,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Door to Door Agricultural Services - AgroSphere</title>
     <style>
+        /* --- Base Styles (Light Mode) --- */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
-            /* Slightly lighter background */
             color: #333;
-            /* Darker default text color */
             text-align: center;
             line-height: 1.6;
-            /* Improved readability */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
         }
 
         header {
             background-color: #4CAF50;
-            /* A more agricultural green */
             color: white;
-            padding: 30px 20px;
-            /* More vertical padding */
+            padding: 20px; /* Adjusted padding */
             margin-bottom: 20px;
-            /* Add some space below the header */
+            position: relative; /* Needed for positioning the toggle */
+            transition: background-color 0.3s ease;
+        }
+
+        /* Container for header content to use flexbox */
+        .header-content {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between; /* Space out title/link and toggle */
+            align-items: center;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.5em;
-            /* Slightly larger heading */
+            font-size: 2.2em; /* Slightly adjusted */
             font-weight: bold;
+            text-align: left; /* Align title left */
+            flex-grow: 1; /* Allow title to take available space */
+        }
+
+        .header-controls {
+             display: flex;
+             align-items: center;
+             gap: 15px; /* Space between back link and toggle */
         }
 
         .back-link {
             display: inline-block;
-            margin: 20px;
-            padding: 12px 25px;
-            /* Slightly larger button */
+            /* margin: 20px; Removed margin, using gap now */
+            padding: 10px 20px; /* Adjusted padding */
             background-color: #555;
-            color: white;
+            color: white !important; /* Ensure white color overrides potential dark mode link color */
             text-decoration: none;
             border-radius: 8px;
-            /* More rounded corners */
             font-weight: bold;
             transition: background-color 0.3s ease;
-            /* Smooth hover effect */
         }
 
         .back-link:hover {
             background-color: #777;
         }
 
+        #darkModeToggle {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 5px;
+            font-size: 1.5em; /* Adjust icon size */
+            line-height: 1; /* Prevent extra spacing */
+            outline: none;
+        }
+         #darkModeToggle svg {
+             display: block; /* Prevents potential inline spacing issues */
+             width: 24px;
+             height: 24px;
+         }
+
+
         section {
             padding: 60px 20px;
-            /* More padding, including horizontal */
             max-width: 960px;
-            /* Limit section width for better readability on larger screens */
-            margin: 0 auto;
-            /* Center the section */
+            margin: 0 auto 30px auto; /* Added bottom margin */
             background-color: white;
-            /* Add a white background to the content area */
             border-radius: 8px;
-            /* Rounded corners for the section */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            /* Subtle shadow */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         h2 {
             color: #4CAF50;
-            /* Match header color */
             margin-top: 0;
-            /* Remove default top margin */
             margin-bottom: 20px;
             font-size: 2em;
+            text-align: center; /* Keep section headings centered */
+            transition: color 0.3s ease;
         }
 
         p {
             color: #666;
-            /* Slightly lighter paragraph text */
             max-width: 700px;
-            /* Slightly wider paragraph for better flow */
             margin: 15px auto;
-            /* More vertical margin */
             line-height: 1.7;
-            /* Improved paragraph readability */
+            text-align: center; /* Center paragraphs */
+            transition: color 0.3s ease;
         }
 
         .service-item {
@@ -96,38 +118,124 @@
             border: 1px solid #ddd;
             border-radius: 6px;
             text-align: left;
-            /* Align text within service items to the left */
+            background-color: #fff; /* Explicit background */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .service-item h3 {
             color: #4CAF50;
             margin-top: 0;
             margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        .service-item p {
+             max-width: none; /* Override centered paragraph width */
+             margin: 10px 0; /* Adjust margin */
+             text-align: left; /* Ensure text is left-aligned */
         }
 
         .contact-info {
             margin-top: 40px;
             padding: 20px;
             background-color: #f0f8f0;
-            /* Light background for contact info */
             border-radius: 6px;
+            transition: background-color 0.3s ease;
         }
 
         .contact-info h3 {
             color: #4CAF50;
             margin-bottom: 15px;
+            transition: color 0.3s ease;
         }
 
         .contact-info p {
-            margin: 10px 0;
+            margin: 10px auto; /* Keep centered */
+            text-align: center;
         }
+        .contact-info a {
+            color: #007bff; /* Standard link color */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Dark Mode Styles --- */
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+
+        body.dark-mode header {
+            background-color: #333;
+        }
+
+        body.dark-mode section {
+            background-color: #2c2c2c;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-mode h2,
+        body.dark-mode .service-item h3,
+        body.dark-mode .contact-info h3 {
+            color: #66bb6a; /* Lighter green for dark mode */
+        }
+
+        body.dark-mode p {
+            color: #ccc;
+        }
+
+        body.dark-mode .service-item {
+            background-color: #3a3a3a;
+            border-color: #555;
+        }
+         body.dark-mode .service-item p {
+             color: #ccc; /* Ensure service item paragraphs are also lighter */
+         }
+
+
+        body.dark-mode .contact-info {
+            background-color: #3a3a3a;
+        }
+
+        body.dark-mode .contact-info a {
+            color: #81d4fa; /* Light blue for links */
+        }
+
+        body.dark-mode .back-link {
+            background-color: #666;
+            color: white !important; /* Ensure text remains white */
+        }
+        body.dark-mode .back-link:hover {
+            background-color: #888;
+        }
+
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Door to Door Agricultural Services</h1>
-        <a class="back-link" href="index.html">Back to Homepage</a>
+        <div class="header-content">
+            <h1>Door to Door Agricultural Services</h1>
+            <div class="header-controls">
+                <a class="back-link" href="index.html">Back to Homepage</a>
+                <button id="darkModeToggle" aria-label="Toggle Dark Mode">
+                    <!-- Sun icon (default) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
     </header>
     <section>
         <h2>Bringing Essential Farm Support Directly to You</h2>
@@ -182,3 +290,61 @@
             <p>Alternatively, you can fill out the contact form on our <a href="contact.html">Contact Us</a> page.</p>
         </div>
     </section>
+
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        // Icons for the toggle button
+        const sunIcon = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>`;
+
+        const moonIcon = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>`;
+
+        // Function to update the toggle button icon based on the current mode
+        function updateToggleButtonIcon() {
+            if (body.classList.contains('dark-mode')) {
+                darkModeToggle.innerHTML = moonIcon;
+                darkModeToggle.setAttribute('aria-label', 'Switch to Light Mode');
+            } else {
+                darkModeToggle.innerHTML = sunIcon;
+                darkModeToggle.setAttribute('aria-label', 'Switch to Dark Mode');
+            }
+        }
+
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            body.classList.toggle('dark-mode');
+            // Store the user's preference in local storage
+            localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+            updateToggleButtonIcon(); // Update icon after toggling
+        }
+
+        // Check local storage for saved preference on page load
+        const savedDarkMode = localStorage.getItem('darkMode');
+        if (savedDarkMode === 'true') {
+            body.classList.add('dark-mode');
+        }
+
+        // Set the initial icon state when the page loads
+        updateToggleButtonIcon();
+
+        // Event listener for the toggle button
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+
+    </script>
+</body>
+</html>
