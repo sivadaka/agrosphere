@@ -1,58 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning Workshops - AgroSphere</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        header {
-            background-color: #66ff7f;
-            padding: 15px;
-        }
-        header a {
-            color: white;
-            text-decoration: none;
-            font-size: 20px;
-        }
-        section {
-            padding: 20px;
-        }
-        h2 {
-            color: #333;
-        }
-        p {
-            font-size: 18px;
-            color: #555;
-        }
-        button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #66ff7f;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #55cc6f;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agricultural Learning Workshops - AgroSphere</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+background-color: #f9f9f9;
+color: #333;
+line-height: 1.6;
+text-align: center;
+}
+header {
+background-color: #FFC107; /* A warm, inviting yellow/amber */
+color: white;
+padding: 20px;
+margin-bottom: 30px;
+}
+header a {
+color: white;
+text-decoration: none;
+font-size: 1.1em;
+font-weight: bold;
+transition: opacity 0.3s ease;
+}
+header a:hover {
+opacity: 0.8;
+}
+section {
+padding: 40px 20px;
+max-width: 960px;
+margin: 0 auto;
+background-color: white;
+border-radius: 8px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+text-align: left;
+}
+h2 {
+color: #FFC107;
+text-align: center;
+font-size: 2.5em;
+margin-top: 0;
+margin-bottom: 30px;
+}
+p {
+font-size: 1.1em;
+color: #555;
+line-height: 1.7;
+margin-bottom: 20px;
+}
+.workshop-highlight {
+background-color: #fef8e7; /* Light yellow background for emphasis */
+padding: 20px;
+border-left: 5px solid #FFC107;
+margin-bottom: 20px;
+border-radius: 4px;
+}
+.workshop-highlight h3 {
+color: #333;
+margin-top: 0;
+margin-bottom: 10px;
+}
+.workshop-highlight p {
+font-size: 1em;
+color: #666;
+}
+.workshop-list {
+margin-top: 30px;
+}
+.workshop-list h3 {
+color: #333;
+margin-bottom: 15px;
+text-align: center;
+}
+.workshop-item {
+border: 1px solid #ddd;
+border-radius: 6px;
+padding: 20px;
+margin-bottom: 15px;
+}
+.workshop-item h4 {
+color: #555;
+margin-top: 0;
+margin-bottom: 10px;
+}
+.workshop-item p {
+font-size: 0.95em;
+color: #777;
+}
+.register-button {
+display: inline-block;
+padding: 12px 25px;
+background-color: #5cb85c; /* A nice green for registration */
+color: white;
+text-decoration: none;
+border-radius: 8px;
+font-size: 1em;
+font-weight: bold;
+margin-top: 15px;
+transition: background-color 0.3s ease;
+}
+.register-button:hover {
+background-color: #4cae4c;
+}
+.back-home-button {
+display: inline-block;
+margin-top: 30px;
+padding: 12px 25px;
+background-color: #777;
+color: white;
+text-decoration: none;
+border-radius: 8px;
+font-weight: bold;
+transition: background-color 0.3s ease;
+}
+.back-home-button:hover {
+background-color: #555;
+}
+</style>
 </head>
 <body>
-    <header>
-        <a href="index.html">&larr; Go Back</a>
-    </header>
-    <section>
-        <h2>Learning Workshops</h2>
-        <p>Join our interactive workshops to enhance your agricultural skills and knowledge. Learn from industry experts and gain hands-on experience with modern farming techniques.</p>
-        <p>Our workshops cover a wide range of topics, including sustainable farming practices, advanced irrigation systems, crop rotation, and organic farming.</p>
-        <button onclick="location.href='index.html'">Back to Home</button>
-    </section>
-</body>
-</html>
+<header>
+<a href="index.html">&larr; Back to Homepage</a>
+</header>
+<section>
+<h2>Empower Your Farming Journey with AgroSphere Workshops</h2>
+<p>Invest in your agricultural future by participating in AgroSphere's engaging and informative learning workshops. Designed for farmers of all levels, our workshops provide practical skills and in-depth knowledge of modern and sustainable farming techniques. Learn from experienced industry professionals and connect with fellow agricultural enthusiasts.</p>
+<div class="workshop-highlight">
+        <h3>What You Can Expect</h3>
+        <p>Our workshops feature a blend of interactive lectures, hands-on demonstrations, and collaborative learning activities. You'll gain practical insights and actionable strategies that you can implement directly on your farm.</p>
+    </div>
+
+    <div class="workshop-list">
+        <h3>Upcoming Workshop Topics</h3>
+        <div class="workshop-item">
+            <h4>Sustainable Soil Management</h4>
+            <p>Learn the principles of soil health, including techniques for improving soil structure, organic matter content, and microbial activity. Discover the benefits of cover cropping and no-till farming.</p>
+            <a href="#" class="register-button">Register Now</a>
+        </div>
+
+        <div class="workshop-item">
+            <h4>Advanced Irrigation Techniques</h4>
+            <p>Explore efficient irrigation methods such as drip irrigation and micro-sprinklers. Understand water management strategies and technologies for optimizing water usage and reducing waste.</p>
+            <a href="#" class="register-button">Register Now</a>
+        </div>
+
+        <div class="workshop-item">
+            <h4>Integrated Pest and Disease Management</h4>
+            <p>Discover eco-friendly approaches to controlling pests and diseases in your crops. Learn about biological control, cultural practices, and the responsible use of pesticides.</p>
+            <a href="#" class="register-button">Register Now</a>
+        </div>
+
+        <div class="workshop-item">
+            <h4>Organic Farming Practices</h4>
+            <p>Delve into the principles and practices of organic agriculture, from soil preparation to crop production and certification processes.</p>
+            <a href="#" class="register-button">Register Now</a>
+        </div>
+
+        <p>More workshops are being scheduled regularly! Check back soon for updates.</p>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="index.html" class="back-home-button">Back to Home</a>
+    </div>
+</section>
