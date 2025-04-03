@@ -1,169 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agricultural Learning Workshops - AgroSphere</title>
-<style>
-body {
-font-family: Arial, sans-serif;
-margin: 0;
-padding: 0;
-background-color: #f9f9f9;
-color: #333;
-line-height: 1.6;
-text-align: center;
-}
-header {
-background-color: #FFC107; /* A warm, inviting yellow/amber */
-color: white;
-padding: 20px;
-margin-bottom: 30px;
-}
-header a {
-color: white;
-text-decoration: none;
-font-size: 1.1em;
-font-weight: bold;
-transition: opacity 0.3s ease;
-}
-header a:hover {
-opacity: 0.8;
-}
-section {
-padding: 40px 20px;
-max-width: 960px;
-margin: 0 auto;
-background-color: white;
-border-radius: 8px;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-text-align: left;
-}
-h2 {
-color: #FFC107;
-text-align: center;
-font-size: 2.5em;
-margin-top: 0;
-margin-bottom: 30px;
-}
-p {
-font-size: 1.1em;
-color: #555;
-line-height: 1.7;
-margin-bottom: 20px;
-}
-.workshop-highlight {
-background-color: #fef8e7; /* Light yellow background for emphasis */
-padding: 20px;
-border-left: 5px solid #FFC107;
-margin-bottom: 20px;
-border-radius: 4px;
-}
-.workshop-highlight h3 {
-color: #333;
-margin-top: 0;
-margin-bottom: 10px;
-}
-.workshop-highlight p {
-font-size: 1em;
-color: #666;
-}
-.workshop-list {
-margin-top: 30px;
-}
-.workshop-list h3 {
-color: #333;
-margin-bottom: 15px;
-text-align: center;
-}
-.workshop-item {
-border: 1px solid #ddd;
-border-radius: 6px;
-padding: 20px;
-margin-bottom: 15px;
-}
-.workshop-item h4 {
-color: #555;
-margin-top: 0;
-margin-bottom: 10px;
-}
-.workshop-item p {
-font-size: 0.95em;
-color: #777;
-}
-.register-button {
-display: inline-block;
-padding: 12px 25px;
-background-color: #5cb85c; /* A nice green for registration */
-color: white;
-text-decoration: none;
-border-radius: 8px;
-font-size: 1em;
-font-weight: bold;
-margin-top: 15px;
-transition: background-color 0.3s ease;
-}
-.register-button:hover {
-background-color: #4cae4c;
-}
-.back-home-button {
-display: inline-block;
-margin-top: 30px;
-padding: 12px 25px;
-background-color: #777;
-color: white;
-text-decoration: none;
-border-radius: 8px;
-font-weight: bold;
-transition: background-color 0.3s ease;
-}
-.back-home-button:hover {
-background-color: #555;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricultural Learning Workshops - AgroSphere</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        header {
+            background-color: #FFC107;
+            /* A warm, inviting yellow/amber */
+            color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: opacity 0.3s ease;
+        }
+
+        header a:hover {
+            opacity: 0.8;
+        }
+
+        section {
+            padding: 40px 20px;
+            max-width: 960px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        h2 {
+            color: #FFC107;
+            text-align: center;
+            font-size: 2.5em;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .workshop-highlight {
+            background-color: #fef8e7;
+            /* Light yellow background for emphasis */
+            padding: 20px;
+            border-left: 5px solid #FFC107;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .workshop-highlight h3 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .workshop-highlight p {
+            font-size: 1em;
+            color: #666;
+        }
+
+        .workshop-list {
+            margin-top: 30px;
+        }
+
+        .workshop-list h3 {
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .workshop-item {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .workshop-item h4 {
+            color: #555;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .workshop-item p {
+            font-size: 0.95em;
+            color: #777;
+        }
+
+        .register-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #5cb85c;
+            /* A nice green for registration */
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .register-button:hover {
+            background-color: #4cae4c;
+        }
+
+        .back-home-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background-color: #777;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-home-button:hover {
+            background-color: #555;
+        }
+    </style>
 </head>
+
 <body>
-<header>
-<a href="index.html">&larr; Back to Homepage</a>
-</header>
-<section>
-<h2>Empower Your Farming Journey with AgroSphere Workshops</h2>
-<p>Invest in your agricultural future by participating in AgroSphere's engaging and informative learning workshops. Designed for farmers of all levels, our workshops provide practical skills and in-depth knowledge of modern and sustainable farming techniques. Learn from experienced industry professionals and connect with fellow agricultural enthusiasts.</p>
-<div class="workshop-highlight">
-        <h3>What You Can Expect</h3>
-        <p>Our workshops feature a blend of interactive lectures, hands-on demonstrations, and collaborative learning activities. You'll gain practical insights and actionable strategies that you can implement directly on your farm.</p>
-    </div>
-
-    <div class="workshop-list">
-        <h3>Upcoming Workshop Topics</h3>
-        <div class="workshop-item">
-            <h4>Sustainable Soil Management</h4>
-            <p>Learn the principles of soil health, including techniques for improving soil structure, organic matter content, and microbial activity. Discover the benefits of cover cropping and no-till farming.</p>
-            <a href="#" class="register-button">Register Now</a>
+    <header>
+        <a href="index.html">&larr; Back to Homepage</a>
+        <div class="container">
+            <h1>Contact Us</h1>
+            <button id="darkModeToggle" aria-label="Toggle Dark Mode">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <path
+                        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </header>
+    <section>
+        <h2>Empower Your Farming Journey with AgroSphere Workshops</h2>
+        <p>Invest in your agricultural future by participating in AgroSphere's engaging and informative learning
+            workshops. Designed for farmers of all levels, our workshops provide practical skills and in-depth knowledge
+            of modern and sustainable farming techniques. Learn from experienced industry professionals and connect with
+            fellow agricultural enthusiasts.</p>
+        <div class="workshop-highlight">
+            <h3>What You Can Expect</h3>
+            <p>Our workshops feature a blend of interactive lectures, hands-on demonstrations, and collaborative
+                learning activities. You'll gain practical insights and actionable strategies that you can implement
+                directly on your farm.</p>
         </div>
 
-        <div class="workshop-item">
-            <h4>Advanced Irrigation Techniques</h4>
-            <p>Explore efficient irrigation methods such as drip irrigation and micro-sprinklers. Understand water management strategies and technologies for optimizing water usage and reducing waste.</p>
-            <a href="#" class="register-button">Register Now</a>
+        <div class="workshop-list">
+            <h3>Upcoming Workshop Topics</h3>
+            <div class="workshop-item">
+                <h4>Sustainable Soil Management</h4>
+                <p>Learn the principles of soil health, including techniques for improving soil structure, organic
+                    matter content, and microbial activity. Discover the benefits of cover cropping and no-till farming.
+                </p>
+                <a href="#" class="register-button">Register Now</a>
+            </div>
+
+            <div class="workshop-item">
+                <h4>Advanced Irrigation Techniques</h4>
+                <p>Explore efficient irrigation methods such as drip irrigation and micro-sprinklers. Understand water
+                    management strategies and technologies for optimizing water usage and reducing waste.</p>
+                <a href="#" class="register-button">Register Now</a>
+            </div>
+
+            <div class="workshop-item">
+                <h4>Integrated Pest and Disease Management</h4>
+                <p>Discover eco-friendly approaches to controlling pests and diseases in your crops. Learn about
+                    biological control, cultural practices, and the responsible use of pesticides.</p>
+                <a href="#" class="register-button">Register Now</a>
+            </div>
+
+            <div class="workshop-item">
+                <h4>Organic Farming Practices</h4>
+                <p>Delve into the principles and practices of organic agriculture, from soil preparation to crop
+                    production and certification processes.</p>
+                <a href="#" class="register-button">Register Now</a>
+            </div>
+
+            <p>More workshops are being scheduled regularly! Check back soon for updates.</p>
         </div>
 
-        <div class="workshop-item">
-            <h4>Integrated Pest and Disease Management</h4>
-            <p>Discover eco-friendly approaches to controlling pests and diseases in your crops. Learn about biological control, cultural practices, and the responsible use of pesticides.</p>
-            <a href="#" class="register-button">Register Now</a>
+        <div style="text-align: center;">
+            <a href="index.html" class="back-home-button">Back to Home</a>
         </div>
-
-        <div class="workshop-item">
-            <h4>Organic Farming Practices</h4>
-            <p>Delve into the principles and practices of organic agriculture, from soil preparation to crop production and certification processes.</p>
-            <a href="#" class="register-button">Register Now</a>
+    </section>
+    <footer>
+        <div class="container">
+            <p>© 2025 AgroSphere. All rights reserved.</p>
         </div>
+    </footer>
 
-        <p>More workshops are being scheduled regularly! Check back soon for updates.</p>
-    </div>
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
 
-    <div style="text-align: center;">
-        <a href="index.html" class="back-home-button">Back to Home</a>
-    </div>
-</section>
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            body.classList.toggle('dark-mode');
+            // Store the user's preference in local storage
+            localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+            updateToggleButtonIcon();
+        }
+
+        // Check local storage for saved preference on page load
+        const savedDarkMode = localStorage.getItem('darkMode');
+        if (savedDarkMode === 'true') {
+            body.classList.add('dark-mode');
+            updateToggleButtonIcon();
+        }
+
+        // Event listener for the toggle button
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+
+        function updateToggleButtonIcon() {
+            const isDarkMode = body.classList.contains('dark-mode');
+            darkModeToggle.innerHTML = isDarkMode ?
+                `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle></svg>` :
+                `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>`;
+        }
+    </script>
+</body>
+
+
+</html>

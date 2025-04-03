@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact AgroSphere - Connect with Our Team</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Contact Us</h1>
+            <button id="darkModeToggle" aria-label="Toggle Dark Mode">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <path
+                        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </header>
+    <section class="container">
+        <h2>We'd Love to Hear From You</h2>
+        <p class="lead">Have questions about our services, need support, or want to discuss a potential partnership? Get
+            in touch with the AgroSphere team using the contact information below or by filling out the form.</p>
+        <div class="contact-details">
+            <h3>Contact Information</h3>
+            <p><strong>Address:</strong> 123 AgriTech Lane, Ruralville, AG 54321</p>
+            <p><strong>Email:</strong> <a href="mailto:info@agrosphere.com">info@agrosphere.com</a></p>
+            <p><strong>Phone:</strong> <a href="tel:+15551234567">+1 (555) 123-4567</a></p>
+            <p><strong>Business Hours:</strong> Monday - Friday, 9:00 AM - 5:00 PM (Local Time)</p>
+        </div>
+
+        <div class="contact-form">
+            <h3>Send Us a Message</h3>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <input type="text" id="subject" name="subject">
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+            <div id="form-response" class="hidden"></div>
+        </div>
+
+        <div class="additional-info">
+            <h3>Connect With Us</h3>
+            <p>Stay updated on our latest news and insights by following us on social media:</p>
+            <ul class="social-links">
+                <li><a href="#" target="_blank">Facebook</a></li>
+                <li><a href="#" target="_blank">Twitter</a></li>
+                <li><a href="#" target="_blank">LinkedIn</a></li>
+            </ul>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>© 2025 AgroSphere. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            body.classList.toggle('dark-mode');
+            // Store the user's preference in local storage
+            localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+            updateToggleButtonIcon();
+        }
+
+        // Check local storage for saved preference on page load
+        const savedDarkMode = localStorage.getItem('darkMode');
+        if (savedDarkMode === 'true') {
+            body.classList.add('dark-mode');
+            updateToggleButtonIcon();
+        }
+
+        // Event listener for the toggle button
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+
+        function updateToggleButtonIcon() {
+            const isDarkMode = body.classList.contains('dark-mode');
+            darkModeToggle.innerHTML = isDarkMode ?
+                `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle></svg>` :
+                `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>`;
+        }
+    </script>
+</body>
+
+</html>
