@@ -4,45 +4,153 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Regular Food - AgroSphere</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="regular-food.css">
+    <script>
+        // --- Cart/BuyNow Functions (Keep Global for onclick) ---
+
+        // Updates the cart count display in the header
+        function updateCartCount() {
+            try {
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+                const cartCountSpan = document.getElementById("cart-count");
+                if (cartCountSpan) {
+                    cartCountSpan.textContent = totalItems;
+                }
+            } catch (e) {
+                console.error("Could not update cart count:", e);
+            }
         }
-        header {
-            background-color: #66ff7f;
-            padding: 20px;
+
+        // Adds an item to the main cart in localStorage
+        function addToCart(productName) {
+            try {
+                let cart = JSON.parse(localStorage.getItem("cart")) || [];
+                let product = cart.find(item => item.name === productName);
+                if (product) {
+                    product.quantity++;
+                } else {
+                    cart.push({ name: productName, quantity: 1 }); // Only stores name and quantity
+                }
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartCount(); // Update display
+                // Add visual feedback (optional, requires a message element)
+                const messageElement = document.getElementById("message");
+                 if (messageElement) {
+                    messageElement.textContent = productName + " added to cart!";
+                    messageElement.style.display = "block";
+                    // Add class for success styling if needed: messageElement.className = 'message success';
+                    setTimeout(() => { messageElement.style.display = "none"; }, 3000);
+                 }
+            } catch (e) {
+                 console.error("Could not add item to cart:", e);
+                 const messageElement = document.getElementById("message");
+                 if (messageElement) { /* Show error */ }
+             }
         }
-        header h1 {
-            margin: 0;
+
+        // Stores a single item for immediate checkout and redirects
+        function buyNow(productName, productPrice) {
+            if (!productName || typeof productPrice !== 'number' || isNaN(productPrice)) {
+                console.error("Invalid data for buyNow:", productName, productPrice);
+                alert("Error preparing item."); return;
+            }
+            const buyNowItemData = { name: productName, price: productPrice, quantity: 1 };
+            try {
+                localStorage.setItem("buyNowItem", JSON.stringify(buyNowItemData));
+                window.location.href = `checkout.html?mode=buyNow`; // Redirect with mode
+            } catch (e) {
+                console.error("Could not save buyNow item:", e);
+                alert("Could not proceed to checkout.");
+            }
         }
-        .content {
-            padding: 40px;
-        }
-        .go-back {
-            margin: 20px;
-            display: inline-block;
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .go-back:hover {
-            background-color: #555;
-        }
-    </style>
+    </script>
 </head>
 <body>
     <header>
-        <h1>Regular Food</h1>
-        <a href="index.html" class="go-back">Go Back</a>
+        <div class="header-content">
+            <h1>Regular Food</h1>
+            <div class="header-controls">
+                <a href="index.html" class="back-link">← Back to Homepage</a>
+                <button id="darkModeToggle" aria-label="Toggle Dark Mode">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg>
+                </button>
+                <a href="cart.html" class="cart-link">🛒 Cart (<span id="cart-count">0</span>)</a>
+            </div>
+        </div>
     </header>
-    <div class="content">
+
+    <section class="container">
         <h2>Explore a wide range of regular food items!</h2>
-        <p>We provide high-quality, fresh food items sourced directly from trusted producers. Enjoy a variety of options for your daily meals.</p>
-    </div>
+        <p class="intro-paragraph">We provide high-quality, fresh food items sourced directly from trusted producers. Enjoy a variety of options for your daily meals.</p>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="assets/images/regular-food/rice.jpeg" alt="Rice"> 
+                <h3>Regular Rice</h3>
+                <p class="product-price">₹50/kg</p>
+                <div class="product-buttons">
+                    <button class="buy-button" onclick="buyNow('Regular Rice', 50)">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Regular Rice')">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="assets/images/regular-food/wheat.jpeg" alt="Wheat">
+                <h3>Regular Wheat</h3>
+                <p class="product-price">₹40/kg</p>
+                <div class="product-buttons">
+                    <button class="buy-button" onclick="buyNow('Regular Wheat', 40)">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Regular Wheat')">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="assets/images/regular-food/Potato.jpg" alt="Potato">
+                <h3>Regular Potato</h3>
+                <p class="product-price">₹20/kg</p>
+                <div class="product-buttons">
+                    <button class="buy-button" onclick="buyNow('Regular Potato', 20)">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Regular Potato')">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="assets/images/regular-food/tomato.png" alt="Tomato">
+                <h3>Regular Tomato</h3>
+                <p class="product-price">₹30/kg</p>
+                <div class="product-buttons">
+                    <button class="buy-button" onclick="buyNow('Regular Tomato', 30)">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Regular Tomato')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <p id="message" class="message"></p>
+
+    </section>
+
+    <footer>
+        <div class="container">
+             <p>© 2025 AgroSphere</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Dark Mode Logic ---
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+        const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+
+        function updateToggleButtonIcon() { if (!darkModeToggle) return; if (body.classList.contains('dark-mode')) { darkModeToggle.innerHTML = moonIcon; darkModeToggle.setAttribute('aria-label', 'Switch to Light Mode'); } else { darkModeToggle.innerHTML = sunIcon; darkModeToggle.setAttribute('aria-label', 'Switch to Dark Mode'); } }
+        function toggleDarkMode() { if (!body) return; body.classList.toggle('dark-mode'); try { localStorage.setItem('darkMode', body.classList.contains('dark-mode')); } catch (e) {} updateToggleButtonIcon(); }
+        let savedDarkMode = null; try { savedDarkMode = localStorage.getItem('darkMode'); } catch (e) {}
+
+        document.addEventListener('DOMContentLoaded', () => {
+             if (savedDarkMode === 'true') { body.classList.add('dark-mode'); }
+             updateToggleButtonIcon();
+             if (darkModeToggle) { darkModeToggle.addEventListener('click', toggleDarkMode); }
+             updateCartCount(); // Initial cart count update
+        });
+    </script>
 </body>
 </html>
