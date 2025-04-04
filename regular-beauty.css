@@ -1,0 +1,310 @@
+/* --- Base Styles (Light Mode) --- */
+:root { /* CSS Variables for theming */
+    --bg-color: #f9f9f9;
+    --text-color: #333;
+    --card-bg: #fff;
+    --card-shadow: rgba(0,0,0,0.1);
+    --border-color: #eee;
+    --header-bg: #4CAF50; /* Standard Green */
+    --header-text: white;
+    --link-bg: rgba(0, 0, 0, 0.1);
+    --link-hover-bg: rgba(0, 0, 0, 0.2);
+    --button-bg: #5cb85c;
+    --button-hover-bg: #4cae4c;
+    --message-bg: #d4edda;
+    --message-color: #155724;
+    --message-border: #c3e6cb;
+    --transition-speed: 0.3s;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0; /* Apply padding via container */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    padding: 20px;
+    margin-bottom: 30px;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.header-content {
+    max-width: 960px; /* Consistent width */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 { /* Using H1 */
+    margin: 0;
+    font-size: 2.2em;
+    font-weight: bold;
+    text-align: left;
+    flex-grow: 1; /* Pushes controls to the right */
+    color: var(--header-text); /* Explicit color */
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Standardized Link Styles */
+.back-link,
+.cart-link {
+    color: var(--header-text) !important;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 10px 15px;
+    background-color: var(--link-bg);
+    border-radius: 5px;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    white-space: nowrap;
+}
+
+.back-link:hover,
+.cart-link:hover {
+    background-color: var(--link-hover-bg);
+}
+
+/* Dark Mode Toggle Styles */
+#darkModeToggle {
+    background: none;
+    border: none;
+    color: var(--header-text);
+    cursor: pointer;
+    padding: 5px;
+    font-size: 1.5em;
+    line-height: 1;
+    outline: none;
+}
+#darkModeToggle svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+    stroke: currentColor; /* Use stroke for SVG icons */
+}
+
+
+/* Content Section */
+section.container {
+    text-align: center; /* Center intro text */
+}
+
+section.container h2 {
+    color: var(--header-bg); /* Match header green */
+    margin-top: 0;
+    margin-bottom: 15px;
+    transition: color var(--transition-speed) ease;
+}
+
+p.intro-paragraph {
+    color: var(--text-color);
+    opacity: 0.8;
+    font-size: 1.1em;
+    margin-bottom: 40px;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: color var(--transition-speed) ease, opacity var(--transition-speed) ease;
+}
+
+/* Product Grid */
+.product-grid {
+    display: flex; /* Use Flexbox */
+    flex-wrap: wrap;
+    justify-content: center; /* Center cards */
+    gap: 20px;
+    padding-top: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Product Card */
+.product-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px var(--card-shadow);
+    overflow: hidden;
+    text-align: center;
+    width: 220px; /* Control card width */
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.product-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.product-card h3 {
+    margin: 5px 0 8px 0;
+    font-size: 1.2em;
+    color: var(--text-color);
+    min-height: 2.4em;
+    line-height: 1.2em;
+    transition: color var(--transition-speed) ease;
+}
+
+.product-card p {
+    margin: 0 0 8px 0;
+    font-size: 0.9em;
+    color: var(--text-color);
+    opacity: 0.8;
+    flex-grow: 1;
+    transition: color var(--transition-speed) ease, opacity var(--transition-speed) ease;
+}
+
+/* Product Price */
+.product-price {
+    font-weight: bold;
+    color: var(--text-color);
+    margin: 0 0 12px 0;
+    font-size: 1.1em;
+    transition: color var(--transition-speed) ease;
+}
+
+/* Product Stock (if you add it back) */
+.product-stock {
+    font-size: 0.85em;
+    color: var(--text-color);
+    opacity: 0.6;
+    margin-bottom: 12px;
+    transition: color var(--transition-speed) ease, opacity var(--transition-speed) ease;
+}
+
+/* Buttons */
+.product-buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.buy-button,
+.cart-button {
+    flex: 1;
+    padding: 10px;
+    background-color: var(--button-bg);
+    color: white !important;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color var(--transition-speed) ease;
+    text-align: center;
+}
+
+.buy-button:hover,
+.cart-button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+/* Message Styling */
+.message {
+    margin: 20px auto;
+    padding: 10px;
+    background-color: var(--message-bg);
+    color: var(--message-color);
+    border: 1px solid var(--message-border);
+    border-radius: 5px;
+    display: none;
+    max-width: 400px;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+.message.error {
+     background-color: #f8d7da;
+     color: #721c24;
+     border-color: #f5c6cb;
+}
+
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+footer .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #eee;
+}
+
+
+/* --- Dark Mode Styles --- */
+body.dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --card-bg: #2c2c2c;
+    --card-shadow: rgba(0,0,0,0.3);
+    --border-color: #444;
+    --header-bg: #333;
+    --header-text: #e0e0e0;
+    --link-bg: rgba(255, 255, 255, 0.15);
+    --link-hover-bg: rgba(255, 255, 255, 0.25);
+    --button-bg: #66bb6a;
+    --button-hover-bg: #43a047;
+    --message-bg: #2f4e34;
+    --message-color: #c3e6cb;
+    --message-border: #155724;
+}
+
+body.dark-mode .product-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Darker hover shadow */
+}
+
+body.dark-mode .message.error {
+     background-color: #5a2d31;
+     color: #f5c6cb;
+     border-color: #721c24;
+}
+
+body.dark-mode footer {
+    background-color: #222;
+}
+
+body.dark-mode footer p {
+    color: #ccc;
+}

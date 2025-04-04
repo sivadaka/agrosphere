@@ -4,48 +4,176 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Regular Beauty - AgroSphere</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
+    <link rel="stylesheet" href="regular-beauty.css">
+    <script>
+        // --- Global Cart/BuyNow Functions (for onclick handlers) ---
+        function updateCartCount() {
+            try {
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+                const cartCountSpan = document.getElementById("cart-count");
+                if (cartCountSpan) cartCountSpan.textContent = totalItems;
+            } catch (e) { console.error("Could not update cart count:", e); }
         }
-        header {
-            background-color: #66ff7f;
-            padding: 20px;
+
+        function addToCart(productName) {
+            try {
+                let cart = JSON.parse(localStorage.getItem("cart")) || [];
+                let product = cart.find(item => item.name === productName);
+                if (product) { product.quantity++; }
+                else { cart.push({ name: productName, quantity: 1 }); }
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartCount();
+                const messageElement = document.getElementById("message");
+                if (messageElement) {
+                    messageElement.textContent = productName + " added to cart!";
+                    messageElement.style.display = "block";
+                    messageElement.className = 'message success'; // Use class for styling
+                    setTimeout(() => { messageElement.style.display = "none"; }, 3000);
+                }
+            } catch (e) {
+                console.error("Could not add item to cart:", e);
+                const messageElement = document.getElementById("message");
+                if (messageElement) {
+                    messageElement.textContent = "Error adding item.";
+                    messageElement.className = 'message error'; // Error class
+                    messageElement.style.display = "block";
+                    setTimeout(() => { messageElement.style.display = "none"; }, 4000);
+                }
+            }
         }
-        header h1 {
-            margin: 0;
-            color: white;
+
+        function buyNow(productName, productPrice) {
+            if (!productName || typeof productPrice !== 'number' || isNaN(productPrice)) {
+                console.error("Invalid data for buyNow:", productName, productPrice);
+                alert("Error preparing item."); return;
+            }
+            const buyNowItemData = { name: productName, price: productPrice, quantity: 1 };
+            try {
+                localStorage.setItem("buyNowItem", JSON.stringify(buyNowItemData));
+                window.location.href = `checkout.html?mode=buyNow`;
+            } catch (e) {
+                console.error("Could not save buyNow item:", e);
+                alert("Could not proceed to checkout.");
+            }
         }
-        .content {
-            margin: 20px;
-            padding: 20px;
-        }
-        .go-back {
-            margin: 20px;
-            display: inline-block;
-            background-color: #555;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .go-back:hover {
-            background-color: #333;
-        }
-    </style>
+    </script>
 </head>
 <body>
     <header>
-        <h1>Regular Beauty</h1>
+        <div class="header-content">
+            <h1>Regular Beauty</h1>
+            <div class="header-controls">
+                <a href="index.html" class="back-link">← Back to Homepage</a>
+                <button id="darkModeToggle" aria-label="Toggle Dark Mode">
+                    {/* SVG Icon */}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg>
+                </button>
+                <a href="cart.html" class="cart-link">🛒 Cart (<span id="cart-count">0</span>)</a>
+            </div>
+        </div>
     </header>
-    <div class="content">
-        <a class="go-back" href="index.html">Go Back</a>
+
+    <section class="container">
         <h2>Enhance Your Beauty with Regular Products</h2>
-        <p>Explore our wide range of beauty products designed to cater to your daily care routine. From skincare to haircare, we provide quality and affordability.</p>
-        <p>Experience beauty that brings out the best in you with our reliable and accessible products.</p>
-    </div>
+        <p class="intro-paragraph">Explore our wide range of beauty products designed to cater to your daily care routine. From skincare to haircare, we provide quality and affordability. Experience beauty that brings out the best in you with our reliable and accessible products.</p>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="assets/images/regular_beauty/shampoo.jpg" alt="Daily Cleansing Shampoo">
+                <h3>Daily Cleansing Shampoo</h3>
+                <p>Leaves hair feeling clean and fresh every day.</p>
+                <p class="product-price">Price: ₹180</p>
+                <div class="product-buttons">
+                    <button class="buy-button" onclick="buyNow('Daily Cleansing Shampoo', 180)">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Daily Cleansing Shampoo')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/images/regular_beauty/conditioner.jpg" alt="Moisturizing Conditioner">
+                <h3>Moisturizing Conditioner</h3>
+                <p>For soft, smooth, and manageable hair.</p>
+                <p class="product-price">Price: ₹220</p>
+                <div class="product-buttons">
+                    <button class="buy-button" onclick="buyNow('Moisturizing Conditioner', 220)">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Moisturizing Conditioner')">Add to Cart</button>
+                </div>
+            </div>
+
+             <div class="product-card">
+                <img src="assets/images/regular_beauty/body_wash.jpg" alt="Refreshing Body Wash">
+                <h3>Refreshing Body Wash</h3>
+                <p>Invigorating scent, cleanses gently.</p>
+                <p class="product-price">Price: ₹150</p>
+                <div class="product-buttons">
+                    <button class="buy-button" onclick="buyNow('Refreshing Body Wash', 150)">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Refreshing Body Wash')">Add to Cart</button>
+                </div>
+            </div>
+
+             <div class="product-card">
+                <img src="assets/images/regular_beauty/lotion.jpg" alt="Hydrating Body Lotion">
+                <h3>Hydrating Body Lotion</h3>
+                <p>Keeps skin moisturized all day long.</p>
+                <p class="product-price">Price: ₹250</p>
+                <div class="product-buttons">
+                    <button class="buy-button" onclick="buyNow('Hydrating Body Lotion', 250)">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Hydrating Body Lotion')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/images/regular_beauty/face_wash.jpg" alt="Gentle Face Wash">
+                <h3>Gentle Face Wash</h3>
+                <p>Cleanses without drying the skin.</p>
+                <p class="product-price">Price: ₹140</p>
+                <div class="product-buttons">
+                    <button class="buy-button" onclick="buyNow('Gentle Face Wash', 140)">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Gentle Face Wash')">Add to Cart</button>
+                </div>
+            </div>
+
+             <div class="product-card">
+                <img src="assets/images/regular_beauty/deodorant.jpg" alt="All-Day Deodorant">
+                <h3>All-Day Deodorant</h3>
+                <p>Provides reliable odour protection.</p>
+                <p class="product-price">Price: ₹190</p>
+                <div class="product-buttons">
+                    <button class="buy-button" onclick="buyNow('All-Day Deodorant', 190)">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('All-Day Deodorant')">Add to Cart</button>
+                </div>
+            </div>
+
+        </div>
+
+        <p id="message" class="message"></p>
+
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 AgroSphere Beauty</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Dark Mode Logic ---
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+        const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+
+        function updateToggleButtonIcon() { if (!darkModeToggle) return; if (body.classList.contains('dark-mode')) { darkModeToggle.innerHTML = moonIcon; darkModeToggle.setAttribute('aria-label', 'Switch to Light Mode'); } else { darkModeToggle.innerHTML = sunIcon; darkModeToggle.setAttribute('aria-label', 'Switch to Dark Mode'); } }
+        function toggleDarkMode() { if (!body) return; body.classList.toggle('dark-mode'); try { localStorage.setItem('darkMode', body.classList.contains('dark-mode')); } catch (e) {} updateToggleButtonIcon(); }
+        let savedDarkMode = null; try { savedDarkMode = localStorage.getItem('darkMode'); } catch (e) {}
+
+        document.addEventListener('DOMContentLoaded', () => {
+             if (savedDarkMode === 'true') { body.classList.add('dark-mode'); }
+             updateToggleButtonIcon();
+             if (darkModeToggle) { darkModeToggle.addEventListener('click', toggleDarkMode); }
+             updateCartCount(); // Initial cart count update
+        });
+    </script>
 </body>
 </html>
