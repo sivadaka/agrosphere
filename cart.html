@@ -3,116 +3,300 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart - AgroSphere</title>
+    <title>Your Cart - AgroSphere</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-            text-align: center;
+        /* --- Base Styles (Light Mode) --- */
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; color: #333; line-height: 1.6; transition: background-color 0.3s ease, color 0.3s ease; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+        header { background-color: #4CAF50; color: white; padding: 20px; margin-bottom: 30px; transition: background-color 0.3s ease; }
+        .header-content { max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        header h1 { margin: 0; font-size: 2.2em; font-weight: bold; text-align: left; flex-grow: 1; }
+        .header-controls { display: flex; align-items: center; gap: 15px; }
+        .back-link { color: white !important; text-decoration: none; font-size: 1em; font-weight: bold; padding: 10px 15px; background-color: rgba(0, 0, 0, 0.1); border-radius: 5px; transition: background-color 0.3s ease, color 0.3s ease; white-space: nowrap; }
+        .back-link:hover { background-color: rgba(0, 0, 0, 0.2); }
+        #darkModeToggle { background: none; border: none; color: white; cursor: pointer; padding: 5px; font-size: 1.5em; line-height: 1; outline: none; }
+        #darkModeToggle svg { display: block; width: 24px; height: 24px; }
+
+        section.container { padding-top: 0; }
+        h2 { color: #4CAF50; text-align: center; margin-top: 0; margin-bottom: 30px; transition: color 0.3s ease; }
+
+        /* Cart Items Styling */
+        #cart-items-container { margin-top: 20px; border-radius: 8px; overflow: hidden; }
+        .cart-item {
+            display: flex;
+            /* justify-content: space-between; -- Adjust alignment */
+            align-items: center; /* Align items vertically */
+            padding: 15px 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            gap: 15px; /* Add gap between elements */
         }
-        header {
-            background-color: #66ff7f;
-            padding: 20px;
+        .cart-item:last-child { border-bottom: none; }
+
+        /* NEW: Image Styling */
+        .cart-item-image-container {
+             flex-shrink: 0; /* Prevent image container from shrinking */
+             width: 70px; /* Adjust width as needed */
+             height: 70px;
         }
-        header h2 {
-            margin: 0;
+        .cart-item-image {
+             width: 100%;
+             height: 100%;
+             object-fit: cover; /* Cover the area, might crop */
+             border-radius: 4px;
+             display: block;
         }
-        .content {
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            max-width: 800px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        .item-details {
+             text-align: left;
+             flex-grow: 1;
+             /* padding-right: 15px; -- Removed, using gap now */
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
+        .item-name { font-size: 1.1em; font-weight: bold; color: #333; transition: color 0.3s ease; }
+
+        /* Quantity Controls */
+        .item-controls {
+             display: flex;
+             align-items: center;
+             gap: 8px;
+             margin-left: auto; /* Push controls to the right */
+             flex-shrink: 0; /* Prevent controls from shrinking */
         }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        th, td {
-            padding: 12px;
-            text-align: center;
-        }
-        th {
-            background-color: #66ff7f;
-        }
-        .checkout-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #66ff7f;
-            color: black;
-            text-decoration: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .checkout-button:hover {
-            background-color: #55cc6e;
-        }
-        .empty-message {
-            margin: 20px;
-            color: #888;
-        }
+        .quantity-btn { background-color: #e0e0e0; color: #333; border: 1px solid #ccc; padding: 3px 8px; font-size: 1em; line-height: 1; border-radius: 4px; cursor: pointer; transition: background-color 0.2s ease, border-color 0.2s ease; min-width: 28px; text-align: center; }
+        .quantity-btn:hover { background-color: #d0d0d0; }
+        .item-quantity { font-weight: bold; min-width: 25px; text-align: center; font-size: 1.1em; color: #333; transition: color 0.3s ease; }
+        .delete-btn { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 4px 8px; font-size: 0.9em; font-weight: bold; border-radius: 4px; cursor: pointer; margin-left: 10px; /* Reduced space */ transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+        .delete-btn:hover { background-color: #f5c6cb; color: #5a1a20; }
+
+        .empty-message { margin: 40px 20px; color: #777; font-size: 1.1em; text-align: center; display: none; transition: color 0.3s ease; }
+        .checkout-section { margin-top: 30px; text-align: right; padding: 0 20px 20px 20px; }
+        .checkout-button { padding: 12px 25px; background-color: #5cb85c; color: white !important; text-decoration: none; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1em; font-weight: bold; transition: background-color 0.3s ease; }
+        .checkout-button:hover { background-color: #4cae4c; }
+        .checkout-button.hidden { display: none; }
+
+        footer { background-color: #333; color: white; text-align: center; padding: 20px 0; margin-top: 50px; transition: background-color 0.3s ease, color 0.3s ease; }
+        footer .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+        footer p { margin: 0; font-size: 0.9em; color: #eee; }
+
+        /* --- Dark Mode Styles --- */
+        body.dark-mode { background-color: #1a1a1a; color: #f0f0f0; }
+        body.dark-mode header { background-color: #333; }
+        body.dark-mode .back-link { color: white !important; background-color: rgba(255, 255, 255, 0.15); }
+        body.dark-mode .back-link:hover { background-color: rgba(255, 255, 255, 0.25); }
+        body.dark-mode section.container {}
+        body.dark-mode h2 { color: #66bb6a; }
+        body.dark-mode #cart-items-container { background-color: transparent; border-color: #444; box-shadow: none; }
+        body.dark-mode .cart-item { background-color: #2c2c2c; border-bottom-color: #444; }
+        body.dark-mode .item-name { color: #eee; }
+        body.dark-mode .item-quantity-info { color: #bbb; } /* Also apply to general quantity text if needed */
+        body.dark-mode .item-quantity { color: #eee;}
+        body.dark-mode .quantity-btn { background-color: #555; color: #eee; border-color: #666; }
+        body.dark-mode .quantity-btn:hover { background-color: #666; }
+        body.dark-mode .delete-btn { background-color: #5a2d31; color: #f5c6cb; border-color: #721c24; }
+        body.dark-mode .delete-btn:hover { background-color: #721c24; color: #f8d7da; }
+        body.dark-mode .empty-message { color: #aaa; }
+        body.dark-mode .checkout-button { background-color: #66bb6a; }
+        body.dark-mode .checkout-button:hover { background-color: #43a047; }
+        body.dark-mode footer { background-color: #222; }
+        body.dark-mode footer p { color: #ccc; }
     </style>
-    <script>
-        function loadCartItems() {
-            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-            const cartTable = document.getElementById("cart-table");
-            const cartBody = document.getElementById("cart-body");
-            const emptyMessage = document.getElementById("empty-message");
-
-            if (cartItems.length === 0) {
-                emptyMessage.style.display = "block";
-                cartTable.style.display = "none";
-                return;
-            }
-
-            emptyMessage.style.display = "none";
-            cartTable.style.display = "table";
-
-            cartBody.innerHTML = "";
-            cartItems.forEach(item => {
-                const row = `
-                    <tr>
-                        <td>${item.name}</td>
-                        <td>${item.quantity}</td>
-                    </tr>
-                `;
-                cartBody.innerHTML += row;
-            });
-        }
-
-        function proceedToCheckout() {
-            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-            localStorage.setItem("checkoutCart", JSON.stringify(cartItems));
-            window.location.href = "checkout.html";
-        }
-
-        window.onload = loadCartItems;
-    </script>
 </head>
 <body>
     <header>
-        <h2>Your Cart</h2>
+        <div class="header-content">
+            <h1>Your Shopping Cart</h1>
+            <div class="header-controls">
+                <a href="organic-food.html" class="back-link">← Back to Organic Food</a>
+                <button id="darkModeToggle" aria-label="Toggle Dark Mode">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg>
+                </button>
+            </div>
+        </div>
     </header>
-    <a href="index.html" class="home-link">🏠 Go Back to Home</a>
-    <div class="content">
-        <p class="empty-message" id="empty-message">Your cart is empty.</p>
-        <table id="cart-table">
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                </tr>
-            </thead>
-            <tbody id="cart-body"></tbody>
-        </table>
-        <button class="checkout-button" onclick="proceedToCheckout()">Proceed to Checkout</button>
-    </div>
+
+    <section class="container">
+        <div id="cart-items-container">
+            <!-- Cart items loaded here -->
+        </div>
+        <p class="empty-message" id="empty-message">Your cart is currently empty. <a href="organic-food.html">Start shopping!</a></p>
+         <div class="checkout-section">
+            <button class="checkout-button hidden" id="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container"> <p>© 2025 AgroSphere Organic Foods</p> </div>
+    </footer>
+
+    <!-- Full Script -->
+    <script>
+        // --- Product Image Mapping ---
+        // IMPORTANT: Keys must EXACTLY match the product names used in addToCart()
+        // Values are the paths to the images RELATIVE to cart.html
+        const productImages = {
+            "Organic Apples": "assets/images/organic_apple.jpeg",
+            "Organic Tomatoes": "assets/images/organic_tomato.jpg",
+            "Organic Bananas": "assets/images/organic_banana.jpeg",
+            "Organic Wheat": "assets/images/organic_wheat.jpeg",
+            "Organic Milk": "assets/images/arla_organic-split_deck-organic_milk.jpg",
+            "Organic Beetroot": "assets/images/organic_beetroot.jpg",
+            "Organic Cucumber": "assets/images/organic_cucumber.jpg",
+            "Organic Potato": "assets/images/organic_potato.jpeg",
+            "Organic Rice": "assets/images/organic_rice.jpg",
+            // Add more products here if needed
+        };
+        const placeholderImage = "assets/images/placeholder.png"; // Path to a generic placeholder image
+
+        // --- Dark Mode Logic (Standardized) ---
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+        const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+
+        function updateToggleButtonIcon() { /* ... standard ... */ } // Assume standard code
+        function toggleDarkMode() { /* ... standard ... */ } // Assume standard code
+
+        let savedDarkMode = null;
+        try { savedDarkMode = localStorage.getItem('darkMode'); } catch (e) { /* ignore */ }
+
+        // --- Cart Logic ---
+        const cartItemsContainer = document.getElementById("cart-items-container");
+        const emptyMessage = document.getElementById("empty-message");
+        const checkoutButton = document.getElementById("checkout-btn");
+
+        function getCart() { /* ... same ... */ }
+        function saveCart(cart) { /* ... same ... */ }
+        function increaseQuantity(productName) { /* ... same ... */ }
+        function decreaseQuantity(productName) { /* ... same ... */ }
+        function deleteItem(productName) { /* ... same ... */ }
+
+        // --- Updated RENDER function ---
+        function loadCartItems() {
+            const cartItems = getCart();
+
+            if (!cartItemsContainer || !emptyMessage || !checkoutButton) {
+                 console.error("Cart UI elements not found!");
+                 return;
+            }
+
+            cartItemsContainer.innerHTML = "";
+
+            if (cartItems.length === 0) {
+                emptyMessage.style.display = "block";
+                cartItemsContainer.style.display = "none"; // Hide container if empty
+                checkoutButton.classList.add("hidden");
+            } else {
+                emptyMessage.style.display = "none";
+                cartItemsContainer.style.display = "block"; // Show container
+                checkoutButton.classList.remove("hidden");
+
+                cartItems.forEach(item => {
+                    const itemDiv = document.createElement("div");
+                    itemDiv.classList.add("cart-item");
+
+                    // --- Create Image Element ---
+                    const imageContainer = document.createElement("div");
+                    imageContainer.classList.add("cart-item-image-container");
+                    const img = document.createElement("img");
+                    img.classList.add("cart-item-image");
+                    img.src = productImages[item.name] || placeholderImage; // Use mapping or placeholder
+                    img.alt = item.name;
+                    imageContainer.appendChild(img);
+                    // --- Prepend image to itemDiv ---
+                    itemDiv.appendChild(imageContainer);
+
+
+                    // --- Item Details (Name) ---
+                    const detailsDiv = document.createElement("div");
+                    detailsDiv.classList.add("item-details");
+                    const nameSpan = document.createElement("span");
+                    nameSpan.classList.add("item-name");
+                    nameSpan.textContent = item.name;
+                    detailsDiv.appendChild(nameSpan);
+                     // --- Append details after image ---
+                    itemDiv.appendChild(detailsDiv);
+
+
+                    // --- Controls (Buttons and Quantity) ---
+                    const controlsDiv = document.createElement("div");
+                    controlsDiv.classList.add("item-controls");
+
+                    const decreaseBtn = document.createElement("button");
+                    decreaseBtn.classList.add("quantity-btn");
+                    decreaseBtn.textContent = "-";
+                    decreaseBtn.onclick = () => decreaseQuantity(item.name);
+
+                    const quantitySpan = document.createElement("span");
+                    quantitySpan.classList.add("item-quantity");
+                    quantitySpan.textContent = item.quantity;
+
+                    const increaseBtn = document.createElement("button");
+                    increaseBtn.classList.add("quantity-btn");
+                    increaseBtn.textContent = "+";
+                    increaseBtn.onclick = () => increaseQuantity(item.name);
+
+                    const deleteBtn = document.createElement("button");
+                    deleteBtn.classList.add("delete-btn");
+                    deleteBtn.textContent = "✕";
+                    deleteBtn.title = `Remove ${item.name}`;
+                    deleteBtn.onclick = () => deleteItem(item.name);
+
+                    controlsDiv.appendChild(decreaseBtn);
+                    controlsDiv.appendChild(quantitySpan);
+                    controlsDiv.appendChild(increaseBtn);
+                    controlsDiv.appendChild(deleteBtn);
+                    // --- Append controls after details ---
+                    itemDiv.appendChild(controlsDiv);
+
+
+                    // --- Append the complete item div ---
+                    cartItemsContainer.appendChild(itemDiv);
+                });
+            }
+        }
+
+        function proceedToCheckout() { /* ... same as before ... */ }
+
+
+        // --- Initialize Page ---
+        document.addEventListener('DOMContentLoaded', () => {
+             // Init dark mode
+             if (savedDarkMode === 'true') { body.classList.add('dark-mode'); }
+             updateToggleButtonIcon(); // Restore full definition
+             if (darkModeToggle) {
+                 darkModeToggle.addEventListener('click', toggleDarkMode); // Restore full definition
+             } else { console.error("Dark mode toggle button not found!"); }
+
+             loadCartItems(); // Load cart items on page load
+        });
+
+         // Need full definitions for Dark Mode functions here
+        function updateToggleButtonIcon() {
+             if (!darkModeToggle) return;
+            if (body.classList.contains('dark-mode')) {
+                darkModeToggle.innerHTML = moonIcon;
+                darkModeToggle.setAttribute('aria-label', 'Switch to Light Mode');
+            } else {
+                darkModeToggle.innerHTML = sunIcon;
+                darkModeToggle.setAttribute('aria-label', 'Switch to Dark Mode');
+            }
+        }
+        function toggleDarkMode() {
+            if (!body) return;
+            body.classList.toggle('dark-mode');
+            try { localStorage.setItem('darkMode', body.classList.contains('dark-mode')); }
+            catch (e) { console.warn("Could not save dark mode preference:", e); }
+            updateToggleButtonIcon();
+        }
+        function getCart() { try { return JSON.parse(localStorage.getItem("cart")) || []; } catch (e) { console.error("Error parsing cart from localStorage", e); return []; } }
+        function saveCart(cart) { try { localStorage.setItem("cart", JSON.stringify(cart)); } catch (e) { console.error("Error saving cart to localStorage", e); alert("Could not update cart. Storage might be full or unavailable."); } }
+        function increaseQuantity(productName) { let cart = getCart(); const itemIndex = cart.findIndex(item => item.name === productName); if (itemIndex > -1) { cart[itemIndex].quantity++; saveCart(cart); loadCartItems(); } }
+        function decreaseQuantity(productName) { let cart = getCart(); const itemIndex = cart.findIndex(item => item.name === productName); if (itemIndex > -1) { cart[itemIndex].quantity--; if (cart[itemIndex].quantity <= 0) { cart.splice(itemIndex, 1); } saveCart(cart); loadCartItems(); } }
+        function deleteItem(productName) { let cart = getCart(); const updatedCart = cart.filter(item => item.name !== productName); saveCart(updatedCart); loadCartItems(); }
+        function proceedToCheckout() { try { const cartItems = getCart(); if (cartItems.length > 0) { window.location.href = "checkout.html"; } else { alert("Your cart is empty!"); } } catch(e) { console.error("Error proceeding to checkout:", e); alert("Could not proceed to checkout. Please try again."); } }
+
+    </script>
 </body>
 </html>

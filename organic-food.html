@@ -5,208 +5,446 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organic Food - AgroSphere</title>
     <style>
+        /* --- Base Styles (Light Mode) --- */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-            text-align: center;
+            padding: 0; /* Removed default padding */
+            background-color: #f9f9f9; /* Consistent background */
+            color: #333;
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+        .container { /* General purpose container */
+             max-width: 960px;
+             margin: 0 auto;
+             padding: 20px; /* Add padding here */
+        }
+
         header {
-            background-color: #66ff7f;
+            background-color: #4CAF50; /* Standard Green */
+            color: white;
             padding: 20px;
+            margin-bottom: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Standard Header Structure */
+        .header-content {
+            max-width: 960px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
-        header h2 {
-            margin: 0;
-            flex: 1;
-            text-align: center;
+        header h1 { /* Changed h2 to h1 */
+             margin: 0; font-size: 2.2em; font-weight: bold; text-align: left; flex-grow: 1;
         }
-        .home-link, .cart-link {
-            text-decoration: none;
-            color: white;
-            background-color: #333;
-            padding: 10px 20px;
-            border-radius: 5px;
+        .header-controls { display: flex; align-items: center; gap: 15px; }
+
+        /* Standardized Link Styles */
+        .back-link, .cart-link {
+            color: white !important; text-decoration: none; font-size: 1em; font-weight: bold; padding: 10px 15px; background-color: rgba(0, 0, 0, 0.1); border-radius: 5px; transition: background-color 0.3s ease, color 0.3s ease; white-space: nowrap; /* Prevent wrapping */
         }
-        .home-link:hover, .cart-link:hover {
-            background-color: #555;
+        .back-link:hover, .cart-link:hover { background-color: rgba(0, 0, 0, 0.2); }
+
+        /* Dark Mode Toggle Styles */
+        #darkModeToggle { background: none; border: none; color: white; cursor: pointer; padding: 5px; font-size: 1.5em; line-height: 1; outline: none; }
+        #darkModeToggle svg { display: block; width: 24px; height: 24px; }
+
+        section.container { /* Target the main content section */
+            text-align: center; /* Center intro text */
+             /* Removed background/shadow here, apply to cards */
         }
-        .content {
-            margin: 20px auto;
-            padding: 20px;
+        p.intro-paragraph { /* Style intro text */
+            color: #555;
+            font-size: 1.1em;
+            margin-bottom: 40px;
+            max-width: 750px; /* Limit width */
+            margin-left: auto;
+            margin-right: auto;
+            transition: color 0.3s ease;
+        }
+
+        /* Product Card Container */
+        .product-grid {
+             display: flex;
+             flex-wrap: wrap;
+             justify-content: center; /* Center cards */
+             gap: 20px; /* Space between cards */
+        }
+
+        /* Product Card Styling */
+        .product-card {
+            /* display: inline-block; Removed */
+            padding: 15px;
             background-color: white;
             border-radius: 8px;
-            max-width: 800px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .product-card {
-            display: inline-block;
-            margin: 10px;
-            padding: 15px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #eee;
             text-align: center;
-            width: 200px;
+            width: 220px; /* Slightly adjusted width */
+            display: flex; /* Use flex for internal layout */
+            flex-direction: column; /* Stack content vertically */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
         .product-card img {
             max-width: 100%;
-            height: auto;
+            height: 150px; /* Fixed height for images */
+            object-fit: cover; /* Ensure image covers space nicely */
             border-radius: 5px;
+            margin-bottom: 10px;
         }
+         .product-card h3 {
+            color: #333;
+            margin-top: 5px;
+            margin-bottom: 8px;
+            font-size: 1.2em;
+             min-height: 2.4em; /* Reserve space for 2 lines */
+             line-height: 1.2em;
+             transition: color 0.3s ease;
+        }
+        .product-card p {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+             flex-grow: 1; /* Allow description to push price/buttons down */
+             transition: color 0.3s ease;
+        }
+        .product-price {
+            font-weight: bold;
+            color: #444;
+            font-size: 1em;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+        .product-stock {
+             font-size: 0.85em;
+             color: #777;
+             margin-bottom: 12px;
+             transition: color 0.3s ease;
+        }
+        .product-buttons {
+             display: flex;
+             justify-content: space-around; /* Space out buttons */
+             gap: 10px;
+             margin-top: auto; /* Push buttons to bottom */
+        }
+        /* Standardized Button Styles */
         .buy-button, .cart-button {
-            margin-top: 8px;
-            padding: 8px 16px;
-            background-color: #66ff7f;
-            color: black;
+            flex: 1; /* Allow buttons to share space */
+            padding: 8px 10px; /* Adjust padding */
+            background-color: #5cb85c; /* Standard button green */
+            color: white !important; /* White text */
             text-decoration: none;
             border-radius: 5px;
-            display: inline-block;
+            border: none; /* Ensure no border */
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
         }
         .buy-button:hover, .cart-button:hover {
-            background-color: #55cc6e;
+            background-color: #4cae4c;
         }
+
+        /* Message Styling */
         .message {
-            margin-top: 10px;
-            color: green;
-            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            display: none; /* Hidden by default */
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
+
+        footer { /* Consistent footer */
+             background-color: #333; color: white; text-align: center; padding: 20px 0; margin-top: 50px; transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        footer .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+        footer p { margin: 0; font-size: 0.9em; color: #eee; }
+
+        /* --- Dark Mode Styles --- */
+        body.dark-mode { background-color: #1a1a1a; color: #f0f0f0; }
+        body.dark-mode header { background-color: #333; }
+        body.dark-mode .back-link, body.dark-mode .cart-link { color: white !important; background-color: rgba(255, 255, 255, 0.15); }
+        body.dark-mode .back-link:hover, body.dark-mode .cart-link:hover { background-color: rgba(255, 255, 255, 0.25); }
+        body.dark-mode section.container {}
+        body.dark-mode h2 { color: #66bb6a; }
+        body.dark-mode p.intro-paragraph { color: #bbb; }
+        body.dark-mode .product-card { background-color: #2c2c2c; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); border-color: #444; }
+        body.dark-mode .product-card h3 { color: #eee; }
+        body.dark-mode .product-card p { color: #ccc; }
+        body.dark-mode .product-price { color: #ddd; }
+        body.dark-mode .product-stock { color: #aaa; }
+        body.dark-mode .buy-button, body.dark-mode .cart-button { background-color: #66bb6a; color: white !important; }
+        body.dark-mode .buy-button:hover, body.dark-mode .cart-button:hover { background-color: #43a047; }
+        body.dark-mode .message { background-color: #2f4e34; color: #c3e6cb; border-color: #155724; }
+        body.dark-mode footer { background-color: #222; }
+        body.dark-mode footer p { color: #ccc; }
+
     </style>
+    <!-- Cart functions defined BEFORE they might be needed by onclick -->
     <script>
         function updateCartCount() {
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
-            const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
-            document.getElementById("cart-count").textContent = totalItems;
+            try {
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+                const cartCountSpan = document.getElementById("cart-count");
+                 if (cartCountSpan) {
+                    cartCountSpan.textContent = totalItems;
+                 }
+            } catch (e) {
+                console.error("Could not update cart count:", e);
+            }
         }
 
         function addToCart(productName) {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            let product = cart.find(item => item.name === productName);
+             try {
+                let cart = JSON.parse(localStorage.getItem("cart")) || [];
+                let product = cart.find(item => item.name === productName);
 
-            if (product) {
-                product.quantity++;
-            } else {
-                cart.push({ name: productName, quantity: 1 });
-            }
+                if (product) {
+                    product.quantity++;
+                } else {
+                    cart.push({ name: productName, quantity: 1 });
+                }
 
-            localStorage.setItem("cart", JSON.stringify(cart));
-            updateCartCount();
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartCount(); // Update display immediately
 
-            const message = document.getElementById("message");
-            message.textContent = productName + " has been successfully added to cart!";
-            message.style.display = "block";
-            setTimeout(() => {
-                message.style.display = "none";
-            }, 3000);
+                const messageElement = document.getElementById("message");
+                 if (messageElement) {
+                    messageElement.textContent = productName + " has been successfully added to cart!";
+                    messageElement.style.display = "block";
+                    // Set timeout to hide message
+                    setTimeout(() => {
+                        messageElement.style.display = "none";
+                    }, 3000); // Hide after 3 seconds
+                 }
+             } catch (e) {
+                 console.error("Could not add item to cart:", e);
+                 // Optionally show an error message to the user
+                 const messageElement = document.getElementById("message");
+                 if (messageElement) {
+                    messageElement.textContent = "Error adding item to cart. Please try again.";
+                    messageElement.style.color = "#721c24"; // Error color
+                    messageElement.style.backgroundColor = "#f8d7da"; // Error background
+                    messageElement.style.borderColor = "#f5c6cb"; // Error border
+                    messageElement.style.display = "block";
+                    setTimeout(() => { // Hide error after some time
+                        messageElement.style.display = "none";
+                         // Reset message style if needed
+                         messageElement.style.color = "";
+                         messageElement.style.backgroundColor = "";
+                         messageElement.style.borderColor = "";
+                    }, 4000);
+                 }
+             }
         }
-
-        // Update cart count on page load
-        window.onload = updateCartCount;
     </script>
 </head>
 <body>
     <header>
-        <a href="index.html" class="home-link">🏠 Go Back to Home</a>
-        <h2>Organic Food</h2>
-        <a href="cart.html" class="cart-link">🛒 Cart (<span id="cart-count">0</span>)</a>
+        <!-- Standard Header Structure -->
+        <div class="header-content">
+            <h1>Organic Food</h1>
+            <div class="header-controls">
+                <a href="index.html" class="back-link">← Back to Homepage</a>
+                <button id="darkModeToggle" aria-label="Toggle Dark Mode">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg>
+                </button>
+                <a href="cart.html" class="cart-link">🛒 Cart (<span id="cart-count">0</span>)</a>
+            </div>
+        </div>
     </header>
-    <div class="content">
-        <p>Discover a wide range of fresh and organic food products sourced directly from farmers. Our organic food selection includes fruits, vegetables, grains, and much more, ensuring health and sustainability for you and your family.</p>
 
-        <div class="product-card">
-            <img src="assets/images/organic_apple.jpeg" alt="Organic Apples">
-            <h3>Organic Apples</h3>
-            <p>Fresh and crispy apples straight from the farm.</p>
-            <p>Price: ₹120/kg</p>
-            <p>Quantity left: 50 kg</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Apples')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Apples')">Add to Cart</a>
-        </div>
+    <section class="container">
+        <p class="intro-paragraph">Discover a wide range of fresh and organic food products sourced directly from trusted local farmers. Our selection includes fruits, vegetables, grains, dairy and much more, ensuring health, taste, and sustainability for you and your family.</p>
 
-        <div class="product-card">
-            <img src="assets/images/organic_tomato.jpg" alt="Organic Tomatoes">
-            <h3>Organic Tomatoes</h3>
-            <p>Juicy, ripe tomatoes perfect for your dishes.</p>
-            <p>Price: ₹80/kg</p>
-            <p>Quantity left: 30 kg</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Tomatoes')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Tomatoes')">Add to Cart</a>
-        </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="assets/images/organic_apple.jpeg" alt="Organic Apples">
+                <h3>Organic Apples</h3>
+                <p>Fresh, crisp, and naturally sweet apples. Perfect for snacking or baking.</p>
+                <p class="product-price">Price: ₹120/kg</p>
+                <p class="product-stock">Quantity left: 50 kg</p>
+                <div class="product-buttons">
+                    <button class="buy-button" onclick="addToCart('Organic Apples')">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Organic Apples')">Add to Cart</button>
+                </div>
+            </div>
 
-        <div class="product-card">
-            <img src="assets/images/organic_banana.jpeg" alt="Organic Bananas">
-            <h3>Organic Bananas</h3>
-            <p>Sweet and nutritious bananas for a healthy snack.</p>
-            <p>Price: ₹60/kg</p>
-            <p>Quantity left: 20 kg</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Bananas')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Bananas')">Add to Cart</a>
-        </div>
-        
-        <div class="product-card">
-            <img src="assets/images/organic_wheat.jpeg" alt="Organic Wheat">
-            <h3>Organic Wheat</h3>
-            <p>Whole grain wheat for healthy meals.</p>
-            <p>Price: ₹100/kg</p>
-            <p>Quantity left: 200 kg</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Wheat')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Wheat')">Add to Cart</a>
-        </div>
+            <div class="product-card">
+                <img src="assets/images/organic_tomato.jpg" alt="Organic Tomatoes">
+                <h3>Organic Tomatoes</h3>
+                <p>Juicy, vine-ripened tomatoes bursting with flavor. Ideal for salads and sauces.</p>
+                <p class="product-price">Price: ₹80/kg</p>
+                <p class="product-stock">Quantity left: 30 kg</p>
+                <div class="product-buttons">
+                    <button class="buy-button" onclick="addToCart('Organic Tomatoes')">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Organic Tomatoes')">Add to Cart</button>
+                </div>
+            </div>
 
-        <div class="product-card">
-            <img src="assets/images/arla_organic-split_deck-organic_milk.jpg" alt="Organic Milk">
-            <h3>Organic Milk</h3>
-            <p>Fresh and pure milk from organic farms.</p>
-            <p>Price: ₹80/litre</p>
-            <p>Quantity left: 50 litres</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Milk')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Milk')">Add to Cart</a> 
-        </div>
+            <div class="product-card">
+                <img src="assets/images/organic_banana.jpeg" alt="Organic Bananas">
+                <h3>Organic Bananas</h3>
+                <p>Naturally sweet and energy-boosting bananas, great for a quick, healthy snack.</p>
+                <p class="product-price">Price: ₹60/kg</p>
+                <p class="product-stock">Quantity left: 20 kg</p>
+                 <div class="product-buttons">
+                    <button class="buy-button" onclick="addToCart('Organic Bananas')">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Organic Bananas')">Add to Cart</button>
+                </div>
+            </div>
 
-        <div class="product-card">
-            <img src="assets/images/organic_beetroot.jpg" alt="Organic Beetroot">
-            <h3>Organic Beetroot</h3>
-            <p>Fresh and nutritious beetroots for healthy meals.</p>
-            <p>Price: ₹50/kg</p>
-            <p>Quantity left: 40 kg</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Beetroot')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Beetroot')">Add to Cart</a>
-        </div>
+            <div class="product-card">
+                <img src="assets/images/organic_wheat.jpeg" alt="Organic Wheat">
+                <h3>Organic Wheat</h3>
+                <p>Nutritious whole grain wheat, perfect for milling fresh flour at home.</p>
+                <p class="product-price">Price: ₹100/kg</p>
+                <p class="product-stock">Quantity left: 200 kg</p>
+                <div class="product-buttons">
+                    <button class="buy-button" onclick="addToCart('Organic Wheat')">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Organic Wheat')">Add to Cart</button>
+                </div>
+            </div>
 
-        <div class="product-card">
-            <img src="assets/images/organic_cucumber.jpg" alt="Organic Cucumber">
-            <h3>Organic Cucumber</h3>
-            <p>Cool and refreshing cucumbers for your salads.</p>
-            <p>Price: ₹40/kg</p>
-            <p>Quantity left: 60 kg</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Cucumber')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Cucumber')">Add to Cart</a>
-        </div>
+            
+            <div class="product-card">
+                <img src="assets/images/arla_organic-split_deck-organic_milk.jpg" alt="Organic Milk">
+                <h3>Organic Milk</h3>
+                <p>Fresh, pure, and creamy milk from pasture-raised, organically fed cows.</p>
+                <p class="product-price">Price: ₹80/litre</p>
+                <p class="product-stock">Quantity left: 50 litres</p>
+                 <div class="product-buttons">
+                    <button class="buy-button" onclick="addToCart('Organic Milk')">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Organic Milk')">Add to Cart</button>
+                </div>
+            </div>
 
-        <div class="product-card">
-            <img src="assets/images/organic_potato.jpeg" alt="Organic Potato">
-            <h3>Organic Potato</h3>
-            <p>Versatile and fresh potatoes for all your recipes.</p>
-            <p>Price: ₹30/kg</p>
-            <p>Quantity left: 100 kg</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Potato')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Potato')">Add to Cart</a>
-        </div>
+            <div class="product-card">
+                <img src="assets/images/organic_beetroot.jpg" alt="Organic Beetroot">
+                <h3>Organic Beetroot</h3>
+                <p>Earthy and vibrant beetroots, packed with nutrients. Great roasted or juiced.</p>
+                <p class="product-price">Price: ₹50/kg</p>
+                <p class="product-stock">Quantity left: 40 kg</p>
+                <div class="product-buttons">
+                    <button class="buy-button" onclick="addToCart('Organic Beetroot')">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Organic Beetroot')">Add to Cart</button>
+                </div>
+            </div>
 
-        <div class="product-card">
-            <img src="assets/images/organic_rice.jpg" alt="Organic Rice">
-            <h3>Organic Rice</h3>
-            <p>Premium quality rice with authentic taste.</p>
-            <p>Price: ₹150/kg</p>
-            <p>Quantity left: 100 kg</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Rice')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Rice')">Add to Cart</a>
-        </div>
+            <div class="product-card">
+                <img src="assets/images/organic_cucumber.jpg" alt="Organic Cucumber">
+                <h3>Organic Cucumber</h3>
+                <p>Cool, crisp, and refreshing cucumbers. Excellent for salads, sandwiches, or infused water.</p>
+                <p class="product-price">Price: ₹40/kg</p>
+                <p class="product-stock">Quantity left: 60 kg</p>
+                 <div class="product-buttons">
+                    <button class="buy-button" onclick="addToCart('Organic Cucumber')">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Organic Cucumber')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/images/organic_potato.jpeg" alt="Organic Potato">
+                <h3>Organic Potato</h3>
+                <p>Versatile and flavourful potatoes, grown without synthetic pesticides or fertilizers.</p>
+                <p class="product-price">Price: ₹30/kg</p>
+                <p class="product-stock">Quantity left: 100 kg</p>
+                 <div class="product-buttons">
+                    <button class="buy-button" onclick="addToCart('Organic Potato')">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Organic Potato')">Add to Cart</button>
+                </div>
+            </div>
+
+             <div class="product-card">
+                <img src="assets/images/organic_rice.jpg" alt="Organic Rice">
+                <h3>Organic Rice</h3>
+                <p>Aromatic, premium quality basmati rice, cultivated using organic methods.</p>
+                <p class="product-price">Price: ₹150/kg</p>
+                <p class="product-stock">Quantity left: 100 kg</p>
+                 <div class="product-buttons">
+                    <button class="buy-button" onclick="addToCart('Organic Rice')">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Organic Rice')">Add to Cart</button>
+                </div>
+            </div>
+
+        </div> 
 
         <p id="message" class="message"></p>
-    </div>
+
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 AgroSphere Organic Foods</p>
+        </div>
+    </footer>
+
+    <!-- Combined Script Block -->
+    <script>
+        // --- Dark Mode Logic (Standardized) ---
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+        const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+
+        function updateToggleButtonIcon() {
+             if (!darkModeToggle) return;
+            if (body.classList.contains('dark-mode')) {
+                darkModeToggle.innerHTML = moonIcon;
+                darkModeToggle.setAttribute('aria-label', 'Switch to Light Mode');
+            } else {
+                darkModeToggle.innerHTML = sunIcon;
+                darkModeToggle.setAttribute('aria-label', 'Switch to Dark Mode');
+            }
+        }
+
+        function toggleDarkMode() {
+            if (!body) return;
+            body.classList.toggle('dark-mode');
+            try {
+                localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+            } catch (e) { console.warn("Could not save dark mode preference:", e); }
+            updateToggleButtonIcon();
+        }
+
+        let savedDarkMode = null;
+        try { savedDarkMode = localStorage.getItem('darkMode'); }
+        catch (e) { console.warn("Could not read dark mode preference:", e); }
+
+
+        // --- Initialize Page (Cart and Dark Mode) ---
+        document.addEventListener('DOMContentLoaded', () => {
+             // Init dark mode state
+             if (savedDarkMode === 'true') { body.classList.add('dark-mode'); }
+             updateToggleButtonIcon(); // Set initial icon
+
+             // Add listener for toggle button
+             if (darkModeToggle) {
+                 darkModeToggle.addEventListener('click', toggleDarkMode);
+             } else {
+                  console.error("Dark mode toggle button not found!");
+             }
+
+             // Call existing function to update cart count on load
+             updateCartCount();
+        });
+
+        // Note: updateCartCount() and addToCart() are kept outside DOMContentLoaded
+        // because they are called directly by onclick handlers in the HTML.
+        // They are defined before the DOMContentLoaded event runs.
+
+    </script>
+
 </body>
 </html>
