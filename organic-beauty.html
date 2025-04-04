@@ -5,334 +5,335 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organic Beauty - AgroSphere</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-            text-align: center;
+        /* --- Base Styles (Light Mode) --- */
+        :root { /* CSS Variables for theming */
+            --bg-color: #f9f9f9; --text-color: #333; --card-bg: #fff; --card-shadow: rgba(0,0,0,0.1); --border-color: #eee; --header-bg: #4CAF50; --header-text: white; --link-bg: rgba(0, 0, 0, 0.1); --link-hover-bg: rgba(0, 0, 0, 0.2); --button-bg: #5cb85c; --button-hover-bg: #4cae4c; --message-bg: #d4edda; --message-color: #155724; --message-border: #c3e6cb; --transition-speed: 0.3s;
         }
-        header {
-            background-color: #66ff7f;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease; }
+        .container { max-width: 960px; margin: 0 auto; padding: 20px; }
+        header { background-color: var(--header-bg); color: var(--header-text); padding: 20px; margin-bottom: 30px; transition: background-color var(--transition-speed) ease; }
+        .header-content { max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        header h1 { margin: 0; font-size: 2.2em; font-weight: bold; text-align: left; flex-grow: 1; }
+        .header-controls { display: flex; align-items: center; gap: 15px; }
+        .back-link, .cart-link { color: var(--header-text) !important; text-decoration: none; font-size: 1em; font-weight: bold; padding: 10px 15px; background-color: var(--link-bg); border-radius: 5px; transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease; white-space: nowrap; }
+        .back-link:hover, .cart-link:hover { background-color: var(--link-hover-bg); }
+        #darkModeToggle { background: none; border: none; color: var(--header-text); cursor: pointer; padding: 5px; font-size: 1.5em; line-height: 1; outline: none; }
+        #darkModeToggle svg { display: block; width: 24px; height: 24px; stroke: currentColor;} /* Added stroke */
+        section.container { text-align: center; }
+        p.intro-paragraph { color: var(--text-color); opacity: 0.8; font-size: 1.1em; margin-bottom: 40px; max-width: 750px; margin-left: auto; margin-right: auto; transition: color var(--transition-speed) ease, opacity var(--transition-speed) ease; }
+        .product-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        .product-card { padding: 15px; background-color: var(--card-bg); border-radius: 8px; box-shadow: 0 2px 5px var(--card-shadow); border: 1px solid var(--border-color); text-align: center; width: 220px; display: flex; flex-direction: column; transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease; }
+        .product-card img { max-width: 100%; height: 150px; object-fit: cover; border-radius: 5px; margin-bottom: 10px; }
+        .product-card h3 { color: var(--text-color); margin-top: 5px; margin-bottom: 8px; font-size: 1.2em; min-height: 2.4em; line-height: 1.2em; transition: color var(--transition-speed) ease; }
+        .product-card p { color: var(--text-color); opacity: 0.8; font-size: 0.9em; margin-bottom: 8px; flex-grow: 1; transition: color var(--transition-speed) ease, opacity var(--transition-speed) ease; }
+        .product-price { font-weight: bold; color: var(--text-color); font-size: 1em; margin-bottom: 8px; transition: color var(--transition-speed) ease; }
+        .product-stock { font-size: 0.85em; color: var(--text-color); opacity: 0.6; margin-bottom: 12px; transition: color var(--transition-speed) ease, opacity var(--transition-speed) ease; } /* Adjusted stock styling */
+        .product-buttons { display: flex; justify-content: space-around; gap: 10px; margin-top: auto; }
+        .buy-button, .cart-button { flex: 1; padding: 8px 10px; background-color: var(--button-bg); color: white !important; text-decoration: none; border-radius: 5px; border: none; cursor: pointer; font-size: 0.9em; font-weight: bold; transition: background-color var(--transition-speed) ease; }
+        .buy-button:hover, .cart-button:hover { background-color: var(--button-hover-bg); }
+        .message { margin-top: 20px; padding: 10px; background-color: var(--message-bg); color: var(--message-color); border: 1px solid var(--message-border); border-radius: 5px; display: none; max-width: 400px; margin-left: auto; margin-right: auto; transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease; }
+        footer { background-color: #333; color: white; text-align: center; padding: 20px 0; margin-top: 50px; transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease; }
+        footer .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+        footer p { margin: 0; font-size: 0.9em; color: #eee; }
+
+        /* --- Dark Mode Styles --- */
+        body.dark-mode {
+            --bg-color: #1a1a1a; --text-color: #e0e0e0; --card-bg: #2c2c2c; --card-shadow: rgba(0,0,0,0.3); --border-color: #444; --header-bg: #333; --header-text: #e0e0e0; --link-bg: rgba(255, 255, 255, 0.15); --link-hover-bg: rgba(255, 255, 255, 0.25); --button-bg: #66bb6a; --button-hover-bg: #43a047; --message-bg: #2f4e34; --message-color: #c3e6cb; --message-border: #155724;
         }
-        header h2 {
-            margin: 0;
-            flex: 1;
-        }
-        .home-link, .cart-link {
-            text-decoration: none;
-            color: white;
-            background-color: #333;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-        .home-link:hover, .cart-link:hover {
-            background-color: #555;
-        }
-        .cart-link {
-            margin-right: 20px;
-            text-decoration: none;
-            color: black;
-            background-color: #333;
-            padding: 10px 20px;
-            border-radius: 5px;
-            color: white;
-        }
-        .cart-link:hover {
-            background-color: #555;
-        }
-        .content {
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            max-width: 800px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .product-card {
-            display: inline-block;
-            margin: 10px;
-            padding: 15px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 200px;
-        }
-        .product-card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
-        .buy-button, .cart-button {
-            margin-top: 8px;
-            padding: 8px 16px;
-            background-color: #66ff7f;
-            color: black;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-        }
-        .buy-button:hover, .cart-button:hover {
-            background-color: #55cc6e;
-        }
-        .message {
-            margin-top: 10px;
-            color: green;
-            display: none;
-        }
+        body.dark-mode footer { background-color: #222; }
+        body.dark-mode footer p { color: #ccc; }
     </style>
     <script>
-        function addToCart(productName) {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            let product = cart.find(item => item.name === productName);
-
-            if (product) {
-                product.quantity++;
-            } else {
-                cart.push({ name: productName, quantity: 1 });
-            }
-
-            localStorage.setItem("cart", JSON.stringify(cart));
-
-            const message = document.getElementById("message");
-            message.textContent = productName + " has been successfully added to cart!";
-            message.style.display = "block";
-            setTimeout(() => {
-                message.style.display = "none";
-            }, 3000);
-        }
+        // --- Cart Functions (Keep Global) ---
+        function updateCartCount() { /* ... same ... */ }
+        function addToCart(productName) { /* ... same ... */ }
+        function buyNow(productName, productPrice) { /* ... same ... */ }
+         // Make sure full definitions are available
+         function updateCartCount() { try { const cart = JSON.parse(localStorage.getItem("cart")) || []; const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0); const cartCountSpan = document.getElementById("cart-count"); if (cartCountSpan) cartCountSpan.textContent = totalItems; } catch (e) {} }
+         function addToCart(productName) { try { let cart = JSON.parse(localStorage.getItem("cart")) || []; let product = cart.find(item => item.name === productName); if (product) { product.quantity++; } else { cart.push({ name: productName, quantity: 1 }); } localStorage.setItem("cart", JSON.stringify(cart)); updateCartCount(); const messageElement = document.getElementById("message"); if (messageElement) { messageElement.textContent = productName + " added to cart!"; messageElement.style.display = "block"; messageElement.className = 'message success'; setTimeout(() => { messageElement.style.display = "none"; }, 3000); } } catch (e) { const messageElement = document.getElementById("message"); if (messageElement) { messageElement.textContent = "Error adding item."; messageElement.className = 'message error'; messageElement.style.display = "block"; setTimeout(() => { messageElement.style.display = "none"; }, 4000); } } }
+         function buyNow(productName, productPrice) { if (!productName || typeof productPrice !== 'number' || isNaN(productPrice)) { console.error("Invalid data for buyNow:", productName, productPrice); alert("Error preparing item."); return; } const buyNowItemData = { name: productName, price: productPrice, quantity: 1 }; try { localStorage.setItem("buyNowItem", JSON.stringify(buyNowItemData)); window.location.href = `checkout.html?mode=buyNow`; } catch (e) { console.error("Could not save buyNow item:", e); alert("Could not proceed."); } }
     </script>
 </head>
 <body>
     <header>
-        <a href="index.html" class="home-link">🏠 Go Back to Home</a>
-        <h2>Organic Beauty</h2>
-        <a href="cart.html" class="cart-link">🛒 Cart</a>
+        <div class="header-content">
+            <h1>Organic Beauty</h1> 
+            <div class="header-controls">
+                <a href="index.html" class="back-link">← Back to Homepage</a>
+                <button id="darkModeToggle" aria-label="Toggle Dark Mode">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg>
+                </button>
+                <a href="cart.html" class="cart-link">🛒 Cart (<span id="cart-count">0</span>)</a>
+            </div>
+        </div>
     </header>
 
-    <div class="content">
-        <p>Explore our range of organic beauty products that are crafted with natural ingredients. Our products are free from harmful chemicals and are designed to nourish your skin while maintaining a sustainable lifestyle.</p>
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/organic_face_cream.jpg" alt="Organic Face Cream">
-            <h3>Organic Face Cream</h3>
-            <p>Natural glow and hydration.</p>
-            <p>Price: ₹450</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Face Cream')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Face Cream')">Add to Cart</a>
-        </div>
+    <section class="container">
+        <p class="intro-paragraph">Explore our range of organic beauty products that are crafted with natural ingredients. Our products are free from harmful chemicals and are designed to nourish your skin while maintaining a sustainable lifestyle.</p>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="assets/images/Organic Beauty Images/organic_face_cream.jpg" alt="Organic Face Cream">
+                <h3>Organic Face Cream</h3>
+                <p>Natural glow and hydration.</p>
+                <p class="product-price">Price: ₹450</p>
+                <div class="product-buttons">
+                    <button class="buy-button" onclick="buyNow('Organic Face Cream', 450)">Buy Now</button>
+                    <button class="cart-button" onclick="addToCart('Organic Face Cream')">Add to Cart</button>
+                </div>
+            </div>
+             <div class="product-card">
+                 <img src="assets/images/Organic Beauty Images/organic_shampoo.jpg" alt="Organic Shampoo">
+                 <h3>Organic Shampoo</h3>
+                 <p>Smooth and shiny hair.</p>
+                 <p class="product-price">Price: ₹350</p>
+                 <div class="product-buttons">
+                     <button class="buy-button" onclick="buyNow('Organic Shampoo', 350)">Buy Now</button>
+                     <button class="cart-button" onclick="addToCart('Organic Shampoo')">Add to Cart</button>
+                 </div>
+             </div>
+             <div class="product-card">
+                 <img src="assets/images/Organic Beauty Images/organic_lip_balm.jpg" alt="Organic Lip Balm">
+                 <h3>Organic Lip Balm</h3>
+                 <p>Moisturizes and protects lips.</p>
+                 <p class="product-price">Price: ₹120</p>
+                 <div class="product-buttons">
+                     <button class="buy-button" onclick="buyNow('Organic Lip Balm', 120)">Buy Now</button>
+                     <button class="cart-button" onclick="addToCart('Organic Lip Balm')">Add to Cart</button>
+                 </div>
+             </div>
+              <div class="product-card">
+                  <img src="assets/images/Organic Beauty Images/organic_hair_oil.png" alt="Organic Hair Oil">
+                  <h3>Organic Hair Oil</h3>
+                  <p>Strengthens and nourishes hair.</p>
+                  <p class="product-price">Price: ₹300</p>
+                  <div class="product-buttons">
+                      <button class="buy-button" onclick="buyNow('Organic Hair Oil', 300)">Buy Now</button>
+                      <button class="cart-button" onclick="addToCart('Organic Hair Oil')">Add to Cart</button>
+                  </div>
+              </div>
+              <div class="product-card">
+                   <img src="assets/images/Organic Beauty Images/organic_hand_cream.jpg" alt="Organic Hand Cream">
+                   <h3>Organic Hand Cream</h3>
+                   <p>Soft and hydrated hands.</p>
+                   <p class="product-price">Price: ₹250</p>
+                   <div class="product-buttons">
+                       <button class="buy-button" onclick="buyNow('Organic Hand Cream', 250)">Buy Now</button>
+                       <button class="cart-button" onclick="addToCart('Organic Hand Cream')">Add to Cart</button>
+                   </div>
+               </div>
+               <div class="product-card">
+                    <img src="assets/images/Organic Beauty Images/face scrub.jpg" alt="Organic Face Scrub">
+                    <h3>Organic Face Scrub</h3>
+                    <p>Exfoliates and refreshes skin.</p>
+                    <p class="product-price">Price: ₹400</p>
+                    <div class="product-buttons">
+                        <button class="buy-button" onclick="buyNow('Organic Face Scrub', 400)">Buy Now</button>
+                        <button class="cart-button" onclick="addToCart('Organic Face Scrub')">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                     <img src="assets/images/Organic Beauty Images/soap.jpg" alt="Organic Soap">
+                     <h3>Organic Soap</h3>
+                     <p>Gentle and refreshing.</p>
+                     <p class="product-price">Price: ₹150</p>
+                     <div class="product-buttons">
+                         <button class="buy-button" onclick="buyNow('Organic Soap', 150)">Buy Now</button>
+                         <button class="cart-button" onclick="addToCart('Organic Soap')">Add to Cart</button>
+                     </div>
+                 </div>
+                 <div class="product-card">
+                      <img src="assets/images/Organic Beauty Images/eyecream.jpg" alt="Organic Eye Cream">
+                      <h3>Organic Eye Cream</h3>
+                      <p>Reduces puffiness and dark circles.</p>
+                      <p class="product-price">Price: ₹600</p>
+                      <div class="product-buttons">
+                          <button class="buy-button" onclick="buyNow('Organic Eye Cream', 600)">Buy Now</button>
+                          <button class="cart-button" onclick="addToCart('Organic Eye Cream')">Add to Cart</button>
+                      </div>
+                  </div>
+                  <div class="product-card">
+                       <img src="assets/images/Organic Beauty Images/nightcream.jpg" alt="Organic Night Cream">
+                       <h3>Organic Night Cream</h3>
+                       <p>Rejuvenates skin overnight.</p>
+                       <p class="product-price">Price: ₹700</p>
+                       <div class="product-buttons">
+                           <button class="buy-button" onclick="buyNow('Organic Night Cream', 700)">Buy Now</button>
+                           <button class="cart-button" onclick="addToCart('Organic Night Cream')">Add to Cart</button>
+                       </div>
+                   </div>
+                   <div class="product-card">
+                        <img src="assets/images/Organic Beauty Images/facemask.jpg" alt="Organic Face Mask">
+                        <h3>Organic Face Mask</h3>
+                        <p>Deep cleansing and hydration.</p>
+                        <p class="product-price">Price: ₹350</p>
+                        <div class="product-buttons">
+                            <button class="buy-button" onclick="buyNow('Organic Face Mask', 350)">Buy Now</button>
+                            <button class="cart-button" onclick="addToCart('Organic Face Mask')">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                         <img src="assets/images/Organic Beauty Images/toner.jpg" alt="Organic Toner">
+                         <h3>Organic Toner</h3>
+                         <p>Refreshes and tones skin.</p>
+                         <p class="product-price">Price: ₹300</p>
+                         <div class="product-buttons">
+                             <button class="buy-button" onclick="buyNow('Organic Toner', 300)">Buy Now</button>
+                             <button class="cart-button" onclick="addToCart('Organic Toner')">Add to Cart</button>
+                         </div>
+                     </div>
+                     <div class="product-card">
+                          <img src="assets/images/Organic Beauty Images/conditioner.jpg" alt="Organic Conditioner">
+                          <h3>Organic Conditioner</h3>
+                          <p>Soft and manageable hair.</p>
+                          <p class="product-price">Price: ₹400</p>
+                          <div class="product-buttons">
+                              <button class="buy-button" onclick="buyNow('Organic Conditioner', 400)">Buy Now</button>
+                              <button class="cart-button" onclick="addToCart('Organic Conditioner')">Add to Cart</button>
+                          </div>
+                      </div>
+                      <div class="product-card">
+                           <img src="assets/images//Organic Beauty Images/serum.jpg" alt="Organic Serum">
+                           <h3>Organic Serum</h3>
+                           <p>Boosts skin radiance.</p>
+                           <p class="product-price">Price: ₹800</p>
+                           <div class="product-buttons">
+                               <button class="buy-button" onclick="buyNow('Organic Serum', 800)">Buy Now</button>
+                               <button class="cart-button" onclick="addToCart('Organic Serum')">Add to Cart</button>
+                           </div>
+                       </div>
+                       <div class="product-card">
+                            <img src="assets/images/Organic Beauty Images/sunscreen.jpg" alt="Organic Sunscreen">
+                            <h3>Organic Sunscreen</h3>
+                            <p>Protects from harmful UV rays.</p>
+                            <p class="product-price">Price: ₹550</p>
+                            <div class="product-buttons">
+                                <button class="buy-button" onclick="buyNow('Organic Sunscreen', 550)">Buy Now</button>
+                                <button class="cart-button" onclick="addToCart('Organic Sunscreen')">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                             <img src="assets/images/Organic Beauty Images/bathsalts.jpg" alt="Organic Bath Salts">
+                             <h3>Organic Bath Salts</h3>
+                             <p>Relaxing and rejuvenating.</p>
+                             <p class="product-price">Price: ₹450</p>
+                             <div class="product-buttons">
+                                 <button class="buy-button" onclick="buyNow('Organic Bath Salts', 450)">Buy Now</button>
+                                 <button class="cart-button" onclick="addToCart('Organic Bath Salts')">Add to Cart</button>
+                             </div>
+                         </div>
+                         <div class="product-card">
+                              <img src="assets/images/Organic Beauty Images/hairmask.jpg" alt="Organic Hair Mask">
+                              <h3>Organic Hair Mask</h3>
+                              <p>Deep conditioning for hair.</p>
+                              <p class="product-price">Price: ₹500</p>
+                              <div class="product-buttons">
+                                  <button class="buy-button" onclick="buyNow('Organic Hair Mask', 500)">Buy Now</button>
+                                  <button class="cart-button" onclick="addToCart('Organic Hair Mask')">Add to Cart</button>
+                              </div>
+                          </div>
+                          <div class="product-card">
+                               <img src="assets/images/Organic Beauty Images/cuticleoil.jpg" alt="Organic Cuticle Oil">
+                               <h3>Organic Cuticle Oil</h3>
+                               <p>Healthy and nourished nails.</p>
+                               <p class="product-price">Price: ₹200</p>
+                               <div class="product-buttons">
+                                   <button class="buy-button" onclick="buyNow('Organic Cuticle Oil', 200)">Buy Now</button>
+                                   <button class="cart-button" onclick="addToCart('Organic Cuticle Oil')">Add to Cart</button>
+                               </div>
+                           </div>
+                           <div class="product-card">
+                                <img src="assets/images/Organic Beauty Images/beard_oil.jpg" alt="Organic Beard Oil">
+                                <h3>Organic Beard Oil</h3>
+                                <p>Softens and nourishes beard.</p>
+                                <p class="product-price">Price: ₹350</p>
+                                <div class="product-buttons">
+                                    <button class="buy-button" onclick="buyNow('Organic Beard Oil', 350)">Buy Now</button>
+                                    <button class="cart-button" onclick="addToCart('Organic Beard Oil')">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-card">
+                                 <img src="assets/images/Organic Beauty Images/shavingcream.jpg" alt="Organic Shaving Cream">
+                                 <h3>Organic Shaving Cream</h3>
+                                 <p>Smooth and irritation-free shave.</p>
+                                 <p class="product-price">Price: ₹300</p>
+                                 <div class="product-buttons">
+                                     <button class="buy-button" onclick="buyNow('Organic Shaving Cream', 300)">Buy Now</button>
+                                     <button class="cart-button" onclick="addToCart('Organic Shaving Cream')">Add to Cart</button>
+                                 </div>
+                             </div>
+                             <div class="product-card">
+                                  <img src="assets/images/Organic Beauty Images/babylotion.jpg" alt="Organic Baby Lotion">
+                                  <h3>Organic Baby Lotion</h3>
+                                  <p>Gentle care for baby skin.</p>
+                                  <p class="product-price">Price: ₹400</p>
+                                  <div class="product-buttons">
+                                      <button class="buy-button" onclick="buyNow('Organic Baby Lotion', 400)">Buy Now</button>
+                                      <button class="cart-button" onclick="addToCart('Organic Baby Lotion')">Add to Cart</button>
+                                  </div>
+                              </div>
+                              <div class="product-card">
+                                   <img src="assets/images/Organic Beauty Images/organic_baby_shampoo.jpg" alt="Organic Baby Shampoo">
+                                   <h3>Organic Baby Shampoo</h3>
+                                   <p>Tear-free and gentle cleansing.</p>
+                                   <p class="product-price">Price: ₹350</p>
+                                   <div class="product-buttons">
+                                       <button class="buy-button" onclick="buyNow('Organic Baby Shampoo', 350)">Buy Now</button>
+                                       <button class="cart-button" onclick="addToCart('Organic Baby Shampoo')">Add to Cart</button>
+                                   </div>
+                               </div>
+                               <div class="product-card">
+                                    <img src="assets/images/Organic Beauty Images/babysoap.jpg" alt="Organic Baby Soap">
+                                    <h3>Organic Baby Soap</h3>
+                                    <p>Soft and gentle for babies.</p>
+                                    <p class="product-price">Price: ₹200</p>
+                                    <div class="product-buttons">
+                                        <button class="buy-button" onclick="buyNow('Organic Baby Soap', 200)">Buy Now</button>
+                                        <button class="cart-button" onclick="addToCart('Organic Baby Soap')">Add to Cart</button>
+                                    </div>
+                                </div>
+                                <div class="product-card">
+                                     <img src="assets/images/Organic Beauty Images/babypowder.jpg" alt="Organic Baby Powder">
+                                     <h3>Organic Baby Powder</h3>
+                                     <p>Soothing and refreshing.</p>
+                                     <p class="product-price">Price: ₹250</p>
+                                     <div class="product-buttons">
+                                         <button class="buy-button" onclick="buyNow('Organic Baby Powder', 250)">Buy Now</button>
+                                         <button class="cart-button" onclick="addToCart('Organic Baby Powder')">Add to Cart</button>
+                                     </div>
+                                 </div>
+                                 <div class="product-card">
+                                      <img src="assets/images/Organic Beauty Images/babyoil.jpg" alt="Organic Baby Oil">
+                                      <h3>Organic Baby Oil</h3>
+                                      <p>Gentle massage for babies.</p>
+                                      <p class="product-price">Price: ₹300</p>
+                                      <div class="product-buttons">
+                                          <button class="buy-button" onclick="buyNow('Organic Baby Oil', 300)">Buy Now</button>
+                                          <button class="cart-button" onclick="addToCart('Organic Baby Oil')">Add to Cart</button>
+                                      </div>
+                                  </div>
 
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/organic_shampoo.jpg" alt="Organic Shampoo">
-            <h3>Organic Shampoo</h3>
-            <p>Smooth and shiny hair.</p>
-            <p>Price: ₹350</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Shampoo')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Shampoo')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/organic_lip_balm.jpg" alt="Organic Lip Balm">
-            <h3>Organic Lip Balm</h3>
-            <p>Moisturizes and protects lips.</p>
-            <p>Price: ₹120</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Lip Balm')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Lip Balm')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/organic_hair_oil.png" alt="Organic Hair Oil">
-            <h3>Organic Hair Oil</h3>
-            <p>Strengthens and nourishes hair.</p>
-            <p>Price: ₹300</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Hair Oil')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Hair Oil')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/organic_hand_cream.jpg" alt="Organic Hand Cream">
-            <h3>Organic Hand Cream</h3>
-            <p>Soft and hydrated hands.</p>
-            <p>Price: ₹250</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Hand Cream')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Hand Cream')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/face scrub.jpg" alt="Organic Face Scrub">
-            <h3>Organic Face Scrub</h3>
-            <p>Exfoliates and refreshes skin.</p>
-            <p>Price: ₹400</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Face Scrub')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Face Scrub')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/soap.jpg" alt="Organic Soap">
-            <h3>Organic Soap</h3>
-            <p>Gentle and refreshing.</p>
-            <p>Price: ₹150</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Soap')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Soap')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/eyecream.jpg" alt="Organic Eye Cream">
-            <h3>Organic Eye Cream</h3>
-            <p>Reduces puffiness and dark circles.</p>
-            <p>Price: ₹600</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Eye Cream')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Eye Cream')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/nightcream.jpg" alt="Organic Night Cream">
-            <h3>Organic Night Cream</h3>
-            <p>Rejuvenates skin overnight.</p>
-            <p>Price: ₹700</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Night Cream')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Night Cream')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/facemask.jpg" alt="Organic Face Mask">
-            <h3>Organic Face Mask</h3>
-            <p>Deep cleansing and hydration.</p>
-            <p>Price: ₹350</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Face Mask')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Face Mask')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/toner.jpg" alt="Organic Toner">
-            <h3>Organic Toner</h3>
-            <p>Refreshes and tones skin.</p>
-            <p>Price: ₹300</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Toner')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Toner')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/conditioner.jpg" alt="Organic Conditioner">
-            <h3>Organic Conditioner</h3>
-            <p>Soft and manageable hair.</p>
-            <p>Price: ₹400</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Conditioner')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Conditioner')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images//Organic Beauty Images/serum.jpg" alt="Organic Serum">
-            <h3>Organic Serum</h3>
-            <p>Boosts skin radiance.</p>
-            <p>Price: ₹800</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Serum')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Serum')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/sunscreen.jpg" alt="Organic Sunscreen">
-            <h3>Organic Sunscreen</h3>
-            <p>Protects from harmful UV rays.</p>
-            <p>Price: ₹550</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Sunscreen')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Sunscreen')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/bathsalts.jpg" alt="Organic Bath Salts">
-            <h3>Organic Bath Salts</h3>
-            <p>Relaxing and rejuvenating.</p>
-            <p>Price: ₹450</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Bath Salts')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Bath Salts')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/hairmask.jpg" alt="Organic Hair Mask">
-            <h3>Organic Hair Mask</h3>
-            <p>Deep conditioning for hair.</p>
-            <p>Price: ₹500</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Hair Mask')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Hair Mask')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/cuticleoil.jpg" alt="Organic Cuticle Oil">
-            <h3>Organic Cuticle Oil</h3>
-            <p>Healthy and nourished nails.</p>
-            <p>Price: ₹200</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Cuticle Oil')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Cuticle Oil')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/beard_oil.jpg" alt="Organic Beard Oil">
-            <h3>Organic Beard Oil</h3>
-            <p>Softens and nourishes beard.</p>
-            <p>Price: ₹350</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Beard Oil')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Beard Oil')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/shavingcream.jpg" alt="Organic Shaving Cream">
-            <h3>Organic Shaving Cream</h3>
-            <p>Smooth and irritation-free shave.</p>
-            <p>Price: ₹300</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Shaving Cream')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Shaving Cream')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/babylotion.jpg" alt="Organic Baby Lotion">
-            <h3>Organic Baby Lotion</h3>
-            <p>Gentle care for baby skin.</p>
-            <p>Price: ₹400</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Baby Lotion')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Baby Lotion')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/organic_baby_shampoo.jpg" alt="Organic Baby Shampoo">
-            <h3>Organic Baby Shampoo</h3>
-            <p>Tear-free and gentle cleansing.</p>
-            <p>Price: ₹350</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Baby Shampoo')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Baby Shampoo')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/babysoap.jpg" alt="Organic Baby Soap">
-            <h3>Organic Baby Soap</h3>
-            <p>Soft and gentle for babies.</p>
-            <p>Price: ₹200</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Baby Soap')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Baby Soap')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/babypowder.jpg" alt="Organic Baby Powder">
-            <h3>Organic Baby Powder</h3>
-            <p>Soothing and refreshing.</p>
-            <p>Price: ₹250</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Baby Powder')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Baby Powder')">Add to Cart</a>
-        </div>
-
-        <div class="product-card">
-            <img src="assets/images/Organic Beauty Images/babyoil.jpg" alt="Organic Baby Oil">
-            <h3>Organic Baby Oil</h3>
-            <p>Gentle massage for babies.</p>
-            <p>Price: ₹300</p>
-            <a href="#" class="buy-button" onclick="addToCart('Organic Baby Oil')">Buy Now</a>
-            <a href="#" class="cart-button" onclick="addToCart('Organic Baby Oil')">Add to Cart</a>
         </div>
         <p id="message" class="message"></p>
-    </div>
+    </section>
+    <footer> <div class="container"> <p>© 2025 AgroSphere Organic Beauty</p> </div> </footer>
+
+    <script>
+        // --- Dark Mode Logic ---
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+        const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+
+        function updateToggleButtonIcon() { if (!darkModeToggle) return; if (body.classList.contains('dark-mode')) { darkModeToggle.innerHTML = moonIcon; darkModeToggle.setAttribute('aria-label', 'Switch to Light Mode'); } else { darkModeToggle.innerHTML = sunIcon; darkModeToggle.setAttribute('aria-label', 'Switch to Dark Mode'); } }
+        function toggleDarkMode() { if (!body) return; body.classList.toggle('dark-mode'); try { localStorage.setItem('darkMode', body.classList.contains('dark-mode')); } catch (e) {} updateToggleButtonIcon(); }
+        let savedDarkMode = null; try { savedDarkMode = localStorage.getItem('darkMode'); } catch (e) {}
+
+        document.addEventListener('DOMContentLoaded', () => {
+             if (savedDarkMode === 'true') { body.classList.add('dark-mode'); }
+             updateToggleButtonIcon();
+             if (darkModeToggle) { darkModeToggle.addEventListener('click', toggleDarkMode); }
+             updateCartCount();
+        });
+    </script>
 </body>
 </html>
