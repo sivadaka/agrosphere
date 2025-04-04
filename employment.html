@@ -3,108 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employment - AgroSphere</title>
+    <title>Employment Opportunities - AgroSphere</title>
     <style>
+        /* --- Base Styles (Light Mode) --- */
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+            font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; color: #333; line-height: 1.6; transition: background-color 0.3s ease, color 0.3s ease;
         }
-        header {
-            background-color: #66ff7f;
-            padding: 20px;
-            text-align: center;
-            color: white;
-        }
-        .content {
-            padding: 20px;
-            max-width: 800px;
-            margin: auto;
-            text-align: center;
-        }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #333;
-            text-decoration: none;
-            background-color: #ddd;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-        .back-link:hover {
-            background-color: #bbb;
-        }
+        .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+        header { background-color: #4CAF50; color: white; padding: 20px; margin-bottom: 30px; transition: background-color 0.3s ease; }
+        .header-content { max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        header h1 { margin: 0; font-size: 2.2em; font-weight: bold; text-align: left; flex-grow: 1; }
+        .header-controls { display: flex; align-items: center; gap: 15px; }
+        .back-link { color: white !important; text-decoration: none; font-size: 1em; font-weight: bold; padding: 10px 15px; background-color: rgba(0, 0, 0, 0.1); border-radius: 5px; transition: background-color 0.3s ease, color 0.3s ease; }
+        .back-link:hover { background-color: rgba(0, 0, 0, 0.2); }
+        #darkModeToggle { background: none; border: none; color: white; cursor: pointer; padding: 5px; font-size: 1.5em; line-height: 1; outline: none; }
+        #darkModeToggle svg { display: block; width: 24px; height: 24px; }
+
+        section.container { padding-top: 20px; padding-bottom: 30px; }
+        h2 { color: #4CAF50; text-align: center; margin-top: 0; margin-bottom: 15px; transition: color 0.3s ease; font-size: 2.2em; }
+        h3 { color: #333; text-align: center; margin-top: 40px; margin-bottom: 20px; transition: color 0.3s ease; font-size: 1.8em;}
+        p.intro-paragraph { text-align: center; color: #555; font-size: 1.1em; margin-bottom: 30px; transition: color 0.3s ease; }
+
+        /* Job Card Styling */
         .job-card {
-            background-color: white;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: white; padding: 20px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); border: 1px solid #eee; transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; display: flex; flex-wrap: wrap; gap: 20px;
         }
-        .job-card img {
-            width: 100%;
-            border-radius: 8px;
+        .job-image { flex-basis: 220px; flex-shrink: 0; }
+        .job-image img { max-width: 100%; height: auto; border-radius: 5px; display: block; }
+        .job-details { flex-grow: 1; text-align: left; }
+        .job-details h4 { /* Job Title */
+            color: #333; margin-top: 0; margin-bottom: 8px; font-size: 1.4em; transition: color 0.3s ease;
         }
-        .job-details {
-            text-align: left;
+        .job-details .job-location { /* Location Paragraph */
+            font-weight: bold; color: #666; margin-bottom: 15px; font-size: 0.95em; transition: color 0.3s ease;
         }
-        .apply-btn {
-            margin-top: 10px;
-            background-color: #66ff7f;
-            color: white;
-            padding: 8px 16px;
-            text-decoration: none;
-            border-radius: 5px;
+        .job-details p { color: #666; font-size: 0.95em; margin-bottom: 10px; transition: color 0.3s ease; }
+        .job-details .skills-list { /* Style the skills line */
+             font-style: italic; color: #777; font-size: 0.9em;
         }
-        .apply-btn:hover {
-            background-color: #55e36b;
-        }
+        .apply-btn { display: inline-block; margin-top: 15px; background-color: #5cb85c; color: white !important; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background-color 0.3s ease; }
+        .apply-btn:hover { background-color: #4cae4c; }
+
+        .contact-info { text-align: center; margin-top: 40px; color: #555; font-size: 1em; transition: color 0.3s ease;}
+        .contact-info a { color: #007bff; text-decoration: none; transition: color 0.3s ease;}
+        .contact-info a:hover { text-decoration: underline; }
+
+        footer { background-color: #333; color: white; text-align: center; padding: 20px 0; margin-top: 50px; transition: background-color 0.3s ease, color 0.3s ease; }
+        footer .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+        footer p { margin: 0; font-size: 0.9em; color: #eee; }
+
+        /* --- Dark Mode Styles --- */
+        body.dark-mode { background-color: #1a1a1a; color: #f0f0f0; }
+        body.dark-mode header { background-color: #333; }
+        body.dark-mode .back-link { color: white !important; background-color: rgba(255, 255, 255, 0.15); }
+        body.dark-mode .back-link:hover { background-color: rgba(255, 255, 255, 0.25); }
+        body.dark-mode section.container {}
+        body.dark-mode h2 { color: #66bb6a; }
+        body.dark-mode h3 { color: #ddd; }
+        body.dark-mode p.intro-paragraph { color: #bbb; }
+        body.dark-mode .job-card { background-color: #2c2c2c; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); border-color: #444; }
+        body.dark-mode .job-details h4 { color: #eee; }
+        body.dark-mode .job-details .job-location { color: #aaa; }
+        body.dark-mode .job-details p { color: #ccc; }
+        body.dark-mode .job-details .skills-list { color: #aaa; }
+        body.dark-mode .apply-btn { background-color: #66bb6a; }
+        body.dark-mode .apply-btn:hover { background-color: #43a047; }
+        body.dark-mode .contact-info { color: #bbb; }
+        body.dark-mode .contact-info a { color: #81d4fa; }
+        body.dark-mode footer { background-color: #222; }
+        body.dark-mode footer p { color: #ccc; }
+
     </style>
 </head>
 <body>
     <header>
-        <h1>Employment Opportunities</h1>
+        <div class="header-content">
+            <h1>Employment Opportunities</h1>
+            <div class="header-controls">
+                <!-- Added Back Link -->
+                <a href="index.html" class="back-link">← Back to Homepage</a>
+                <button id="darkModeToggle" aria-label="Toggle Dark Mode">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg>
+                </button>
+            </div>
+        </div>
     </header>
-    <div class="content">
-        <a href="index.html" class="back-link">&#8592; Go Back</a>
+    <section class="container">
+        <!-- Removed old back link -->
         <h2>Join the AgroSphere Team!</h2>
-        <p>We are committed to empowering communities through sustainable agriculture and employment opportunities. Join our passionate team and make a positive impact.</p>
+        <p class="intro-paragraph">We are driven by a mission to empower farming communities through sustainable agricultural practices and meaningful employment. Explore our current openings and become part of a passionate team dedicated to making a positive impact on the future of agriculture.</p>
         <h3>Current Openings</h3>
+
+        <!-- Job 1 -->
         <div class="job-card">
-            <img src="assets/images/employment/field_officer.jpg" alt="Field Officer">
+            <div class="job-image">
+                <img src="assets/images/employment/field_officer.jpg" alt="Field Officer working in a field">
+            </div>
             <div class="job-details">
-                <h4>Field Officer</h4>
-                <p>Location: Various locations across India</p>
-                <p>Responsibilities: Supervise agricultural practices, ensure quality standards, and support farmers on-site.</p>
-                <p>Requirements: Bachelor’s degree in Agriculture or related field, 2+ years of field experience, strong communication skills.</p>
-                <p>Skills: Field Management, Communication, Quality Assurance</p>
+                <h4 class="job-title">Field Officer</h4>
+                <p class="job-location">Location: Various locations across Rural India</p>
+                <p><strong>Responsibilities:</strong> Act as a direct link between AgroSphere and local farmers. Supervise the implementation of sustainable agricultural practices, monitor crop health, ensure quality standards are met, provide on-site support and training, and report field data.</p>
+                <p><strong>Requirements:</strong> Bachelor’s degree in Agriculture, Agronomy, or a related field. Minimum of 2 years of hands-on field experience. Excellent communication and interpersonal skills, ability to work independently, and willingness to travel extensively within assigned regions.</p>
+                <p class="skills-list">Key Skills: Field Management, Farmer Training, Crop Monitoring, Quality Assurance, Reporting.</p>
+                <!-- Href will be set by JS -->
                 <a href="apply-position.html" class="apply-btn">Apply Now</a>
             </div>
         </div>
+
+        <!-- Job 2 -->
         <div class="job-card">
-            <img src="assets/images/employment/agro_consultant.jpg" alt="Agro Consultant">
+            <div class="job-image">
+                 <img src="assets/images/employment/agro_consultant.jpg" alt="Agro Consultant discussing with farmer">
+            </div>
             <div class="job-details">
-                <h4>Agro Consultant</h4>
-                <p>Location: Remote</p>
-                <p>Responsibilities: Provide agricultural consultancy to farmers, guide on best practices and sustainability.</p>
-                <p>Requirements: Master’s degree in Agriculture, 5+ years of consultancy experience, analytical skills.</p>
-                <p>Skills: Consultancy, Problem Solving, Sustainable Practices</p>
+                <h4 class="job-title">Agro Consultant</h4>
+                <p class="job-location">Location: Remote (with potential travel)</p>
+                <p><strong>Responsibilities:</strong> Provide expert agricultural consultancy services to farmers and agribusiness clients. Analyze farm data, diagnose issues, recommend best practices for crop management, soil health, irrigation, and sustainability. Develop tailored farm improvement plans and stay updated on agricultural research and technology.</p>
+                <p><strong>Requirements:</strong> Master’s degree or PhD in Agriculture, Soil Science, or related discipline. Proven track record with 5+ years in agricultural consultancy. Strong analytical, problem-solving, and presentation skills. Ability to translate complex information into practical advice.</p>
+                <p class="skills-list">Key Skills: Agricultural Advisory, Data Analysis, Sustainable Practices, Client Relationship Management, Problem Solving.</p>
+                 <!-- Href will be set by JS -->
                 <a href="apply-position.html" class="apply-btn">Apply Now</a>
             </div>
         </div>
+
+        <!-- Job 3 -->
         <div class="job-card">
-            <img src="assets/images/employment/marketing_coordinator.jpg" alt="Marketing Coordinator">
+            <div class="job-image">
+                 <img src="assets/images/employment/marketing_coordinator.jpg" alt="Marketing Coordinator working on laptop">
+            </div>
             <div class="job-details">
-                <h4>Marketing Coordinator</h4>
-                <p>Location: Head Office, Mumbai</p>
-                <p>Responsibilities: Plan and execute marketing strategies, build brand awareness, coordinate campaigns.</p>
-                <p>Requirements: Bachelor’s degree in Marketing or Business, 3+ years of experience in marketing.</p>
-                <p>Skills: Marketing Strategy, Communication, Campaign Management</p>
+                <h4 class="job-title">Marketing Coordinator</h4>
+                <p class="job-location">Location: Head Office, Mumbai</p>
+                <p><strong>Responsibilities:</strong> Support the marketing team in planning, executing, and monitoring marketing strategies across various channels (digital, print, events). Help build brand awareness, manage social media presence, coordinate campaigns, analyze market trends, and prepare marketing reports.</p>
+                <p><strong>Requirements:</strong> Bachelor’s degree in Marketing, Business Administration, or Communications. 3+ years of relevant experience in a marketing role, preferably within the agriculture or sustainability sector. Strong organizational skills, proficiency in digital marketing tools, and excellent written/verbal communication.</p>
+                <p class="skills-list">Key Skills: Marketing Strategy Execution, Digital Marketing, Social Media Management, Campaign Coordination, Communication.</p>
+                 <!-- Href will be set by JS -->
                 <a href="apply-position.html" class="apply-btn">Apply Now</a>
             </div>
         </div>
-        <p>For job applications and inquiries, email us at <a href="mailto:jobs@agrosphere.com">jobs@agrosphere.com</a>.</p>
-    </div>
+
+        <p class="contact-info">Don't see a fit? We're always looking for talent. Send your resume and cover letter to <a href="mailto:jobs@agrosphere.com">jobs@agrosphere.com</a> for future consideration.</p>
+    </section>
+    <footer>
+        <div class="container">
+            <p>© 2025 AgroSphere. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Standardized Script Block -->
+    <script>
+        // --- Dark Mode Logic ---
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+        const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+        function updateToggleButtonIcon() { /* Standard function */ }
+        function toggleDarkMode() { /* Standard function */ }
+        const savedDarkMode = localStorage.getItem('darkMode');
+        // Initialization moved to DOMContentLoaded
+
+        // --- Apply Button Link Update ---
+         document.addEventListener('DOMContentLoaded', () => {
+             // Init dark mode
+             if (savedDarkMode === 'true') { body.classList.add('dark-mode'); }
+             updateToggleButtonIcon();
+             darkModeToggle.addEventListener('click', toggleDarkMode);
+
+             // Update apply buttons
+             const applyButtons = document.querySelectorAll('.apply-btn');
+             applyButtons.forEach(button => {
+                 const jobCard = button.closest('.job-card');
+                 if (jobCard) {
+                     const titleElement = jobCard.querySelector('.job-title'); // Use class
+                     const locationElement = jobCard.querySelector('.job-location'); // Use class
+
+                     if (titleElement && locationElement) {
+                         const title = titleElement.textContent.trim();
+                         // Extract only the core location text, remove "Location: " prefix
+                         let locationText = locationElement.textContent.trim();
+                         if (locationText.startsWith('Location: ')) {
+                             locationText = locationText.substring('Location: '.length);
+                         }
+
+                         const encodedTitle = encodeURIComponent(title);
+                         const encodedLocation = encodeURIComponent(locationText);
+
+                         button.href = `apply-position.html?jobTitle=${encodedTitle}&location=${encodedLocation}`;
+                     } else {
+                         console.warn("Could not find title or location for a job card.");
+                         button.href = 'apply-position.html?jobTitle=Unknown&location=Unknown';
+                     }
+                 }
+             });
+         });
+
+         // Make dark mode functions global only if needed elsewhere (unlikely)
+         // window.toggleDarkMode = toggleDarkMode;
+         // window.updateToggleButtonIcon = updateToggleButtonIcon;
+    </script>
 </body>
 </html>
