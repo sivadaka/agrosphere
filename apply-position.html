@@ -25,34 +25,9 @@
         #applicationForm { text-align: left; }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; transition: color 0.3s ease; }
-        .form-group input[type="text"],
-        .form-group input[type="number"],
-        .form-group input[type="email"],
-        .form-group input[type="tel"],
-        .form-group input[type="file"],
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 1em;
-            background-color: #fff; /* Explicit background for light mode */
-            color: #333; /* Explicit color for light mode */
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
-        /* Specific style for select */
-        .form-group select {
-             appearance: none; /* Remove default arrow */
-             background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); /* Simple dropdown arrow */
-             background-repeat: no-repeat;
-             background-position: right 1rem center;
-             background-size: 0.8em auto;
-             padding-right: 2.5rem; /* Make space for arrow */
-        }
+        .form-group input[type="text"], .form-group input[type="number"], .form-group input[type="email"], .form-group input[type="tel"], .form-group input[type="file"], .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 1em; background-color: #fff; color: #333; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+        .form-group select { appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 0.8em auto; padding-right: 2.5rem; }
         .form-group textarea { resize: vertical; min-height: 80px; }
-        /* Readonly Style */
         input[readonly] { background-color: #f0f0f0; cursor: default; color: #555; }
         .form-group input[type="file"] { padding: 5px; }
         .submit-button { display: block; width: 100%; padding: 15px; background-color: #5cb85c; color: white !important; text-decoration: none; border: none; border-radius: 5px; font-size: 1.2em; font-weight: bold; cursor: pointer; margin-top: 20px; transition: background-color 0.3s ease; }
@@ -64,10 +39,9 @@
         .popup-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 1000; justify-content: center; align-items: center; }
         .popup-content { background-color: white; padding: 30px 40px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); text-align: center; max-width: 480px; width: 90%; position: relative; transition: background-color 0.3s ease, color 0.3s ease; }
         .popup-content h2 { color: #4CAF50; margin-top: 0; margin-bottom: 15px; }
-        .popup-content p { color: #555; margin-bottom: 25px; font-size: 1.1em; transition: color 0.3s ease; }
+        .popup-content p { color: #555; margin-bottom: 25px; font-size: 1.1em; transition: color 0.3s ease; line-height: 1.5; }
         .popup-close { position: absolute; top: 10px; right: 15px; font-size: 1.8em; font-weight: bold; color: #aaa; background: none; border: none; cursor: pointer; line-height: 1; padding: 0; transition: color 0.2s ease; }
         .popup-close:hover { color: #333; }
-
 
         /* --- Dark Mode Styles --- */
         body.dark-mode { background-color: #1a1a1a; color: #f0f0f0; }
@@ -77,41 +51,19 @@
         body.dark-mode section.container { background-color: #2c2c2c; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); }
         body.dark-mode h2 { color: #66bb6a; }
         body.dark-mode .form-group label { color: #eee; }
-
-        /* Dark mode for ALL relevant form elements */
-        body.dark-mode .form-group input[type="text"],
-        body.dark-mode .form-group input[type="number"],
-        body.dark-mode .form-group input[type="email"],
-        body.dark-mode .form-group input[type="tel"],
-        body.dark-mode .form-group input[type="file"],
-        body.dark-mode .form-group select,
-        body.dark-mode .form-group textarea {
-            background-color: #444;
-            color: #eee;
-            border-color: #555;
-        }
-        /* Dark mode for select dropdown arrow */
-         body.dark-mode .form-group select {
-             /* SVG arrow with a light color for dark mode */
-             background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23cccccc%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
-         }
-
-        body.dark-mode input[readonly] { background-color: #4a4a4a; color: #bbb; } /* Dark readonly */
-        /* Style file input button in dark mode (browser dependent) */
+        body.dark-mode .form-group input[type="text"], body.dark-mode .form-group input[type="number"], body.dark-mode .form-group input[type="email"], body.dark-mode .form-group input[type="tel"], body.dark-mode .form-group input[type="file"], body.dark-mode .form-group select, body.dark-mode .form-group textarea { background-color: #444; color: #eee; border-color: #555; }
+        body.dark-mode .form-group select { background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23cccccc%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); }
+        body.dark-mode input[readonly] { background-color: #4a4a4a; color: #bbb; }
         body.dark-mode input[type="file"]::-webkit-file-upload-button { background: #555; color: #eee; border: 1px solid #666; padding: 5px 10px; border-radius: 3px; }
-        body.dark-mode input[type="file"]::file-selector-button { background: #555; color: #eee; border: 1px solid #666; padding: 5px 10px; border-radius: 3px; } /* Standard */
-
+        body.dark-mode input[type="file"]::file-selector-button { background: #555; color: #eee; border: 1px solid #666; padding: 5px 10px; border-radius: 3px; }
         body.dark-mode .submit-button { background-color: #66bb6a; }
         body.dark-mode .submit-button:hover { background-color: #43a047; }
         body.dark-mode footer { color: #aaa; }
-
-        /* Popup dark mode */
         body.dark-mode .popup-content { background-color: #3a3a3a; }
         body.dark-mode .popup-content h2 { color: #66bb6a; }
         body.dark-mode .popup-content p { color: #ccc; }
         body.dark-mode .popup-close { color: #888; }
         body.dark-mode .popup-close:hover { color: #eee; }
-
     </style>
 </head>
 <body>
@@ -121,7 +73,7 @@
             <div class="header-controls">
                 <a href="employment.html" class="back-link">← Back to Openings</a>
                 <button id="darkModeToggle" aria-label="Toggle Dark Mode">
-                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg>
                 </button>
             </div>
         </div>
@@ -148,11 +100,12 @@
             </div>
             <div class="form-group">
                 <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" required pattern="^[0-9\s\-()+]+$" title="Please enter a valid phone number.">
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+                <small>Enter a 10-digit phone number (e.g., 1234567890).</small>
             </div>
             <div class="form-group">
                 <label for="age">Age:</label>
-                <input type="number" id="age" name="age" min="18" max="99" required>
+                <input type="number" id="age" name="age" min="18" max="69" required>
             </div>
             <div class="form-group">
                 <label for="gender">Gender:</label>
@@ -161,7 +114,6 @@
                      <option value="Male">Male</option>
                      <option value="Female">Female</option>
                      <option value="Other">Other</option>
-                     <option value="Prefer_not_to_say">Prefer not to say</option>
                 </select>
             </div>
             <div class="form-group">
@@ -190,12 +142,11 @@
 
     <footer> <p>© 2025 AgroSphere Careers</p> </footer>
 
-    <!-- Added Popup HTML -->
     <div class="popup-overlay" id="successPopup">
         <div class="popup-content">
             <button class="popup-close" id="popupCloseButton" aria-label="Close popup">×</button>
             <h2>Application Submitted!</h2>
-            <p>Thank you for your interest in joining AgroSphere! Your application has been received. We will review your qualifications and get in touch if your profile matches our requirements for the <strong id="popupJobTitle">position</strong>. Wishing you all the best!</p>
+            <p>Your application for the <strong id="popupJobTitle">position</strong> has been received successfully. We will review your details and get back to you if your profile fits our requirements. Thanks for considering AgroSphere!</p>
         </div>
     </div>
 
@@ -204,12 +155,13 @@
         // --- Dark Mode Logic ---
         const darkModeToggle = document.getElementById('darkModeToggle');
         const body = document.body;
+        // ** Define icons (ensure these SVG paths are correct for sun/moon) **
         const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
         const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
 
         // ** Standard function to update icon and aria-label **
         function updateToggleButtonIcon() {
-             if (!darkModeToggle) return;
+             if (!darkModeToggle) return; // Exit if button not found
             if (body.classList.contains('dark-mode')) {
                 darkModeToggle.innerHTML = moonIcon;
                 darkModeToggle.setAttribute('aria-label', 'Switch to Light Mode');
@@ -221,18 +173,31 @@
 
         // ** Standard function to toggle class and save preference **
         function toggleDarkMode() {
+            if (!body) return; // Exit if body not found
             body.classList.toggle('dark-mode');
-            localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
-            updateToggleButtonIcon();
+            // Use try-catch for localStorage in case it's disabled (e.g., private browsing)
+            try {
+                localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+            } catch (e) {
+                console.warn("Could not save dark mode preference to localStorage:", e);
+            }
+            updateToggleButtonIcon(); // Update icon immediately
         }
 
-        // Get saved preference
-        const savedDarkMode = localStorage.getItem('darkMode');
+        // Get saved preference (do this early)
+        let savedDarkMode = null;
+        try {
+            savedDarkMode = localStorage.getItem('darkMode');
+        } catch (e) {
+             console.warn("Could not read dark mode preference from localStorage:", e);
+        }
 
         // --- Application Page Logic ---
         document.addEventListener('DOMContentLoaded', () => {
-            // Init dark mode state
-             if (savedDarkMode === 'true') { body.classList.add('dark-mode'); }
+            // --- Initialize Dark Mode ---
+             if (savedDarkMode === 'true') {
+                 body.classList.add('dark-mode');
+             }
              updateToggleButtonIcon(); // Set initial icon
 
              // Add listener
@@ -242,8 +207,7 @@
                  console.error("Dark mode toggle button not found!");
              }
 
-
-            // Get elements (rest of the logic is the same)
+            // --- Form and Popup Logic ---
             const applicationForm = document.getElementById("applicationForm");
             const successPopup = document.getElementById("successPopup");
             const popupCloseButton = document.getElementById("popupCloseButton");
@@ -261,22 +225,81 @@
             // Populate readonly fields
             const decodedTitle = decodeURIComponent(jobTitleParam);
             const decodedLocation = decodeURIComponent(jobLocationParam);
-            jobTitleInput.value = decodedTitle;
-            jobLocationInput.value = decodedLocation;
-            popupJobTitleSpan.textContent = decodedTitle;
+            if (jobTitleInput) jobTitleInput.value = decodedTitle;
+            if (jobLocationInput) jobLocationInput.value = decodedLocation;
+            if (popupJobTitleSpan) popupJobTitleSpan.textContent = decodedTitle;
 
-            // Show/hide previous employer field based on experience
-            function checkExperience() { /* ... same logic ... */ }
-            experienceInput.addEventListener("input", checkExperience);
-            checkExperience();
+            // Show/hide previous employer field
+            function checkExperience() {
+                 if (experienceInput && employerField) {
+                     if (parseInt(experienceInput.value) > 0) {
+                         employerField.style.display = "block";
+                     } else {
+                         employerField.style.display = "none";
+                     }
+                 }
+            }
+            if (experienceInput) {
+                experienceInput.addEventListener("input", checkExperience);
+                checkExperience(); // Initial check
+            }
 
-            // Form Submission & Popup
-            applicationForm.addEventListener("submit", function(event) { /* ... same logic ... */ });
+            // Form Submission
+            if (applicationForm) {
+                applicationForm.addEventListener("submit", function(event) {
+                    event.preventDefault();
+                    if (successPopup) {
+                        // Ensure job title is updated just before showing (redundant but safe)
+                        if (popupJobTitleSpan) {
+                            popupJobTitleSpan.textContent = decodedTitle;
+                        }
+                        successPopup.style.display = 'flex';
+                    } else {
+                        console.error("Success popup element not found!");
+                        // Fallback alert if popup is missing
+                        alert("Application submitted successfully! We will review your details and get back to you if your profile fits our requirements. Thanks for considering AgroSphere!");
+                        applicationForm.reset();
+                        if (jobTitleInput) jobTitleInput.value = decodedTitle;
+                        if (jobLocationInput) jobLocationInput.value = decodedLocation;
+                        checkExperience();
+                    }
+                });
+            } else {
+                 console.error("Application form element not found!");
+            }
+
 
             // Popup Closing
-            function closePopup() { /* ... same logic ... */ }
-            if (popupCloseButton) { popupCloseButton.addEventListener('click', closePopup); }
-            if (successPopup) { successPopup.addEventListener('click', function(event){ /* ... */ }); }
+            function closePopup() {
+                if (successPopup) {
+                    successPopup.style.display = 'none';
+                }
+                if (applicationForm) {
+                    applicationForm.reset();
+                    // Re-populate read-only fields
+                    if(jobTitleInput) jobTitleInput.value = decodedTitle;
+                    if(jobLocationInput) jobLocationInput.value = decodedLocation;
+                    checkExperience();
+                }
+            }
+
+            if (popupCloseButton) {
+                popupCloseButton.addEventListener('click', closePopup);
+            } else {
+                 console.error("Popup close button not found!");
+            }
+
+            // Close popup on overlay click
+            if (successPopup) {
+                 successPopup.addEventListener('click', function(event) {
+                     // Check if the click is directly on the overlay
+                     if (event.target === successPopup) {
+                         closePopup();
+                     }
+                 });
+             } else {
+                  console.error("Success popup element not found!");
+             }
         });
     </script>
 </body>
