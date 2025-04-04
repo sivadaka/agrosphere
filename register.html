@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Registration - AgroSphere</title>
+    <style>
+        /* --- Base Styles (Light Mode) --- */
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; color: #333; line-height: 1.6; transition: background-color 0.3s ease, color 0.3s ease; }
+        header { background-color: #4CAF50; color: white; padding: 20px; margin-bottom: 30px; transition: background-color 0.3s ease; }
+        .header-content { max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        header h1 { margin: 0; font-size: 2.2em; font-weight: bold; text-align: left; flex-grow: 1; }
+        .header-controls { display: flex; align-items: center; gap: 15px; }
+        .back-link { color: white !important; text-decoration: none; font-size: 1em; font-weight: bold; padding: 10px 15px; background-color: rgba(0, 0, 0, 0.1); border-radius: 5px; transition: background-color 0.3s ease, color 0.3s ease; }
+        .back-link:hover { background-color: rgba(0, 0, 0, 0.2); }
+        #darkModeToggle { background: none; border: none; color: white; cursor: pointer; padding: 5px; font-size: 1.5em; line-height: 1; outline: none; }
+        #darkModeToggle svg { display: block; width: 24px; height: 24px; }
+
+        section { padding: 40px 20px; max-width: 700px; margin: 0 auto 30px auto; background-color: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); transition: background-color 0.3s ease, box-shadow 0.3s ease; }
+        h2 { color: #4CAF50; text-align: center; font-size: 2em; margin-top: 0; margin-bottom: 10px; transition: color 0.3s ease; }
+        h3.workshop-title { text-align: center; font-size: 1.3em; color: #555; margin-top: 0; margin-bottom: 5px; /* Reduced bottom margin */ font-weight: normal; transition: color 0.3s ease; }
+        /* New style for date display */
+        p.workshop-date-display {
+            text-align: center;
+            font-size: 1.1em;
+            color: #777;
+            margin-top: 0;
+            margin-bottom: 30px; /* Space below date */
+            transition: color 0.3s ease;
+        }
+
+        #registrationForm { text-align: left; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; transition: color 0.3s ease; }
+        .form-group input[type="text"], .form-group input[type="date"], .form-group input[type="tel"], .form-group input[type="email"], .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 1em; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+        .form-group textarea { resize: vertical; min-height: 80px; }
+        input[readonly] { background-color: #f0f0f0; cursor: default; color: #444; } /* Readonly style */
+        .radio-group label, .checkbox-group label { display: inline-block; margin-bottom: 0; margin-left: 8px; font-weight: normal; vertical-align: middle; }
+        .radio-group input[type="radio"], .checkbox-group input[type="checkbox"] { vertical-align: middle; margin-right: 5px; }
+        .radio-item { margin-right: 20px; display: inline-block; }
+        .submit-button { display: block; width: 100%; padding: 15px; background-color: #5cb85c; color: white !important; text-decoration: none; border: none; border-radius: 5px; font-size: 1.2em; font-weight: bold; cursor: pointer; margin-top: 30px; transition: background-color 0.3s ease; }
+        .submit-button:hover { background-color: #4cae4c; }
+        footer { background-color: #333; color: white; text-align: center; padding: 20px 0; margin-top: 50px; transition: background-color 0.3s ease, color 0.3s ease; }
+        footer .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+        footer p { margin: 0; font-size: 0.9em; color: #eee; }
+
+        /* Popup Styles */
+        .popup-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 1000; justify-content: center; align-items: center; }
+        .popup-content { background-color: white; padding: 30px 40px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); text-align: center; max-width: 450px; width: 90%; position: relative; transition: background-color 0.3s ease, color 0.3s ease; }
+        .popup-content h2 { color: #4CAF50; margin-top: 0; margin-bottom: 15px; }
+        .popup-content p { color: #555; margin-bottom: 25px; font-size: 1.1em; transition: color 0.3s ease; }
+        .popup-close { position: absolute; top: 10px; right: 15px; font-size: 1.8em; font-weight: bold; color: #aaa; background: none; border: none; cursor: pointer; line-height: 1; padding: 0; transition: color 0.2s ease; }
+        .popup-close:hover { color: #333; }
+
+        /* --- Dark Mode Styles --- */
+        body.dark-mode { background-color: #1a1a1a; color: #f0f0f0; }
+        body.dark-mode header { background-color: #333; }
+        body.dark-mode .back-link { color: white !important; background-color: rgba(255, 255, 255, 0.15); }
+        body.dark-mode .back-link:hover { background-color: rgba(255, 255, 255, 0.25); }
+        body.dark-mode section { background-color: #2c2c2c; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); }
+        body.dark-mode h2 { color: #66bb6a; }
+        body.dark-mode h3.workshop-title { color: #ccc; }
+        body.dark-mode p.workshop-date-display { color: #aaa; } /* Dark mode date */
+        body.dark-mode .form-group label { color: #eee; }
+        body.dark-mode .form-group input[type="text"], body.dark-mode .form-group input[type="date"], body.dark-mode .form-group input[type="tel"], body.dark-mode .form-group input[type="email"], body.dark-mode .form-group select, body.dark-mode .form-group textarea { background-color: #444; color: #eee; border-color: #555; }
+        body.dark-mode input[readonly] { background-color: #4a4a4a; color: #bbb; border-color: #666; } /* Dark readonly */
+        body.dark-mode .radio-group label, body.dark-mode .checkbox-group label { color: #eee; }
+        body.dark-mode .submit-button { background-color: #66bb6a; }
+        body.dark-mode .submit-button:hover { background-color: #43a047; }
+        body.dark-mode footer { background-color: #222; }
+        body.dark-mode footer p { color: #ccc; }
+        body.dark-mode .popup-content { background-color: #3a3a3a; }
+        body.dark-mode .popup-content h2 { color: #66bb6a; }
+        body.dark-mode .popup-content p { color: #ccc; }
+        body.dark-mode .popup-close { color: #888; }
+        body.dark-mode .popup-close:hover { color: #eee; }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Workshop Registration</h1>
+            <div class="header-controls">
+                <a href="learning-workshops.html" class="back-link">← Back to Workshops</a>
+                <button id="darkModeToggle" aria-label="Toggle Dark Mode">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <h2>Register Your Interest</h2>
+        <h3 class="workshop-title" id="workshop-name-display">Loading workshop details...</h3>
+        <!-- Added paragraph for date display -->
+        <p class="workshop-date-display" id="workshop-date-display">Date: Loading...</p>
+
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="workshop">Selected Workshop:</label>
+                <input type="text" id="workshop" name="workshop" readonly>
+                <input type="hidden" id="workshop_hidden" name="workshop_title">
+                 <!-- Hidden field for date (optional, if needed for submission) -->
+                 <input type="hidden" id="workshop_date_hidden" name="workshop_date">
+            </div>
+
+            <div class="form-group">
+                <label for="name">Full Name:<span style="color:red;">*</span></label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group radio-group">
+                 <label>Gender:<span style="color:red;">*</span></label><br>
+                 <div class="radio-item"><input type="radio" id="gender_male" name="gender" value="male" required><label for="gender_male">Male</label></div>
+                 <div class="radio-item"><input type="radio" id="gender_female" name="gender" value="female" required><label for="gender_female">Female</label></div>
+                 <div class="radio-item"><input type="radio" id="gender_other" name="gender" value="other" required><label for="gender_other">Other</label></div>
+                 <div class="radio-item"><input type="radio" id="gender_na" name="gender" value="prefer_not_to_say" required><label for="gender_na">Prefer not to say</label></div>
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth:<span style="color:red;">*</span></label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:<span style="color:red;">*</span></label>
+                <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" title="Please enter a 10-digit phone number (e.g., 1234567890)">
+            </div>
+            </div>
+
+             <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email">
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="notify" name="notify" value="yes" checked>
+                <label for="notify">Would you like to be notified about our future events?</label>
+            </div>
+
+            <div class="form-group">
+                <label for="comments">Any Questions or Comments?</label>
+                <textarea id="comments" name="comments" rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="submit-button">Submit Registration</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 AgroSphere. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Success Popup -->
+    <div class="popup-overlay" id="successPopup">
+        <div class="popup-content">
+            <button class="popup-close" id="popupCloseButton" aria-label="Close popup">×</button>
+            <h2>Registration Submitted!</h2>
+            <p>Thank you for your interest in our learning workshops! Your registration details have been received successfully. We'll be in touch if any further information is needed.</p>
+        </div>
+    </div>
+
+
+    <!-- UPDATED Script -->
+    <script>
+        // --- Dark Mode Logic (Copied) ---
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+        const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+        function updateToggleButtonIcon() { /* ... */ } // Standard function
+        function toggleDarkMode() { /* ... */ } // Standard function
+        // Standard dark mode setup on load
+        const savedDarkMode = localStorage.getItem('darkMode');
+        if (savedDarkMode === 'true') { body.classList.add('dark-mode'); }
+        updateToggleButtonIcon();
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+
+
+        // --- Registration Page Specific Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const workshopTitleParam = urlParams.get('workshop');
+            const workshopDateParam = urlParams.get('date'); // Get the date param
+
+            const workshopDisplayElement = document.getElementById('workshop-name-display');
+            const workshopInputElement = document.getElementById('workshop');
+            const workshopHiddenInputElement = document.getElementById('workshop_hidden');
+            // Get date elements
+            const dateDisplayElement = document.getElementById('workshop-date-display');
+            const dateHiddenInputElement = document.getElementById('workshop_date_hidden');
+
+            // Display Workshop Title
+            if (workshopTitleParam) {
+                const decodedTitle = decodeURIComponent(workshopTitleParam);
+                workshopDisplayElement.textContent = `For Workshop: ${decodedTitle}`;
+                workshopInputElement.value = decodedTitle;
+                workshopHiddenInputElement.value = decodedTitle;
+            } else {
+                workshopDisplayElement.textContent = 'Workshop details not specified.';
+                workshopInputElement.value = 'N/A';
+            }
+
+            // Display Workshop Date
+            if (workshopDateParam && workshopDateParam !== 'N/A') {
+                 try {
+                    // Parse the YYYY-MM-DD date string. Add T00:00:00 to help avoid timezone issues.
+                    const dateObj = new Date(workshopDateParam + 'T00:00:00');
+                    const displayOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+                    const formattedDate = dateObj.toLocaleDateString('en-US', displayOptions);
+
+                    dateDisplayElement.textContent = `Scheduled Date: ${formattedDate}`;
+                    // Set hidden input value if needed for form submission
+                    if (dateHiddenInputElement) {
+                         dateHiddenInputElement.value = workshopDateParam; // Store YYYY-MM-DD
+                    }
+                 } catch (e) {
+                    console.error("Error parsing date:", e);
+                    dateDisplayElement.textContent = 'Date: Invalid date format received.';
+                 }
+
+            } else {
+                dateDisplayElement.textContent = 'Date: Not specified.';
+                 if (dateHiddenInputElement) {
+                     dateHiddenInputElement.value = 'N/A';
+                 }
+            }
+
+
+            // Form Submission Handling
+            const form = document.getElementById('registrationForm');
+            const popupOverlay = document.getElementById('successPopup');
+            const popupCloseButton = document.getElementById('popupCloseButton');
+
+            form.addEventListener('submit', function(event) { /* ... (same popup logic) ... */
+                event.preventDefault();
+                if (popupOverlay) { popupOverlay.style.display = 'flex'; }
+             });
+
+            function closePopup() { /* ... (same popup closing logic) ... */
+                if (popupOverlay) { popupOverlay.style.display = 'none'; }
+                form.reset();
+                // Reset workshop title/date after closing popup
+                 if (workshopTitleParam) { workshopInputElement.value = decodeURIComponent(workshopTitleParam); } else { workshopInputElement.value = 'N/A';}
+                 // No need to reset the date display here, it's set on load
+            }
+
+            if (popupCloseButton) { popupCloseButton.addEventListener('click', closePopup); }
+            if (popupOverlay) { popupOverlay.addEventListener('click', function(event) { if (event.target === popupOverlay) { closePopup(); } }); }
+        });
+    </script>
+
+</body>
+</html>

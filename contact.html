@@ -5,22 +5,425 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact AgroSphere - Connect with Our Team</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <!-- Removed stylesheet link, styles are inline below -->
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+        /* --- Base Styles (Light Mode) --- */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container { /* General purpose container */
+             max-width: 960px;
+             margin: 0 auto;
+             padding: 0 20px; /* Add horizontal padding */
+        }
+
+        header {
+            background-color: #4CAF50; /* Consistent green */
+            color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Consistent Header Structure */
+        .header-content {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        header h1 {
+             margin: 0;
+             font-size: 2.2em;
+             font-weight: bold;
+             text-align: left;
+             flex-grow: 1;
+        }
+
+        .header-controls {
+             display: flex;
+             align-items: center;
+             gap: 15px;
+        }
+
+        /* Back link style */
+        .back-link {
+            color: white !important;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: bold;
+            padding: 10px 15px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Dark Mode Toggle Styles */
+        #darkModeToggle {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 5px;
+            font-size: 1.5em;
+            line-height: 1;
+            outline: none;
+        }
+         #darkModeToggle svg {
+             display: block;
+             width: 24px;
+             height: 24px;
+         }
+
+        section.container { /* Target the section specifically */
+            padding-top: 30px;
+            padding-bottom: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        h2 {
+            color: #4CAF50;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 15px;
+             transition: color 0.3s ease;
+        }
+
+         h3 {
+            color: #333;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+         }
+
+        p {
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .lead {
+            font-size: 1.1em;
+            color: #555;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .contact-details {
+             margin-bottom: 40px;
+             padding: 20px;
+             background-color: #f0f8f0; /* Light green tint */
+             border-radius: 6px;
+              transition: background-color 0.3s ease;
+        }
+        .contact-details h3 {
+             margin-top: 0;
+             text-align: center;
+        }
+        .contact-details p {
+            line-height: 1.7;
+            margin-bottom: 10px; /* Less space between details */
+        }
+        .contact-details a {
+            color: #007bff;
+            text-decoration: none;
+             transition: color 0.3s ease;
+        }
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            margin-top: 30px;
+        }
+        .contact-form h3 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+        .form-group textarea {
+            resize: vertical;
+             min-height: 100px;
+        }
+
+        .submit-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #5cb85c;
+            color: white !important;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px; /* Reduced margin */
+            transition: background-color 0.3s ease;
+        }
+        .submit-button:hover {
+            background-color: #4cae4c;
+        }
+
+        .additional-info {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9; /* Subtle background */
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+        .additional-info h3 {
+             margin-top: 0;
+        }
+
+        .social-links {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0 0; /* Adjusted margin */
+        }
+        .social-links li {
+            display: inline-block; /* Changed from inline */
+            margin: 0 10px; /* Adjusted spacing */
+        }
+
+        .social-links a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        footer .container { /* Scope container styles */
+             max-width: 960px;
+             margin: 0 auto;
+             padding: 0 20px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #eee;
+        }
+
+        .hidden { /* Utility class */
+            display: none;
+        }
+
+
+       /* --- Popup Styles (Copied from register.html) --- */
+        .popup-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 480px; /* Slightly wider for this message */
+            width: 90%;
+            position: relative;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .popup-content h2 { /* Style popup heading */
+            color: #4CAF50;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .popup-content p {
+            color: #555;
+            margin-bottom: 25px;
+            font-size: 1.1em;
+             transition: color 0.3s ease;
+        }
+         /* Specific style for phone number in popup */
+        .popup-content .phone-number {
+             font-weight: bold;
+             color: #333; /* Make it stand out slightly */
+        }
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #aaa;
+            background: none;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+            transition: color 0.2s ease;
+        }
+        .popup-close:hover {
+            color: #333;
+        }
+
+
+        /* --- Dark Mode Styles --- */
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        body.dark-mode header {
+            background-color: #333; /* Dark header */
+        }
+        body.dark-mode .back-link {
+            color: white !important;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+         body.dark-mode .back-link:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+         }
+        body.dark-mode section.container {
+            background-color: #2c2c2c;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        body.dark-mode h2 {
+            color: #66bb6a; /* Lighter green */
+        }
+        body.dark-mode h3 {
+             color: #eee;
+        }
+        body.dark-mode p {
+            color: #ccc;
+        }
+        body.dark-mode .lead {
+            color: #bbb;
+        }
+        body.dark-mode .contact-details {
+             background-color: #3a3a3a; /* Dark background */
+        }
+        body.dark-mode .contact-details p {
+             color: #ccc; /* Lighter text for details */
+        }
+        body.dark-mode .contact-details a {
+            color: #81d4fa; /* Light blue for links */
+        }
+        body.dark-mode .form-group label {
+             color: #eee;
+        }
+        body.dark-mode .form-group input[type="text"],
+        body.dark-mode .form-group input[type="email"],
+        body.dark-mode .form-group textarea {
+            background-color: #444;
+            color: #eee;
+            border-color: #555;
+        }
+        body.dark-mode .submit-button {
+            background-color: #66bb6a;
+        }
+        body.dark-mode .submit-button:hover {
+            background-color: #43a047;
+        }
+        body.dark-mode .additional-info {
+             background-color: #2c2c2c; /* Match section background */
+        }
+        body.dark-mode .social-links a {
+            color: #81d4fa;
+        }
+        body.dark-mode footer {
+            background-color: #222;
+        }
+        body.dark-mode footer p {
+            color: #ccc;
+        }
+
+        /* Popup dark mode */
+        body.dark-mode .popup-content {
+            background-color: #3a3a3a;
+        }
+        body.dark-mode .popup-content h2 {
+            color: #66bb6a;
+        }
+        body.dark-mode .popup-content p {
+            color: #ccc;
+        }
+         body.dark-mode .popup-content .phone-number {
+             color: #e0e0e0; /* Lighter bold for phone */
+         }
+        body.dark-mode .popup-close {
+            color: #888;
+        }
+        body.dark-mode .popup-close:hover {
+            color: #eee;
+        }
+
+    </style>
 </head>
 
 <body>
     <header>
-        <div class="container">
+        <!-- Updated Header Structure -->
+        <div class="header-content">
             <h1>Contact Us</h1>
-            <button id="darkModeToggle" aria-label="Toggle Dark Mode">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <path
-                        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42">
-                    </path>
-                </svg>
-            </button>
+            <div class="header-controls">
+                <!-- Added Back Link -->
+                <a href="index.html" class="back-link">← Back to Homepage</a>
+                <button id="darkModeToggle" aria-label="Toggle Dark Mode">
+                    <!-- Icon will be updated by JS -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg>
+                </button>
+            </div>
         </div>
     </header>
     <section class="container">
@@ -31,7 +434,8 @@
             <h3>Contact Information</h3>
             <p><strong>Address:</strong> 123 AgriTech Lane, Ruralville, AG 54321</p>
             <p><strong>Email:</strong> <a href="mailto:info@agrosphere.com">info@agrosphere.com</a></p>
-            <p><strong>Phone:</strong> <a href="tel:+15551234567">+1 (555) 123-4567</a></p>
+            <!-- Added ID to easily grab phone number -->
+            <p><strong>Phone:</strong> <a href="tel:+15551234567" id="contact-phone-link">+1 (555) 123-4567</a></p>
             <p><strong>Business Hours:</strong> Monday - Friday, 9:00 AM - 5:00 PM (Local Time)</p>
         </div>
 
@@ -56,16 +460,17 @@
                 </div>
                 <button type="submit" class="submit-button">Send Message</button>
             </form>
-            <div id="form-response" class="hidden"></div>
+            <!-- Removed unused form-response div -->
+            <!-- <div id="form-response" class="hidden"></div> -->
         </div>
 
         <div class="additional-info">
             <h3>Connect With Us</h3>
             <p>Stay updated on our latest news and insights by following us on social media:</p>
             <ul class="social-links">
-                <li><a href="#" target="_blank">Facebook</a></li>
-                <li><a href="#" target="_blank">Twitter</a></li>
-                <li><a href="#" target="_blank">LinkedIn</a></li>
+                <li><a href="#" target="_blank">Facebook</a></li> <!-- Placeholder link -->
+                <li><a href="#" target="_blank">Twitter</a></li> <!-- Placeholder link -->
+                <li><a href="#" target="_blank">LinkedIn</a></li> <!-- Placeholder link -->
             </ul>
         </div>
     </section>
@@ -75,34 +480,100 @@
         </div>
     </footer>
 
+    <!-- Added Success Popup HTML -->
+    <div class="popup-overlay" id="successPopup">
+        <div class="popup-content">
+            <button class="popup-close" id="popupCloseButton" aria-label="Close popup">×</button>
+            <h2>Message Sent!</h2>
+            <!-- Message updated to include phone number dynamically -->
+            <p>Thank you for contacting AgroSphere! We've received your message and will aim to respond via the email address you provided within 1-2 business days. If your matter is urgent, please don't hesitate to call us directly at <span class="phone-number" id="popup-phone-number">our phone number</span>.</p>
+        </div>
+    </div>
+
+    <!-- Updated Script -->
     <script>
+        // --- Dark Mode Logic (Standardized) ---
         const darkModeToggle = document.getElementById('darkModeToggle');
         const body = document.body;
+        const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+        const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
 
-        // Function to toggle dark mode
+        function updateToggleButtonIcon() {
+            if (body.classList.contains('dark-mode')) {
+                darkModeToggle.innerHTML = moonIcon;
+                darkModeToggle.setAttribute('aria-label', 'Switch to Light Mode');
+            } else {
+                darkModeToggle.innerHTML = sunIcon;
+                darkModeToggle.setAttribute('aria-label', 'Switch to Dark Mode');
+            }
+        }
+
         function toggleDarkMode() {
             body.classList.toggle('dark-mode');
-            // Store the user's preference in local storage
             localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
             updateToggleButtonIcon();
         }
 
-        // Check local storage for saved preference on page load
         const savedDarkMode = localStorage.getItem('darkMode');
         if (savedDarkMode === 'true') {
             body.classList.add('dark-mode');
-            updateToggleButtonIcon();
         }
-
-        // Event listener for the toggle button
+        updateToggleButtonIcon();
         darkModeToggle.addEventListener('click', toggleDarkMode);
 
-        function updateToggleButtonIcon() {
-            const isDarkMode = body.classList.contains('dark-mode');
-            darkModeToggle.innerHTML = isDarkMode ?
-                `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle></svg>` :
-                `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>`;
-        }
+
+        // --- Contact Form Popup Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactForm = document.getElementById('contactForm');
+            const successPopup = document.getElementById('successPopup');
+            const popupCloseButton = document.getElementById('popupCloseButton');
+            const contactPhoneLink = document.getElementById('contact-phone-link');
+            const popupPhoneNumberSpan = document.getElementById('popup-phone-number');
+
+            // Update phone number in popup message when page loads
+            if (contactPhoneLink && popupPhoneNumberSpan) {
+                 // Use textContent to get just the number, not the 'tel:' part
+                popupPhoneNumberSpan.textContent = contactPhoneLink.textContent;
+            }
+
+            if (contactForm && successPopup) {
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault(); // Stop default submission
+
+                    // Basic validation is handled by 'required' attributes.
+                    // Add more JS validation here if needed.
+
+                    // Show the popup
+                    successPopup.style.display = 'flex'; // Use flex for centering
+                });
+            }
+
+            // Close popup function
+            function closePopup() {
+                if (successPopup) {
+                    successPopup.style.display = 'none';
+                }
+                // Reset the form when popup closes
+                if (contactForm) {
+                    contactForm.reset();
+                }
+            }
+
+            // Add event listener to close button
+            if (popupCloseButton) {
+                popupCloseButton.addEventListener('click', closePopup);
+            }
+
+             // Optional: Close popup if clicking outside the content
+             if (successPopup) {
+                 successPopup.addEventListener('click', function(event) {
+                     if (event.target === successPopup) { // Clicked on overlay itself
+                         closePopup();
+                     }
+                 });
+             }
+        });
+
     </script>
 </body>
 

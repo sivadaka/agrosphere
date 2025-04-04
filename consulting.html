@@ -5,138 +5,311 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Agricultural Consulting Services - AgroSphere</title>
 <style>
-body {
-font-family: Arial, sans-serif;
-margin: 0;
-padding: 0;
-background-color: #f9f9f9;
-color: #333;
-text-align: center;
-line-height: 1.6;
-}
-header {
-background-color: #2E7D32; /* A professional agricultural green */
-color: white;
-padding: 30px 20px;
-margin-bottom: 30px;
-}
-header h1 {
-margin: 0;
-font-size: 2.5em;
-font-weight: bold;
-}
-.back-link {
-display: inline-block;
-margin: 20px;
-padding: 12px 25px;
-background-color: #555;
-color: white;
-text-decoration: none;
-border-radius: 8px;
-font-weight: bold;
-transition: background-color 0.3s ease;
-}
-.back-link:hover {
-background-color: #777;
-}
-section {
-padding: 60px 20px;
-max-width: 960px;
-margin: 0 auto;
-background-color: white;
-border-radius: 8px;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-text-align: left; /* Align text in the main section to the left */
-}
-h2 {
-color: #2E7D32;
-margin-top: 0;
-margin-bottom: 25px;
-font-size: 2.2em;
-text-align: center; /* Center the main heading */
-}
-p {
-color: #666;
-line-height: 1.7;
-margin-bottom: 20px;
-}
-h3 {
-color: #2E7D32;
-margin-top: 25px;
-margin-bottom: 15px;
-}
-.consulting-area {
-margin-bottom: 30px;
-padding: 20px;
-border: 1px solid #ddd;
-border-radius: 6px;
-}
-.consulting-area h4 {
-color: #333;
-margin-top: 0;
-margin-bottom: 10px;
-}
-.contact-cta {
-margin-top: 50px;
-text-align: center;
-}
-.contact-cta p {
-max-width: none; /* Remove max-width for the call to action */
-margin-bottom: 30px;
-font-size: 1.1em;
-color: #555;
-}
-.contact-button {
-display: inline-block;
-padding: 15px 30px;
-background-color: #5cb85c; /* A brighter green for the button */
-color: white;
-text-decoration: none;
-border-radius: 8px;
-font-size: 1.2em;
-font-weight: bold;
-transition: background-color 0.3s ease;
-}
-.contact-button:hover {
-background-color: #4cae4c;
-}
-.team-member {
-display: inline-block;
-width: 45%; /* Adjust as needed */
-margin: 15px;
-padding: 15px;
-border: 1px solid #eee;
-border-radius: 6px;
-text-align: center;
-}
-.team-member img {
-width: 80px;
-height: 80px;
-border-radius: 50%;
-object-fit: cover;
-margin-bottom: 10px;
-}
-.team-member h5 {
-color: #333;
-margin-top: 0;
-margin-bottom: 5px;
-}
-.team-member p {
-font-size: 0.9em;
-color: #777;
-max-width: 100%;
-}
+    /* --- Base Styles (Light Mode) --- */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+        text-align: center;
+        line-height: 1.6;
+        transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+    }
+
+    header {
+        background-color: #2E7D32; /* A professional agricultural green */
+        color: white;
+        padding: 20px; /* Adjusted padding */
+        margin-bottom: 30px;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Container for header content */
+    .header-content {
+        max-width: 960px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between; /* Space out title/link and toggle */
+        align-items: center;
+        flex-wrap: wrap; /* Allow wrapping */
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 2.2em; /* Slightly adjusted */
+        font-weight: bold;
+        text-align: left; /* Align title left */
+        flex-grow: 1; /* Allow title to take space */
+    }
+
+    .header-controls {
+         display: flex;
+         align-items: center;
+         gap: 15px; /* Space between back link and toggle */
+    }
+
+
+    .back-link {
+        display: inline-block;
+        /* margin: 20px; Removed margin, using gap */
+        padding: 10px 20px; /* Adjusted padding */
+        background-color: #555;
+        color: white !important; /* Ensure white color */
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .back-link:hover {
+        background-color: #777;
+    }
+
+    /* Dark Mode Toggle Button Styles (Copied from previous example) */
+    #darkModeToggle {
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 5px;
+        font-size: 1.5em; /* Adjust icon size */
+        line-height: 1; /* Prevent extra spacing */
+        outline: none;
+    }
+     #darkModeToggle svg {
+         display: block; /* Prevents potential inline spacing issues */
+         width: 24px;
+         height: 24px;
+     }
+
+    section {
+        padding: 60px 20px;
+        max-width: 960px;
+        margin: 0 auto 30px auto; /* Added bottom margin */
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: left; /* Align text in the main section to the left */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    h2 {
+        color: #2E7D32;
+        margin-top: 0;
+        margin-bottom: 25px;
+        font-size: 2.2em;
+        text-align: center; /* Center the main heading */
+        transition: color 0.3s ease;
+    }
+
+    p {
+        color: #666;
+        line-height: 1.7;
+        margin-bottom: 20px;
+        transition: color 0.3s ease;
+    }
+
+    h3 {
+        color: #2E7D32;
+        margin-top: 25px;
+        margin-bottom: 15px;
+        transition: color 0.3s ease;
+    }
+    /* Specific heading inside consulting area */
+     h4 {
+        color: #333; /* Base color for h4 */
+        margin-top: 0;
+        margin-bottom: 10px;
+        transition: color 0.3s ease;
+     }
+
+    .consulting-area {
+        margin-bottom: 30px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background-color: #fff; /* Explicit background */
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Moved h4 styling here for clarity */
+    .consulting-area h4 {
+        color: #333;
+    }
+
+    .contact-cta {
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    .contact-cta p {
+        max-width: none; /* Remove max-width for the call to action */
+        margin-bottom: 30px;
+        font-size: 1.1em;
+        color: #555;
+        transition: color 0.3s ease;
+    }
+
+    .contact-button {
+        display: inline-block;
+        padding: 15px 30px;
+        background-color: #5cb85c; /* A brighter green for the button */
+        color: white !important; /* Ensure white text */
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 1.2em;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .contact-button:hover {
+        background-color: #4cae4c;
+    }
+
+    .team-member {
+        display: inline-block;
+        width: 45%; /* Adjust as needed */
+        margin: 15px;
+        padding: 15px;
+        border: 1px solid #eee;
+        border-radius: 6px;
+        text-align: center;
+        vertical-align: top; /* Align boxes nicely if height differs */
+        background-color: #fff; /* Explicit background */
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .team-member img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+
+    .team-member h5 {
+        color: #333;
+        margin-top: 0;
+        margin-bottom: 5px;
+        transition: color 0.3s ease;
+    }
+
+    .team-member p {
+        font-size: 0.9em;
+        color: #777;
+        max-width: 100%;
+        transition: color 0.3s ease;
+        margin-bottom: 0; /* Reset paragraph margin inside team member */
+    }
+
+    /* --- Dark Mode Styles --- */
+    body.dark-mode {
+        background-color: #1a1a1a;
+        color: #f0f0f0;
+    }
+
+    body.dark-mode header {
+        background-color: #1f4d21; /* Darker version of the original green */
+    }
+
+    body.dark-mode section {
+        background-color: #2c2c2c;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    body.dark-mode h2,
+    body.dark-mode h3 {
+        color: #76c893; /* Lighter green for dark mode headings */
+    }
+
+    body.dark-mode p {
+        color: #ccc;
+    }
+
+    /* Style for paragraphs within consulting areas in dark mode */
+    body.dark-mode .consulting-area p {
+        color: #ccc;
+    }
+
+     /* Style for H4 inside consulting areas */
+    body.dark-mode .consulting-area h4 {
+        color: #ddd; /* Lighter heading color */
+    }
+
+    body.dark-mode .consulting-area {
+        background-color: #3a3a3a;
+        border-color: #555;
+    }
+
+    body.dark-mode .contact-cta p {
+         color: #bbb; /* Lighter color for CTA text */
+    }
+
+    body.dark-mode .contact-button {
+        background-color: #4a9d4a; /* Slightly adjusted green for dark mode */
+        color: white !important; /* Keep text white */
+    }
+    body.dark-mode .contact-button:hover {
+        background-color: #3c8c3c;
+    }
+
+
+    body.dark-mode .back-link {
+        background-color: #666;
+        color: white !important; /* Ensure text remains white */
+    }
+    body.dark-mode .back-link:hover {
+        background-color: #888;
+    }
+
+    body.dark-mode .team-member {
+        background-color: #3a3a3a;
+        border-color: #555;
+    }
+
+    body.dark-mode .team-member h5 {
+        color: #eee; /* Lighter name color */
+    }
+
+    body.dark-mode .team-member p {
+        color: #bbb; /* Lighter description color */
+    }
+
 </style>
 </head>
 <body>
+
 <header>
-<h1>Agricultural Consulting Services</h1>
-<a class="back-link" href="index.html">Back to Homepage</a>
+    <!-- Added header-content div for flexbox layout -->
+    <div class="header-content">
+        <h1>Agricultural Consulting Services</h1>
+        <!-- Added header-controls div to group link and button -->
+        <div class="header-controls">
+            <a class="back-link" href="index.html">Back to Homepage</a>
+            <!-- Added Dark Mode Toggle Button -->
+            <button id="darkModeToggle" aria-label="Toggle Dark Mode">
+                <!-- Sun icon (default) -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+        </div>
+    </div>
 </header>
+
 <section>
-<h2>Unlock Your Farm's Potential with Expert Agricultural Consulting</h2>
-<p>AgroSphere's consulting services provide you with the knowledge and strategies needed to thrive in today's agricultural landscape. Our team of experienced agronomists, soil scientists, and agricultural business specialists are dedicated to helping you optimize your farming practices, improve efficiency, and achieve sustainable growth.</p>
-<h3>Our Areas of Expertise Include:</h3>
+    <h2>Unlock Your Farm's Potential with Expert Agricultural Consulting</h2>
+    <p>AgroSphere's consulting services provide you with the knowledge and strategies needed to thrive in today's agricultural landscape. Our team of experienced agronomists, soil scientists, and agricultural business specialists are dedicated to helping you optimize your farming practices, improve efficiency, and achieve sustainable growth.</p>
+    <h3>Our Areas of Expertise Include:</h3>
 
     <div class="consulting-area">
         <h4>Crop Management</h4>
@@ -172,12 +345,12 @@ max-width: 100%;
     <p>Our team of experienced professionals is passionate about agriculture and dedicated to your success.</p>
     <div style="text-align: center;">
         <div class="team-member">
-            <img src="placeholder-avatar.png" alt="Expert 1">
+            <img src="assets/images/consulting/agronomist.jpeg" alt="Expert 1"> 
             <h5>Dr. Anya Sharma</h5>
             <p>Senior Agronomist</p>
         </div>
         <div class="team-member">
-            <img src="placeholder-avatar-2.png" alt="Expert 2">
+            <img src="assets/images/consulting/soil_specialist.jpeg" alt="Expert 2"> <!-- Make sure these images exist -->
             <h5>Ben Carter</h5>
             <p>Soil Science Specialist</p>
         </div>
@@ -189,3 +362,64 @@ max-width: 100%;
         <a href="contact.html" class="contact-button">Request a Consultation</a>
     </div>
 </section>
+
+<!-- Copied JavaScript for Dark Mode Toggle -->
+<script>
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    // Icons for the toggle button (Copied)
+    const sunIcon = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>`;
+
+    const moonIcon = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>`;
+
+    // Function to update the toggle button icon based on the current mode (Copied)
+    function updateToggleButtonIcon() {
+        if (body.classList.contains('dark-mode')) {
+            darkModeToggle.innerHTML = moonIcon;
+            darkModeToggle.setAttribute('aria-label', 'Switch to Light Mode');
+        } else {
+            darkModeToggle.innerHTML = sunIcon;
+            darkModeToggle.setAttribute('aria-label', 'Switch to Dark Mode');
+        }
+    }
+
+    // Function to toggle dark mode (Copied)
+    function toggleDarkMode() {
+        body.classList.toggle('dark-mode');
+        // Store the user's preference in local storage
+        // Using the same localStorage key 'darkMode' means the preference will be shared across pages
+        localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+        updateToggleButtonIcon(); // Update icon after toggling
+    }
+
+    // Check local storage for saved preference on page load (Copied)
+    const savedDarkMode = localStorage.getItem('darkMode');
+    if (savedDarkMode === 'true') {
+        body.classList.add('dark-mode');
+    }
+
+    // Set the initial icon state when the page loads (Copied)
+    updateToggleButtonIcon();
+
+    // Event listener for the toggle button (Copied)
+    darkModeToggle.addEventListener('click', toggleDarkMode);
+
+</script>
+
+</body>
+</html>
